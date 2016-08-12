@@ -94,13 +94,13 @@ export const getAdminArticle = ({ state: {route: { params: { id }}} }) => {
 }
 
 export const deleteArticle = ({commit}, config) => {
-    return api.getFromConfig(config).then(() => {
+    api.getFromConfig(config).then(() => {
         commit(types.DELETE_ARTICLE, config.id)
     })
 }
 
 export const recoverArticle = ({commit}, config) => {
-    return api.getFromConfig(config).then(() => {
+    api.getFromConfig(config).then(() => {
         commit(types.RECOVER_ARTICLE, config.id)
     })
 }

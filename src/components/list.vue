@@ -45,13 +45,13 @@ export default {
     },
     methods: {
         mdel(id) {
-            this.$store('deleteArticle', {
+            this.$store.dispatch('deleteArticle', {
                 id,
                 action: 'delete'
             })
         },
         recover(id) {
-            this.$store('recoverArticle', {
+            this.$store.dispatch('recoverArticle', {
                 id,
                 action: 'recover'
             })

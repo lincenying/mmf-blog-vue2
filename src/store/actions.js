@@ -70,6 +70,17 @@ export const getComment = ({ commit, state: {route: { path, params: { id }}} }, 
     })
 }
 
+export const postComment = ({ commit, state: {route: { path, params: { id }}} }, config) => {
+    return new Promise(resolve => {
+        api.getFromConfig(config).then(json => {
+            if (json.code === 200) {
+                commit(types.POST_COMMENT, json.data)
+            }
+            resolve(json)
+        })
+    })
+}
+
 export const getAdminTopics = ({commit, state: {route: { path, params: { page } }}}, config) => {
     config.page = page
     return new Promise(resolve => {

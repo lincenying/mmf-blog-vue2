@@ -1,5 +1,5 @@
 import {
-    RECEIVE_TOPICS, RECEIVE_ARTICLE, RECEIVE_COMMENT
+    RECEIVE_TOPICS, RECEIVE_ARTICLE, RECEIVE_COMMENT, POST_COMMENT
 } from '../mutation-types'
 
 const state = {
@@ -47,6 +47,9 @@ const mutations = {
         state.comment.hasNext = hasNext
         state.comment.path = path
         state.comment.page = page
+    },
+    [POST_COMMENT](state, data) {
+        state.comment.list = [data].concat(state.comment.list)
     }
 }
 

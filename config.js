@@ -1,5 +1,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
+var proxyConfig = require('./proxy')
 
 module.exports = {
     build: {
@@ -11,14 +12,6 @@ module.exports = {
     },
     dev: {
         port: 8080,
-        proxyTable: {
-            '/api': {
-                target: 'http://www.mmxiaowu.com',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/api': '/api'
-                }
-            }
-        }
+        proxyTable: proxyConfig
     }
 }

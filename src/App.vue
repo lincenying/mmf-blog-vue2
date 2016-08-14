@@ -67,7 +67,7 @@ export default {
             global: 'getGlobal'
         }),
         visit() {
-            return this.$route.name === 'index' || this.$route.name === 'article' || this.$route.name === 'category' || this.$route.name === 'search'
+            return ['index', 'article', 'category', 'search'].includes(this.$route.name)
         }
     },
     components: {
@@ -104,7 +104,7 @@ export default {
 }
 </script>
 <style>
-    .fade-enter-active, .fade-leave-active {
+.fade-enter-active, .fade-leave-active {
     transition: all 0.3s ease;
 }
 .fade-enter {

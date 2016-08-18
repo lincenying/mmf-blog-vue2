@@ -1,7 +1,7 @@
 {
   "name": "mmf-blog-vue2",
   "version": "2.0.0",
-  "description": "mmf-blog vue2.0 jsx语法版 (vue2, vue-router, vuex)",
+  "description": "mmf-blog vue2.0版 (vue2, vue-router, vuex)",
   "author": "lincenying <lincenying@qq.com>",
   "private": true,
   "scripts": {

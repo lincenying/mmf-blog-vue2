@@ -48,7 +48,7 @@
                 } else if (this.category === '') {
                     this.$store.dispatch('showMsg', '请选择分类')
                     e.preventDefault()
-                } else if ($(this.el).val() === '') {
+                } else if ($("#editor").val() === '') {
                     this.$store.dispatch('showMsg', '请输入内容')
                     e.preventDefault()
                 }

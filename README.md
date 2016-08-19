@@ -20,15 +20,11 @@ vue2-template 服务端渲染: [https://github.com/lincenying/mmf-blog-vue2-ssr]
 // 安装依赖
 npm install
 
-// 生成静态文件
+// 生产模式
 npm run build
 
 // 开发模式
 npm run dev
-
-或者
-
-npm run start
 ```
 
 首页

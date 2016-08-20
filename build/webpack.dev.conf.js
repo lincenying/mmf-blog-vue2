@@ -23,6 +23,7 @@ module.exports = merge(baseWebpackConfig, {
     // eval-source-map is faster for development
     devtool: '#eval-source-map',
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
         // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),

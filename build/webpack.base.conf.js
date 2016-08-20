@@ -70,7 +70,6 @@ module.exports = {
         loaders: utils.cssLoaders()
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',

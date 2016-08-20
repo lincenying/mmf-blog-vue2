@@ -30,6 +30,10 @@ module.exports = merge(baseWebpackConfig, {
         })
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: utils.assetsPath('js/[name].[chunkhash].js')
+        }),
         // http://vuejs.github.io/vue-loader/workflow/production.html
         new webpack.DefinePlugin({
             'process.env': {

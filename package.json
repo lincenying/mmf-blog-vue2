@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "mmf-blog vue2.0版 (vue2, vue-router, vuex)",
   "author": "lincenying <lincenying@qq.com>",
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",

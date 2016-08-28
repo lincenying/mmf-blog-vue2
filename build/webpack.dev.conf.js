@@ -38,10 +38,6 @@ module.exports = merge(baseWebpackConfig, {
             filename: 'login.html',
             template: 'login.html',
             inject: true
-        }),
-        new webpack.DllReferencePlugin({
-            context: path.resolve(__dirname, "../src"),
-            manifest: require("../static/vendor-manifest.json")
         })
     ]
 })

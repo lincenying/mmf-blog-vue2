@@ -1,5 +1,5 @@
 /* global require, module, process */
-var path = require("path");
+var path = require("path")
 var config = require('../config')
 var utils = require('./utils')
 var webpack = require('webpack')
@@ -31,11 +31,6 @@ module.exports = merge(baseWebpackConfig, {
     },
     plugins: [
         // http://vuejs.github.io/vue-loader/workflow/production.html
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
@@ -68,10 +63,6 @@ module.exports = merge(baseWebpackConfig, {
                 collapseWhitespace: true,
                 removeAttributeQuotes: true
             }
-        }),
-        new webpack.DllReferencePlugin({
-            context: path.resolve(__dirname, "../src"),
-            manifest: require("../static/vendor-manifest.json")
         })
     ]
 })

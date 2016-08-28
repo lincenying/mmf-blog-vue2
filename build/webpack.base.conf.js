@@ -40,7 +40,7 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel',
             include: projectRoot,
-            exclude: /node_modules|vue\/dist|vue-hot-reload-api|vue-router\/|vue-loader/
+            exclude: /node_modules/
         }, {
             test: /\.json$/,
             loader: 'json'
@@ -71,6 +71,10 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
+        }),
+        new webpack.DllReferencePlugin({
+            context: path.resolve(__dirname, "../src"),
+            manifest: require("../static/vendor-manifest.json")
         })
     ]
 }

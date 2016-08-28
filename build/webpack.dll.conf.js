@@ -1,12 +1,14 @@
 var path = require("path");
 var webpack = require("webpack");
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     entry: {
         vendor: [path.join(__dirname, "../src", "vendors.js")]
     },
     output: {
         path: path.join(__dirname, "../static", "dll"),
-        filename: "dll.[name].js",
+        filename: "[name].[chunkhash].js",
+        publicPath: '/static/dll/',
         library: "[name]"
     },
     plugins: [
@@ -30,6 +32,16 @@ module.exports = {
                 comments: false,
                 //screw_ie8: true
             }
+        }),
+        new HtmlWebpackPlugin({
+            filename: '../../index.html',
+            template: 'template/index.html',
+            inject: true
+        }),
+        new HtmlWebpackPlugin({
+            filename: '../../login.html',
+            template: 'template/login.html',
+            inject: true
         })
     ],
     resolve: {

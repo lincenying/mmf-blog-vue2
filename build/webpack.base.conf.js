@@ -10,10 +10,7 @@ module.exports = {
     entry: {
         polyfill: './src/polyfill',
         app: './src/main.js',
-        login: './src/login.js',
-        vendor: [
-            'vue', 'vue-router', 'vuex', 'vuex-router-sync'
-        ]
+        login: './src/login.js'
     },
     output: {
         path: config.build.assetsRoot,

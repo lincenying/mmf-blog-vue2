@@ -20,6 +20,9 @@ vue2-template 服务端渲染: [https://github.com/lincenying/mmf-blog-vue2-ssr]
 // 安装依赖
 npm install
 
+// 利用DllPlugin打包依赖库 (当src/vendors.js里的依赖库没有更新, 则不需要重复执行该命令)
+npm run dll
+
 // 生产模式
 npm run build
 

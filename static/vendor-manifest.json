@@ -1,0 +1,12 @@
+{
+  "name": "vendor",
+  "content": {
+    "../node_modules/process/browser.js": 1,
+    "../node_modules/vue-router/dist/vue-router.js": 2,
+    "../node_modules/vue/dist/vue.common.js": 3,
+    "../node_modules/vuex-router-sync/index.js": 4,
+    "../node_modules/vuex/dist/vuex.js": 5,
+    "../node_modules/webpack/buildin/global.js": 6,
+    "./vendors.js": 0
+  }
+}

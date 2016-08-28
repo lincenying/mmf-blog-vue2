@@ -1,5 +1,5 @@
 /* global require, module */
-
+var path = require("path");
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 var utils = require('./utils')
@@ -23,22 +23,25 @@ module.exports = merge(baseWebpackConfig, {
     // eval-source-map is faster for development
     devtool: '#eval-source-map',
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
         // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         // https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'polyfill', 'app'],
+            chunks: ['polyfill', 'app'],
             filename: 'index.html',
             template: 'index.html',
             inject: true
         }),
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'login'],
+            chunks: ['login'],
             filename: 'login.html',
             template: 'login.html',
             inject: true
+        }),
+        new webpack.DllReferencePlugin({
+            context: path.resolve(__dirname, "../src"),
+            manifest: require("../static/vendor-manifest.json")
         })
     ]
 })

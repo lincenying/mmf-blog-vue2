@@ -8,7 +8,6 @@ var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
     entry: {
-        polyfill: './src/polyfill',
         app: './src/main.js',
         login: './src/login.js'
     },
@@ -73,6 +72,7 @@ module.exports = {
             'window.jQuery': 'jquery'
         }),
         new webpack.DllReferencePlugin({
+            name: 'vendor',
             context: path.resolve(__dirname, "../src"),
             manifest: require("../static/vendor-manifest.json")
         })

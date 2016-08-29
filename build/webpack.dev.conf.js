@@ -28,7 +28,7 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.NoErrorsPlugin(),
         // https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
-            chunks: ['polyfill', 'app'],
+            chunks: ['app'],
             filename: 'index.html',
             template: 'index.html',
             inject: true

@@ -11,8 +11,9 @@
     },
     "root": true,
     "env": {
+        "browser": true,
+        "commonjs": true,
         "es6": true,
-        "mocha": true,
         "node": true
     },
     "extends": [
@@ -42,7 +43,7 @@
             "\\.(json|css|jpg|png|gif|eot|svg|ttf|woff|woff2|mp4|webm)$",
             "\\.eslintrc\\.js"
         ],
-        "import/extensions": [".js"],
+        "import/extensions": [".js", ".vue"],
         "import/resolver": {
             "node": {
                 "extensions": [".js", ".json"]

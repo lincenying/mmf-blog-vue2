@@ -2,6 +2,7 @@
 
 var path = require('path')
 var webpack = require('webpack')
+var autoprefixer = require('autoprefixer')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')

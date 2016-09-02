@@ -1,4 +1,3 @@
-import './polyfill'
 import Vue from 'vue'
 import Login from './Login.vue'
 import store from './store'

@@ -70,7 +70,7 @@
                 height: 500,
                 markdown: "",
                 placeholder: '请输入内容...',
-                path: './static/editor.md/lib/',
+                path: '/static/editor.md/lib/',
                 toolbarIcons() {
                     return [
                         "bold", "italic", "quote", "|",

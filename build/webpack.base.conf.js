@@ -4,6 +4,8 @@ var path = require('path')
 var webpack = require('webpack')
 var autoprefixer = require('autoprefixer')
 var browserslist = require('browserslist')
+var HappyPack = require('happypack')
+
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
@@ -36,12 +38,14 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.vue$/,
-            loader: 'vue'
+            loader: 'vue',
+            happy: { id: 'vue' }
         }, {
             test: /\.js$/,
             loader: 'babel',
             include: projectRoot,
-            exclude: /node_modules/
+            exclude: /node_modules/,
+            happy: { id: 'js' }
         }, {
             test: /\.json$/,
             loader: 'json'
@@ -80,6 +84,8 @@ module.exports = {
             name: 'vendor',
             context: path.resolve(__dirname, "../src"),
             manifest: require("../static/vendor-manifest.json")
-        })
+        }),
+        new HappyPack({ id: 'vue', threads: 4 }),
+        new HappyPack({ id: 'js', threads: 4 })
     ]
 }

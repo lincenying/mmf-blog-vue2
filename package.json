@@ -37,6 +37,7 @@
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.3",
     "file-loader": "^0.9.0",
+    "happypack": "^2.2.1",
     "html-webpack-plugin": "^2.21.0",
     "http-proxy-middleware": "^0.17.1",
     "json-loader": "^0.5.4",

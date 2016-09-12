@@ -35,12 +35,12 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: '../../index.html',
-            template: 'template/index.html',
+            template: 'template/tpl.index.html',
             inject: true
         }),
         new HtmlWebpackPlugin({
             filename: '../../login.html',
-            template: 'template/login.html',
+            template: 'template/tpl.login.html',
             inject: true
         })
     ],

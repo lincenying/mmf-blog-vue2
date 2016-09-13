@@ -1,7 +1,5 @@
 # mmf-blog vuejs 2.0版
 
-#### 注意: 不知道是哪个造成的bug, 当.vue文件中有<style>, 并且用了`extract-text-webpack-plugin`和`CommonsChunkPlugin`插件, 打包后会报`Cannot read property 'call' of undefined`错误
-
 demo: [http://www.mmxiaowu.com](http://www.mmxiaowu.com)
 
 react: [https://github.com/lincenying/mmf-blog-react](https://github.com/lincenying/mmf-blog-react)

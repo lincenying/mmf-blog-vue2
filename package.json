@@ -6,8 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "dll": "node build/dll.js"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "core-js": "^2.4.0",

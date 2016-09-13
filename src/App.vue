@@ -103,27 +103,3 @@ export default {
     }
 }
 </script>
-<style>
-.fade-enter-active, .fade-leave-active {
-    transition: all 0.3s ease;
-}
-.fade-enter {
-    opacity: 1;
-    transform: translate3d(0, 100px, 0);
-}
-.fade-leave-active {
-    opacity: 0;
-    transform: translate3d(100px, 0, 0);
-}
-.beian {
-    float: right;
-}
-.beian i {
-    width: 14px;
-    height: 14px;
-    background: url(http://beian.gov.cn/img/ghs.png);
-    background-size: cover;
-    display: inline-block;
-    vertical-align: top;
-}
-</style>

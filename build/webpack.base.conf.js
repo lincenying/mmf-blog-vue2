@@ -13,7 +13,8 @@ var projectRoot = path.resolve(__dirname, '../')
 module.exports = {
     entry: {
         app: './src/main.js',
-        login: './src/login.js'
+        login: './src/login.js',
+        vendor: ['vue', 'vue-router', 'vuex', 'vuex-router-sync', './src/polyfill']
     },
     output: {
         path: config.build.assetsRoot,
@@ -79,11 +80,6 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
-        }),
-        new webpack.DllReferencePlugin({
-            name: 'vendor',
-            context: path.resolve(__dirname, "../src"),
-            manifest: require("../static/vendor-manifest.json")
         }),
         new HappyPack({ id: 'vue', threads: 4 }),
         new HappyPack({ id: 'js', threads: 4 })

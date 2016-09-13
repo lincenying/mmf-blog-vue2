@@ -5,7 +5,3 @@ dist/
 static/dll/
 npm-debug.log
 .vscode/
-proxy.js
-index.html
-login.html
-vendor-manifest.json

@@ -21,12 +21,23 @@ $(document).ajaxComplete(function() {
 
 export default {
     getFromConfig(config) {
-        return $.ajax({ data: config })
+        return new Promise((resolve, reject) => {
+            $.ajax({ data: config }).then(data => {
+                resolve(data)
+            }, error => {
+                store.dispatch('showMsg', error.toString())
+                reject(error)
+            })
+        })
     },
     getData(config) {
-        return $.ajax({
-            global: false,
-            data: config
+        return new Promise((resolve, reject) => {
+            $.ajax({ global: false, data: config }).then(data => {
+                resolve(data)
+            }, error => {
+                store.dispatch('showMsg', error.toString())
+                reject(error)
+            })
         })
     }
 }

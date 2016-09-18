@@ -26,82 +26,63 @@ export const hideMsg = () => {
 }
 
 export const getTopics = ({commit, state: {route: { path }}}, config) => {
-    return new Promise(resolve => {
-        api.getFromConfig(config).then(({ data }) => {
-            commit(types.RECEIVE_TOPICS, {
-                ...config,
-                ...data,
-                path
-            })
-            resolve()
+    return api.getFromConfig(config).then(({ data }) => {
+        commit(types.RECEIVE_TOPICS, {
+            ...config,
+            ...data,
+            path
         })
     })
 }
 
 export const getArticle = ({ commit, state: {route: { params: { id }}} }) => {
-    return new Promise(resolve => {
-        api.getFromConfig({
-            action: "article",
-            markdown: 1,
-            id
-        }).then(json => {
-            commit(types.RECEIVE_ARTICLE, {
-                ...json
-            })
-            resolve()
+    return api.getFromConfig({
+        action: "article",
+        markdown: 1,
+        id
+    }).then(json => {
+        commit(types.RECEIVE_ARTICLE, {
+            ...json
         })
     })
 }
 
 export const getComment = ({ commit, state: {route: { path, params: { id }}} }, { page, limit }) => {
-    return new Promise(resolve => {
-        api.getFromConfig({
-            action: "comment",
+    return api.getFromConfig({
+        action: "comment",
+        page,
+        id,
+        limit
+    }).then(({ data }) => {
+        commit(types.RECEIVE_COMMENT, {
+            ...data,
             page,
-            id,
-            limit
-        }).then(({ data }) => {
-            commit(types.RECEIVE_COMMENT, {
-                ...data,
-                page,
-                path
-            })
-            resolve()
+            path
         })
     })
 }
 
 export const postComment = ({ commit, state: {route: { path, params: { id }}} }, config) => {
-    return new Promise(resolve => {
-        api.getFromConfig(config).then(json => {
-            if (json.code === 200) {
-                commit(types.POST_COMMENT, json.data)
-            }
-            resolve(json)
-        })
+    return api.getFromConfig(config).then(json => {
+        if (json.code === 200) {
+            commit(types.POST_COMMENT, json.data)
+        }
     })
 }
 
 export const getAdminTopics = ({commit, state: {route: { path, params: { page } }}}, config) => {
     config.page = page
-    return new Promise(resolve => {
-        api.getFromConfig(config).then(({ data }) => {
-            commit(types.RECEIVE_ADMIN_TOPICS, {
-                ...data,
-                path
-            })
-            resolve()
+    return api.getFromConfig(config).then(({ data }) => {
+        commit(types.RECEIVE_ADMIN_TOPICS, {
+            ...data,
+            path
         })
     })
 }
 export const getAdminArticle = ({ state: {route: { params: { id }}} }) => {
-    return new Promise(resolve => {
-        api.getFromConfig({
-            action: "getArticle",
-            id
-        }).then(json => {
-            resolve({...json})
-        })
+    return api.getFromConfig({
+        action: "getArticle",
+        id
     })
 }
 

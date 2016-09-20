@@ -15,9 +15,11 @@ const app = new Vue({
 })
 
 router.beforeEach((route, redirect, next) => {
-    var scrollTop = document.body.scrollTop
-    if (store.state.route.path && scrollTop) {
-        ls.set(store.state.route.path, scrollTop)
+    const scrollTop = document.body.scrollTop
+    const path = store.state.route.path
+    if (path) {
+        if (scrollTop) ls.set(path, scrollTop)
+        if (ls.get(path) && !scrollTop) ls.set(path, 0)
     }
     store.dispatch('gProgress', 0)
     next()

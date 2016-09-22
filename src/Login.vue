@@ -44,7 +44,9 @@
         methods: {
             onFormComplete(res) {
                 if (res.code === 200) {
-                    this.$store.dispatch('showMsg', '登录成功', 'success')
+                    this.$store.dispatch('showMsg', {
+                        content: '登录成功', type: "success"
+                    })
                     ls.set("token", res.data)
                     setTimeout(() => {
                         window.location.href = "/post"

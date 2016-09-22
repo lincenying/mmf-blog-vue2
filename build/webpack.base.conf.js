@@ -44,8 +44,7 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel',
             include: projectRoot,
-            exclude: /node_modules/,
-            happy: { id: 'js' }
+            exclude: /node_modules/
         }, {
             test: /\.json$/,
             loader: 'json'
@@ -79,7 +78,6 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
-        }),
-        new HappyPack({ id: 'js', threads: 4 })
+        })
     ]
 }

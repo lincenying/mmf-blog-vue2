@@ -35,8 +35,11 @@ module.exports = merge(baseWebpackConfig, {
                 NODE_ENV: '"production"'
             }
         }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     names: ["common", "vendor"]
+        // }),
         new webpack.optimize.CommonsChunkPlugin({
-            names: ["common", "vendor"]
+            names: ["vendor", "manifest"]
         }),
         // http://vuejs.github.io/vue-loader/workflow/production.html
         new webpack.optimize.UglifyJsPlugin({
@@ -54,7 +57,7 @@ module.exports = merge(baseWebpackConfig, {
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'common', 'app'],
+            chunks: ['manifest', 'vendor', 'app'],
             filename: process.env.NODE_ENV === 'testing' ? 'index.html' : config.build.index,
             template: 'index.html',
             inject: true,
@@ -65,7 +68,7 @@ module.exports = merge(baseWebpackConfig, {
             }
         }),
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'common', 'login'],
+            chunks: ['manifest', 'vendor', 'login'],
             filename: 'login.html',
             template: 'login.html',
             inject: true,

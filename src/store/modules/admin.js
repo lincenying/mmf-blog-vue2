@@ -27,7 +27,7 @@ const mutations = {
         state.article = data
     },
     [UPDATE_ADMIN_ARTICLE](state, data) {
-        const obj = state.topic.list.find(ii => ii._id === data.id)
+        const obj = state.topic.list.find(ii => ii._id === data._id)
         for (const jj in obj) {
             if (obj.hasOwnProperty(jj) && data[jj]) {
                 obj[jj] = data[jj]

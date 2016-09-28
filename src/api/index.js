@@ -25,7 +25,7 @@ export default {
             $.ajax({ data: config }).then(data => {
                 resolve(data)
             }, error => {
-                store.dispatch('showMsg', error.responseText.toString())
+                store.dispatch('showMsg', error.responseText || error.statusText)
                 reject(error)
             })
         })
@@ -35,7 +35,7 @@ export default {
             $.ajax({ global: false, data: config }).then(data => {
                 resolve(data)
             }, error => {
-                store.dispatch('showMsg', error.responseText.toString())
+                store.dispatch('showMsg', error.responseText || error.statusText)
                 reject(error)
             })
         })

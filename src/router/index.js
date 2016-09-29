@@ -23,10 +23,10 @@ const scrollBehavior = to => {
     return position
 }
 
-const guardRoute = (route, redirect, next) => {
+const guardRoute = (to, from, next) => {
     var token = ls.get('token') && cookies.get('user')
     if (!token) {
-        redirect('/')
+        next('/')
     } else {
         next()
     }

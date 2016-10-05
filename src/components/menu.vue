@@ -8,17 +8,17 @@
                 </form>
             </div>
             <div class="m-nav">
-                <a v-link="{ name: 'index'}">首页</a>
-                <a v-link="{ name: 'category', params: { id: 1 }}">生活</a>
-                <a v-link="{ name: 'category', params: { id: 2 }}">工作</a>
-                <a v-link="{ name: 'category', params: { id: 3 }}">其他</a>
+                <router-link to="/">首页</router-link>
+                <router-link to="/category/1">生活</router-link>
+                <router-link to="/category/2">工作</router-link>
+                <router-link to="/category/3">其他</router-link>
             </div>
         </div>
         <div v-if="!visit" class="box menu">
             <div class="m-nav">
-                <a v-link="{ name: 'index'}">首页</a>
-                <a v-link="{ name: 'adminList', params: { page: 1 }}">列表</a>
-                <a v-link="{ name: 'adminPost'}">发布</a>
+                <router-link to="/">首页</router-link>
+                <router-link to="/list/1">列表</router-link>
+                <router-link to="/post">发布</router-link>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         components: {
             About
         },
-        ready() {
+        mounted() {
             this.visit = this.$route.name === 'index' || this.$route.name === 'article' || this.$route.name === 'category'
         }
     }

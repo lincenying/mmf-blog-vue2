@@ -19,7 +19,7 @@ router.beforeEach((to, from, next) => {
     const path = store.state.route.path
     if (path) {
         if (scrollTop) ls.set(path, scrollTop)
-        if (ls.get(path) && !scrollTop) ls.set(path, 0)
+        if (ls.get(path) && !scrollTop) ls.remove(path)
     }
     store.dispatch('gProgress', 0)
     next()

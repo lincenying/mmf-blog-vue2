@@ -12,7 +12,7 @@ config.build.productionSourceMap = false
 
 module.exports = merge(baseWebpackConfig, {
     module: {
-        loaders: utils.styleLoaders({
+        rules: utils.styleLoaders({
             sourceMap: config.build.productionSourceMap,
             extract: true
         })
@@ -22,12 +22,6 @@ module.exports = merge(baseWebpackConfig, {
         path: config.build.assetsRoot,
         filename: utils.assetsPath('js/[name].[chunkhash].js'),
         chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
-    },
-    vue: {
-        loaders: utils.cssLoaders({
-            sourceMap: config.build.productionSourceMap,
-            extract: true
-        })
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -51,7 +45,15 @@ module.exports = merge(baseWebpackConfig, {
         // extract css into its own file
         new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
         new webpack.LoaderOptionsPlugin({
-            minimize: true
+            minimize: true,
+            options: {
+                vue: {
+                    loaders: utils.cssLoaders({
+                        sourceMap: config.build.productionSourceMap,
+                        extract: true
+                    })
+                }
+            }
         }),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html

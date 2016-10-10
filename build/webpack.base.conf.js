@@ -25,8 +25,8 @@ module.exports = {
         'jquery': 'jQuery'
     },
     resolve: {
-        extensions: ['', '.js', '.vue'],
-        fallback: [path.join(__dirname, '../node_modules')],
+        extensions: ['.js', '.vue'],
+        //fallback: [path.join(__dirname, '../node_modules')],
         alias: {
             'src': path.resolve(__dirname, '../src'),
             'assets': path.resolve(__dirname, '../src/assets'),
@@ -34,10 +34,10 @@ module.exports = {
         }
     },
     resolveLoader: {
-        fallback: [path.join(__dirname, '../node_modules')]
+        //fallback: [path.join(__dirname, '../node_modules')]
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.vue$/,
             loader: 'vue'
         }, {
@@ -67,17 +67,18 @@ module.exports = {
             }
         }]
     },
-    vue: {
-        loaders: utils.cssLoaders()
-    },
-    postcss: [
-        autoprefixer({ browsers: browserslist('last 2 version, > 0.1%')})
-    ],
     plugins: [
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
+        }),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [ autoprefixer({ browsers: browserslist('last 2 version, > 0.1%')}) ],
+                    loaders: utils.cssLoaders()
+                }
+            }
         })
     ]
 }

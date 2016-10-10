@@ -13,7 +13,7 @@ Object.keys(baseWebpackConfig.entry).forEach(function(name) {
 
 module.exports = merge(baseWebpackConfig, {
     module: {
-        loaders: utils.styleLoaders()
+        rules: utils.styleLoaders()
     },
     output: {
         // necessary for the html plugin to work properly

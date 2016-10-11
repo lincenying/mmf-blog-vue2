@@ -76,6 +76,7 @@ module.exports = {
         new webpack.LoaderOptionsPlugin({
             options: {
                 postcss: [ autoprefixer({ browsers: browserslist('last 2 version, > 0.1%')}) ],
+                vue: {
                     loaders: utils.cssLoaders()
                 }
             }

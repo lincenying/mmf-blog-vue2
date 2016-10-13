@@ -28,9 +28,11 @@
 import { mapGetters } from 'vuex'
 import ajaxForm from 'vue2-ajax-form'
 export default {
-    ...mapGetters({
-        article: 'getAdminArticle'
-    }),
+    computed: {
+        ...mapGetters({
+            article: 'getAdminArticle'
+        })
+    },
     components: {
         ajaxForm
     },

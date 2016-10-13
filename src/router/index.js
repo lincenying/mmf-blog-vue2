@@ -3,11 +3,11 @@ import VueRouter from 'vue-router'
 import ls from 'store2'
 import cookies from 'js-cookie'
 
-import index from '../components/index.vue'
-import adminEdit from '../components/edit.vue'
-import adminList from '../components/list.vue'
-import adminPost from '../components/post.vue'
-import article from '../components/article.vue'
+import index from '../pages/index.vue'
+import article from '../pages/article.vue'
+import adminPost from '../pages/post.vue'
+import adminEdit from '../pages/edit.vue'
+import adminList from '../pages/list.vue'
 
 Vue.use(VueRouter)
 

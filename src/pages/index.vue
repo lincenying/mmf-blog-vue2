@@ -13,7 +13,7 @@
 </template>
 <script lang="babel">
 import { mapGetters } from 'vuex'
-import indexPost from './index-post.vue'
+import indexPost from '../components/index-post.vue'
 import { ua, ssp } from '../tools/command'
 const fetchInitialData = async (store, config = { page: 1}) => {
     const {params: {id, qs}, path} = store.state.route

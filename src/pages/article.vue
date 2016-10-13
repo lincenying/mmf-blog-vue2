@@ -34,7 +34,7 @@
 
 <script lang="babel">
 import { mapGetters } from 'vuex'
-import comment from './comment.vue'
+import comment from '../components/comment.vue'
 const fetchInitialData = async store => {
     await store.dispatch(`getArticle`)
     await store.dispatch(`getComment`, { page: 1, limit: 5})

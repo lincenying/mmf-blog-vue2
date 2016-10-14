@@ -6,7 +6,7 @@ var autoprefixer = require('autoprefixer')
 var browserslist = require('browserslist')
 var HappyPack = require('happypack')
 
-var config = require('../config')
+var config = require('./config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 
@@ -26,15 +26,14 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.vue'],
-        //fallback: [path.join(__dirname, '../node_modules')],
+        modules: [path.join(__dirname, '../node_modules')],
         alias: {
             'src': path.resolve(__dirname, '../src'),
-            'assets': path.resolve(__dirname, '../src/assets'),
             'components': path.resolve(__dirname, '../src/components')
         }
     },
     resolveLoader: {
-        //fallback: [path.join(__dirname, '../node_modules')]
+        modules: [path.join(__dirname, '../node_modules')]
     },
     module: {
         rules: [{
@@ -75,6 +74,7 @@ module.exports = {
         }),
         new webpack.LoaderOptionsPlugin({
             options: {
+                context: __dirname,
                 postcss: [ autoprefixer({ browsers: browserslist('last 2 version, > 0.1%')}) ],
                 vue: {
                     loaders: utils.cssLoaders()

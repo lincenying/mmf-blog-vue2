@@ -1,7 +1,7 @@
 /* global require, exports, path */
 
 var path = require('path')
-var config = require('../config')
+var config = require('./config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 exports.assetsPath = function(_path) {
@@ -33,13 +33,11 @@ exports.cssLoaders = function(options) {
 
     // http://vuejs.github.io/vue-loader/configurations/extract-css.html
     return {
-        css: generateLoaders(['css?-autoprefixer', 'postcss']),
-        postcss: generateLoaders(['css?-autoprefixer', 'postcss']),
-        less: generateLoaders(['css?-autoprefixer', 'postcss', 'less']),
-        sass: generateLoaders(['css?-autoprefixer', 'postcss', 'sass?indentedSyntax']),
-        scss: generateLoaders(['css?-autoprefixer', 'postcss', 'sass']),
-        stylus: generateLoaders(['css?-autoprefixer', 'postcss', 'stylus']),
-        styl: generateLoaders(['css?-autoprefixer', 'postcss', 'stylus'])
+        css: generateLoaders(['css', 'postcss']),
+        postcss: generateLoaders(['css', 'postcss']),
+        less: generateLoaders(['css', 'postcss', 'less']),
+        sass: generateLoaders(['css', 'postcss', 'sass?indentedSyntax']),
+        scss: generateLoaders(['css', 'postcss', 'sass'])
     }
 }
 

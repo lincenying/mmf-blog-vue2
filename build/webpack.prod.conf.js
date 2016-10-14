@@ -1,6 +1,6 @@
 /* global require, module, process */
 var path = require("path")
-var config = require('../config')
+var config = require('./config')
 var utils = require('./utils')
 var webpack = require('webpack')
 var merge = require('webpack-merge')
@@ -60,8 +60,8 @@ module.exports = merge(baseWebpackConfig, {
         // see https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
             chunks: ['manifest', 'vendor', 'app'],
-            filename: process.env.NODE_ENV === 'testing' ? 'index.html' : config.build.index,
-            template: 'index.html',
+            filename: 'index.html',
+            template: 'src/template/index.html',
             inject: true,
             minify: {
                 removeComments: true,
@@ -72,7 +72,7 @@ module.exports = merge(baseWebpackConfig, {
         new HtmlWebpackPlugin({
             chunks: ['manifest', 'vendor', 'login'],
             filename: 'login.html',
-            template: 'login.html',
+            template: 'src/template/login.html',
             inject: true,
             minify: {
                 removeComments: true,

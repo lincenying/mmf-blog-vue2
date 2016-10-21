@@ -4,7 +4,6 @@ var path = require('path')
 var webpack = require('webpack')
 var autoprefixer = require('autoprefixer')
 var browserslist = require('browserslist')
-var HappyPack = require('happypack')
 
 var config = require('./config')
 var utils = require('./utils')

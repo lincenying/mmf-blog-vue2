@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^category/([\d]+)$  /index.html
+  RewriteRule ^search/(.*)$  /index.html
+  RewriteRule ^article/([\d]+)$  /index.html
+  RewriteRule ^list/([\d]+)$  /index.html
+  RewriteRule ^post$  /index.html
+  RewriteRule ^edit/([\d]+)/([\d]+)$  /index.html
+  RewriteRule ^login$  /login.html
+</IfModule>

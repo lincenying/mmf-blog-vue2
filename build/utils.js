@@ -1,16 +1,19 @@
 /* global require, exports, path */
 
 var path = require('path')
-var config = require('./config')
+var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 exports.assetsPath = function(_path) {
-    return path.posix.join(config.build.assetsSubDirectory, _path)
+    var assetsSubDirectory = process.env.NODE_ENV === 'production'
+        ? config.build.assetsSubDirectory
+        : config.dev.assetsSubDirectory
+    return path.posix.join(assetsSubDirectory, _path)
 }
 
 exports.cssLoaders = function(options) {
     options = options || {}
-        // generate loader string to be used with extract text plugin
+    // generate loader string to be used with extract text plugin
     function generateLoaders(loaders) {
         var sourceLoader = loaders.map(function(loader) {
             var extraParamChar
@@ -21,7 +24,9 @@ exports.cssLoaders = function(options) {
                 loader = loader + '-loader'
                 extraParamChar = '?'
             }
-            return loader + (options.sourceMap ? extraParamChar + 'sourceMap' : '')
+            return loader + (options.sourceMap
+                ? extraParamChar + 'sourceMap'
+                : '')
         }).join('!')
 
         if (options.extract) {

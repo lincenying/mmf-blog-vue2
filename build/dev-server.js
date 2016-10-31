@@ -3,7 +3,7 @@
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
-var config = require('./config')
+var config = require('../config')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 
@@ -57,7 +57,7 @@ app.use(devMiddleware)
 app.use(hotMiddleware)
 
 // serve pure static assets
-var staticPath = path.posix.join(config.build.assetsPublicPath, config.build.assetsSubDirectory)
+var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
 module.exports = app.listen(port, function(err) {

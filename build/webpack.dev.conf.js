@@ -1,6 +1,7 @@
 /* global require, module */
-var path = require("path");
+var path = require("path")
 var webpack = require('webpack')
+var config = require('../config')
 var merge = require('webpack-merge')
 var utils = require('./utils')
 var baseWebpackConfig = require('./webpack.base.conf')
@@ -23,21 +24,12 @@ module.exports = merge(baseWebpackConfig, {
     // eval-source-map is faster for development
     devtool: '#eval-source-map',
     plugins: [
+        new webpack.DefinePlugin({'process.env': config.dev.env}),
         // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         // https://github.com/ampedandwired/html-webpack-plugin
-        new HtmlWebpackPlugin({
-            chunks: ['app'],
-            filename: 'index.html',
-            template: 'src/template/index.html',
-            inject: true
-        }),
-        new HtmlWebpackPlugin({
-            chunks: ['login'],
-            filename: 'login.html',
-            template: 'src/template/login.html',
-            inject: true
-        })
+        new HtmlWebpackPlugin({chunks: ['app'], filename: 'index.html', template: 'src/template/index.html', inject: true}),
+        new HtmlWebpackPlugin({chunks: ['login'], filename: 'login.html', template: 'src/template/login.html', inject: true})
     ]
 })

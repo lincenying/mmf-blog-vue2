@@ -30,6 +30,14 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.NoErrorsPlugin(),
         // https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({chunks: ['app'], filename: 'index.html', template: 'src/template/index.html', inject: true}),
-        new HtmlWebpackPlugin({chunks: ['login'], filename: 'login.html', template: 'src/template/login.html', inject: true})
+        new HtmlWebpackPlugin({chunks: ['login'], filename: 'login.html', template: 'src/template/login.html', inject: true}),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                context: __dirname,
+                vue: {
+                    loaders: utils.cssLoaders()
+                }
+            }
+        })
     ]
 })

@@ -47,14 +47,6 @@ module.exports = merge(baseWebpackConfig, {
         // new webpack.optimize.OccurenceOrderPlugin(),
         // extract css into its own file
         new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            options: {
-                vue: {
-                    loaders: utils.cssLoaders({sourceMap: config.build.productionSourceMap, extract: true})
-                }
-            }
-        }),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
@@ -82,6 +74,15 @@ module.exports = merge(baseWebpackConfig, {
                 removeComments: true,
                 collapseWhitespace: true,
                 removeAttributeQuotes: true
+            }
+        }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            options: {
+                context: __dirname,
+                vue: {
+                    loaders: utils.cssLoaders({sourceMap: config.build.productionSourceMap, extract: true})
+                }
             }
         })
     ]

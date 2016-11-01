@@ -89,14 +89,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.ProvidePlugin({$: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery'}),
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                context: __dirname,
-                vue: {
-                    loaders: utils.cssLoaders()
-                }
-            }
-        })
+        new webpack.ProvidePlugin({$: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery'})
     ]
 }

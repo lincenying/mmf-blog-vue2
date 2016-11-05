@@ -10,6 +10,8 @@ vue2-template: [https://github.com/lincenying/mmf-blog-vue2](https://github.com/
 
 vue2-jsx: [https://github.com/lincenying/mmf-blog-vue2-jsx](https://github.com/lincenying/mmf-blog-vue2-jsx)
 
+vue2-jsx-leancloud: [https://github.com/lincenying/mmf-blog-vue2-jsx-lc](https://github.com/lincenying/mmf-blog-vue2-jsx-lc)
+
 vue2-template 服务端渲染: [https://github.com/lincenying/mmf-blog-vue2-ssr](https://github.com/lincenying/mmf-blog-vue2-ssr) // 未完成
 
 ---
@@ -18,7 +20,7 @@ vue2-template 服务端渲染: [https://github.com/lincenying/mmf-blog-vue2-ssr]
 
 ```
 // 安装依赖
-npm install
+npm install  or  yarn
 
 // 生产模式
 npm run build

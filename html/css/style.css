@@ -835,19 +835,6 @@ textarea.form-control {
     border-bottom: 1px solid #eee;
     margin-bottom: 10px;
 }
-.global-msg {
-    position: fixed;
-    _position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #7e7e10;
-    font-size: 14px;
-    line-height: 40px;
-    background: rgba(237,237,99,.8);
-    z-index: 20
-}
 
 .arrow {
     position: fixed;

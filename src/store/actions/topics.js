@@ -42,6 +42,7 @@ export const postComment = ({ commit, state: {route: { path, params: { id }}} },
     return api.getFromConfig(config).then(json => {
         if (json.code === 200) {
             commit(types.POST_COMMENT, json.data)
+            return json
         }
     })
 }

@@ -5,9 +5,9 @@ import cookies from 'js-cookie'
 
 import index from '../pages/index.vue'
 import article from '../pages/article.vue'
-import adminPost from '../pages/post.vue'
-import adminEdit from '../pages/edit.vue'
-import adminList from '../pages/list.vue'
+import adminPost from '../pages/admin-post.vue'
+import adminEdit from '../pages/admin-edit.vue'
+import adminList from '../pages/admin-list.vue'
 
 Vue.use(VueRouter)
 

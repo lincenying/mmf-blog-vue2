@@ -75,7 +75,6 @@
                 xhr.open(this.method, this.action, true)
                 xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
                 xhr.setRequestHeader('Authorization', 'Basic dGVzdDpwYXNzd2Q=')
-                xhr.withCredentials = true
                 if (this.vResponseType) {
                     xhr.responseType = this.vResponseType
                 } else {

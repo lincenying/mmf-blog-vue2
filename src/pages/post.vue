@@ -1,7 +1,7 @@
 <template>
     <div class="g-mn">
         <div class="box">
-            <ajax-form id="article-post" action="/api/" method="post" :complete="onFormComplete">
+            <ajax-form id="article-post" :action="api" method="post" :complete="onFormComplete">
                 <section id="post-title">
                     <input v-model="title" type="text" name="title" class="form-control" placeholder="请输入标题">
                 </section>
@@ -28,12 +28,14 @@
 <script lang="babel">
 /* global window, editormd, testEditor */
 import ajaxForm from 'vue2-ajax-form'
+import config from '../config'
 export default {
     components: {
         ajaxForm
     },
     data () {
         return {
+            api: config.api,
             editors: null,
             title: '',
             category: '',

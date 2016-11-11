@@ -1,7 +1,7 @@
 <template>
     <div class="g-mn">
         <div class="box">
-            <ajax-form id="article-post" action="/api/?action=modify" method="post" :complete="onFormComplete">
+            <ajax-form id="article-post" :action="api" method="post" :complete="onFormComplete">
                 <section id="post-title">
                     <input v-model="form.title" type="text" name="title" class="form-control" placeholder="请输入标题">
                 </section>
@@ -15,6 +15,7 @@
                     <textarea id="editor" name="content" class="form-control" data-autosave="editor-content"></textarea>
                 </section>
                 <section id="post-submit">
+                    <input type="hidden" name="action" value="modify">
                     <input type="hidden" name="id" :value="form._id">
                     <button @click="onSubmit" class="btn btn-success">编辑</button>
                 </section>
@@ -27,6 +28,7 @@
 /* global editormd */
 import { mapGetters } from 'vuex'
 import ajaxForm from 'vue2-ajax-form'
+import config from '../config'
 export default {
     computed: {
         ...mapGetters({
@@ -38,6 +40,7 @@ export default {
     },
     data () {
         return {
+            api: config.api,
             form: {
                 _id: '',
                 title: '',

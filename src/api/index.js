@@ -1,8 +1,9 @@
 /* global $ */
 import store from '../store'
+import config from '../config'
 
 $.ajaxSetup({
-    url: '/api/',
+    url: config.api,
     global: true,
     type: 'POST',
     dataType: 'json',

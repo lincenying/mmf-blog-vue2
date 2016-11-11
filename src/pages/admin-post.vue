@@ -62,6 +62,9 @@ export default {
                 type: res.code === 200 ? "success" : 'error'
             })
             if (res.code === 200) {
+                this.title = ''
+                this.category = ''
+                this.content = ''
                 $("#article-post").get(0).reset()
                 postEditor.clear()
             }

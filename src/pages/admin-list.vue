@@ -58,10 +58,7 @@ export default {
         }
     },
     created() {
-        if (this.$route.path !== this.topics.path)
-            fetchInitialData(this.$store)
-        else
-            this.$store.dispatch('gProgress', 100)
+        fetchInitialData(this.$store)
     },
     watch: {
         '$route'() {

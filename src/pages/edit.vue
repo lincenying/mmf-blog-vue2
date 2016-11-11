@@ -108,7 +108,7 @@ export default {
                 saveHTMLToTextarea : true,
                 imageUpload : true,
                 imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                imageUploadURL : "/api/?action=upload"
+                imageUploadURL : config.api + "?action=upload"
             })
         })
     }

@@ -1,7 +1,5 @@
 .DS_Store
-.happypack/
 node_modules/
-dist/
-static/dll/
 npm-debug.log
 .vscode/
+dist/

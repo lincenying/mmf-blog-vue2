@@ -7,6 +7,9 @@ $.ajaxSetup({
     global: true,
     type: 'POST',
     dataType: 'json',
+    xhrFields: {
+        withCredentials: true
+    },
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Authorization': 'Basic dGVzdDpwYXNzd2Q='

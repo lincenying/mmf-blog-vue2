@@ -28,10 +28,10 @@
                         <router-link to="/" exact><i></i>All</router-link>
                     </li>
                     <li class="tag-life">
-                        <router-link to="/list/1"><i></i>List</router-link>
+                        <router-link to="/admin/list/1"><i></i>List</router-link>
                     </li>
                     <li class="tag-study">
-                        <router-link to="/post"><i></i>Post</router-link>
+                        <router-link to="/admin/post"><i></i>Post</router-link>
                     </li>
                 </ul>
             </div>

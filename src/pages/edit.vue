@@ -78,7 +78,7 @@ export default {
                 this.$store.dispatch('showMsg', {
                     content: res.message, type: "success"
                 })
-                this.$router.replace('/list/' + this.$route.params.page)
+                this.$router.replace('/admin/list/' + this.$route.params.page)
             } else {
                 this.$store.dispatch('showMsg', res.message)
             }

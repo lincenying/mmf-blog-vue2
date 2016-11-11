@@ -15,6 +15,7 @@
                 </section>
                 <section id="post-content">
                     <textarea v-model="content" id="editor" name="content" class="form-control hidden" data-autosave="editor-content"></textarea>
+                    <textarea id="html" name="html" class="form-control hidden"></textarea>
                 </section>
                 <section id="post-submit">
                     <input type="hidden" name="action" value="post">
@@ -26,7 +27,7 @@
 </template>
 
 <script lang="babel">
-/* global window, editormd, testEditor */
+/* global window, editormd, postEditor */
 import ajaxForm from 'vue2-ajax-form'
 import config from '../config'
 export default {
@@ -62,12 +63,12 @@ export default {
             })
             if (res.code === 200) {
                 $("#article-post").get(0).reset()
-                testEditor.clear()
+                postEditor.clear()
             }
         }
     },
     mounted() {
-        window.testEditor = editormd("post-content", {
+        window.postEditor = editormd("post-content", {
             width: "100%",
             height: 500,
             markdown: "",

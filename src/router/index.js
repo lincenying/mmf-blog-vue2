@@ -41,9 +41,9 @@ const router = new VueRouter({
         { name:'category', path: '/category/:id(\\d+)', component: index },
         { name:'search', path: '/search/:qs', component: index },
         { name:'article', path: '/article/:id', component: article, meta: { scrollToTop: true } },
-        { name:'list', path: '/list/:page(\\d+)', component: adminList, meta: { scrollToTop: true }, beforeEnter: guardRoute },
-        { name:'post', path: '/post', component: adminPost, meta: { scrollToTop: true }, beforeEnter: guardRoute },
-        { name:'edit', path: '/edit/:id/:page', component: adminEdit, meta: { scrollToTop: true }, beforeEnter: guardRoute }
+        { name:'list', path: '/admin/list/:page(\\d+)', component: adminList, meta: { scrollToTop: true }, beforeEnter: guardRoute },
+        { name:'post', path: '/admin/post', component: adminPost, meta: { scrollToTop: true }, beforeEnter: guardRoute },
+        { name:'edit', path: '/admin/edit/:id/:page', component: adminEdit, meta: { scrollToTop: true }, beforeEnter: guardRoute }
     ]
 })
 

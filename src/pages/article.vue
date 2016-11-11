@@ -13,7 +13,7 @@
                 <div class="cont cont-1">
                     <div class="text">
                         <h2><router-link :to="'/article/' + article.data._id" v-text="article.data.title"></router-link></h2>
-                        <div class="markdown-body" v-html="article.data.content"></div>
+                        <div class="markdown-body" v-html="article.data.html"></div>
                     </div>
                 </div>
                 <div class="info info-1"></div>

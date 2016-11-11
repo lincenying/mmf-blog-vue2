@@ -13,8 +13,8 @@
 </template>
 <script lang="babel">
 import '../static/editor.md/css/editormd.css'
-import '../html/css/hljs/googlecode.css'
-import '../html/css/style.css'
+import './assets/css/hljs/googlecode.css'
+import './assets/css/style.css'
 import '../node_modules/toastr/build/toastr.css'
 import '../node_modules/nprogress/nprogress.css'
 import { mapGetters } from 'vuex'

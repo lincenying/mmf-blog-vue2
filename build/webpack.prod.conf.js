@@ -19,8 +19,8 @@ module.exports = merge(baseWebpackConfig, {
         : false,
     output: {
         path: config.build.assetsRoot,
-        filename: utils.assetsPath('js/[name].[chunkhash].js'),
-        chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+        filename: utils.assetsPath('js/[name].[chunkhash:7].js'),
+        chunkFilename: utils.assetsPath('js/[id].[chunkhash:7].js')
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -46,7 +46,7 @@ module.exports = merge(baseWebpackConfig, {
         }),
         // new webpack.optimize.OccurenceOrderPlugin(),
         // extract css into its own file
-        new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
+        new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash:7].css')),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin

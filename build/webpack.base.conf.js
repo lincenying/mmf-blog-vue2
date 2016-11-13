@@ -34,14 +34,20 @@ module.exports = {
         extensions: [
             '.js', '.vue'
         ],
-        modules: [path.join(__dirname, '../node_modules')],
+        modules: [
+            path.join(__dirname, '../node_modules'),
+            'E:\\web\\npm\\node_modules'
+        ],
         alias: {
             'src': path.resolve(__dirname, '../src'),
             'components': path.resolve(__dirname, '../src/components')
         }
     },
     resolveLoader: {
-        modules: [path.join(__dirname, '../node_modules')]
+        modules: [
+            path.join(__dirname, '../node_modules'),
+            'E:\\web\\npm\\node_modules'
+        ]
     },
     module: {
         rules: [

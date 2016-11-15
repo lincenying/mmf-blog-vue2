@@ -2,7 +2,7 @@
     <section class="container">
         <div class="login">
             <h1>后台管理</h1>
-            <ajax-form id="shake-setting" :action="api" method="post" :onFormComplete="onFormComplete">
+            <ajax-form id="shake-setting" :action="api" method="post" :complete="onFormComplete">
                 <p><input v-model="form.username" type="text" name="username" value="" placeholder="请输入用户名"></p>
                 <p><input v-model="form.password" type="password" name="password" value="" placeholder="请输入密码"></p>
                 <p class="remember_me">
@@ -24,7 +24,7 @@
     import config from './config'
     import { mapGetters } from 'vuex'
     import ls from 'store2'
-    import ajaxForm from './components/app/ajax-form.vue'
+    import ajaxForm from 'vue2-ajax-form'
     export default {
         computed: {
             ...mapGetters({

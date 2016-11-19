@@ -53,40 +53,40 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'eslint',
+                loader: 'eslint-loader',
                 enforce: "pre",
                 include: projectRoot,
                 exclude: /node_modules/
             }, {
                 test: /\.js$/,
-                loader: 'eslint',
+                loader: 'eslint-loader',
                 enforce: "pre",
                 include: projectRoot,
                 exclude: /node_modules/
             }, {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue-loader'
             }, {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 include: projectRoot,
                 exclude: /node_modules/
             }, {
                 test: /\.json$/,
-                loader: 'json'
+                loader: 'json-loader'
             }, {
                 test: /\.html$/,
-                loader: 'vue-html'
+                loader: 'vue-html-loader'
             }, {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url',
+                loader: 'url-loader',
                 query: {
                     limit: 10000,
                     name: utils.assetsPath('img/[name].[hash:7].[ext]')
                 }
             }, {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url',
+                loader: 'url-loader',
                 query: {
                     limit: 10000,
                     name: utils.assetsPath('fonts/[name].[hash:7].[ext]')

@@ -83,7 +83,6 @@ export default {
                 this.$store.dispatch('showMsg', '请输入评论内容!')
             } else {
                 this.$store.dispatch('postComment', {
-                    action: 'postComment',
                     id: this.$route.params.id,
                     content: this.form.content,
                     username: this.form.username

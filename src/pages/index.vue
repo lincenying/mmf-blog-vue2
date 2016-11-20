@@ -19,7 +19,6 @@ const fetchInitialData = async (store, config = { page: 1}) => {
     const {params: {id, qs}, path} = store.state.route
     const base = {
         ...config,
-        action: 'getArticleList',
         markdown: 1,
         limit: 10,
         id,

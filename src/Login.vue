@@ -8,7 +8,6 @@
                 <p class="remember_me">
                     <label>
                         <input v-model="form.remember_me" type="checkbox" name="remember_me" id="remember_me">
-                        <input value="login" type="hidden" name="action" id="action">
                         保持登录
                     </label>
                 </p>
@@ -36,7 +35,7 @@
         },
         data() {
             return {
-                api: config.api,
+                api: config.api + 'frontend/login',
                 form: {
                     username: '',
                     password: '',

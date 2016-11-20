@@ -22,11 +22,9 @@
 <script lang="babel">
 import { mapGetters } from 'vuex'
 const fetchInitialData = async store => {
-    const base = {
-        action: 'getAdminArticle',
+    await store.dispatch('getAdminTopics', {
         limit: 20
-    }
-    await store.dispatch('getAdminTopics', base)
+    })
 }
 export default {
     computed: {

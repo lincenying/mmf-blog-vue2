@@ -36,7 +36,7 @@ export default {
     },
     data () {
         return {
-            api: config.api,
+            api: config.api + 'admin/article/post',
             editors: null,
             title: '',
             category: '',

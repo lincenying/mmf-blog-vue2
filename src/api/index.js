@@ -3,9 +3,7 @@ import store from '../store'
 import config from '../config'
 
 $.ajaxSetup({
-    url: config.api,
     global: true,
-    type: 'POST',
     dataType: 'json',
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -21,9 +19,14 @@ $(document).ajaxComplete(function() {
 })
 
 export default {
-    getFromConfig(config) {
+    get(url, data, global = true) {
         return new Promise((resolve, reject) => {
-            $.ajax({ data: config }).then(data => {
+            $.ajax({
+                url: config.api + url,
+                type: 'get',
+                data,
+                global
+            }).then(data => {
                 resolve(data)
             }, error => {
                 store.dispatch('showMsg', error.responseText || error.statusText)
@@ -31,14 +34,19 @@ export default {
             })
         })
     },
-    getData(config) {
+    post(url, data, global = true) {
         return new Promise((resolve, reject) => {
-            $.ajax({ global: false, data: config }).then(data => {
+            $.ajax({
+                url: config.api + url,
+                type: 'post',
+                data,
+                global
+            }).then(data => {
                 resolve(data)
             }, error => {
                 store.dispatch('showMsg', error.responseText || error.statusText)
                 reject(error)
             })
         })
-    }
+    },
 }

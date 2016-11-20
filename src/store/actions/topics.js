@@ -2,7 +2,7 @@ import * as types from '../mutation-types'
 import api from '../../api'
 
 export const getTopics = ({commit, state: {route: { path }}}, config) => {
-    return api.getFromConfig(config).then(({ data }) => {
+    return api.get('frontend/topics', config).then(({ data }) => {
         commit(types.RECEIVE_TOPICS, {
             ...config,
             ...data,
@@ -12,8 +12,7 @@ export const getTopics = ({commit, state: {route: { path }}}, config) => {
 }
 
 export const getArticle = ({ commit, state: {route: { params: { id }}} }) => {
-    return api.getFromConfig({
-        action: "article",
+    return api.get('frontend/article', {
         markdown: 1,
         id
     }).then(json => {
@@ -24,8 +23,7 @@ export const getArticle = ({ commit, state: {route: { params: { id }}} }) => {
 }
 
 export const getComment = ({ commit, state: {route: { path, params: { id }}} }, { page, limit }) => {
-    return api.getFromConfig({
-        action: "comment",
+    return api.get('frontend/comment/list', {
         page,
         id,
         limit
@@ -39,7 +37,7 @@ export const getComment = ({ commit, state: {route: { path, params: { id }}} }, 
 }
 
 export const postComment = ({ commit, state: {route: { path, params: { id }}} }, config) => {
-    return api.getFromConfig(config).then(json => {
+    return api.post('frontend/comment/post', config).then(json => {
         if (json.code === 200) {
             commit(types.POST_COMMENT, json.data)
             return json

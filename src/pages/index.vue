@@ -12,6 +12,7 @@
     </div>
 </template>
 <script lang="babel">
+import ls from 'store2'
 import { mapGetters } from 'vuex'
 import indexPost from '../components/index-post.vue'
 import { ua, ssp } from '../utils'
@@ -56,6 +57,15 @@ export default {
         '$route'() {
             fetchInitialData(this.$store, {page: 1})
         }
+    },
+    beforeRouteLeave (to, from, next) {
+        const scrollTop = document.body.scrollTop
+        const path = this.$route.path
+        if (scrollTop) ls.set(path, scrollTop)
+        else {
+            if (ls.get(path)) ls.remove(path)
+        }
+        next()
     }
 }
 </script>

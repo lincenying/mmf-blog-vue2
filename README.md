@@ -1,6 +1,10 @@
 # mmf-blog vuejs 2.0版
 
-demo: [http://www.mmxiaowu.com](http://www.mmxiaowu.com)
+demo: [http://vue2.mmxiaowu.com](http://vue2.mmxiaowu.com)
+
+---
+
+#### 其他版本
 
 react: [https://github.com/lincenying/mmf-blog-react](https://github.com/lincenying/mmf-blog-react)
 

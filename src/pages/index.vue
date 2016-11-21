@@ -14,7 +14,7 @@
 <script lang="babel">
 import { mapGetters } from 'vuex'
 import indexPost from '../components/index-post.vue'
-import { ua, ssp } from '../tools/command'
+import { ua, ssp } from '../utils'
 const fetchInitialData = async (store, config = { page: 1}) => {
     const {params: {id, qs}, path} = store.state.route
     const base = {

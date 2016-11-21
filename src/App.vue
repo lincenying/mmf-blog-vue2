@@ -29,7 +29,7 @@ export default {
             global: 'getGlobal'
         }),
         visit() {
-            return ['index', 'article', 'category', 'search'].includes(this.$route.name)
+            return !['list', 'post', 'edit'].includes(this.$route.name)
         }
     },
     components: {

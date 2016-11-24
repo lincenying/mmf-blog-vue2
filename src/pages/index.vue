@@ -1,7 +1,7 @@
 <template>
     <div class="g-mn">
         <div class="posts">
-            <index-post v-for="item in topics.list" :item="item" :ispc="isPC"></index-post>
+            <index-item v-for="item in topics.list" :item="item" :ispc="isPC"></index-item>
         </div>
         <div class="box m-page box-do">
             <div class="w-icon w-icon-2"></div>
@@ -14,7 +14,7 @@
 <script lang="babel">
 import ls from 'store2'
 import { mapGetters } from 'vuex'
-import indexPost from '../components/index-post.vue'
+import indexItem from '../components/index-item.vue'
 import { ua, ssp } from '../utils'
 const fetchInitialData = async (store, config = { page: 1}) => {
     const {params: {id, qs}, path} = store.state.route
@@ -29,8 +29,9 @@ const fetchInitialData = async (store, config = { page: 1}) => {
     if (config.page === 1) ssp(path)
 }
 export default {
+    prefetch: fetchInitialData,
     components: {
-        indexPost
+        indexItem
     },
     computed: {
         ...mapGetters({
@@ -62,9 +63,7 @@ export default {
         const scrollTop = document.body.scrollTop
         const path = this.$route.path
         if (scrollTop) ls.set(path, scrollTop)
-        else {
-            if (ls.get(path)) ls.remove(path)
-        }
+        else ls.remove(path)
         next()
     }
 }

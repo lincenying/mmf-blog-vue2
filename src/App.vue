@@ -5,7 +5,7 @@
         <Navigation :visit="visit" :search="search"></Navigation>
     </div>
     <transition name="fade" mode="out-in">
-        <router-view class="router"></router-view>
+        <router-view :key="key" class="router"></router-view>
     </transition>
     <Copyright></Copyright>
     <Arrow></Arrow>
@@ -30,6 +30,9 @@ export default {
         }),
         visit() {
             return !['list', 'post', 'edit'].includes(this.$route.name)
+        },
+        key() {
+            return this.$route.path.replace(/\//g, '_')
         }
     },
     components: {

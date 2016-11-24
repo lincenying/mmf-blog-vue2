@@ -5,19 +5,20 @@ export const getTopics = ({commit, state: {route: { path }}}, config) => {
     return api.get('frontend/topics', config).then(({ data }) => {
         commit(types.RECEIVE_TOPICS, {
             ...config,
-            ...data,
+            ...data.data,
             path
         })
     })
 }
 
-export const getArticle = ({ commit, state: {route: { params: { id }}} }) => {
+export const getArticle = ({ commit, state: {route: { path, params: { id }}} }) => {
     return api.get('frontend/article', {
         markdown: 1,
         id
-    }).then(json => {
+    }).then(({data}) => {
         commit(types.RECEIVE_ARTICLE, {
-            ...json
+            ...data,
+            path
         })
     })
 }
@@ -29,7 +30,7 @@ export const getComment = ({ commit, state: {route: { path, params: { id }}} }, 
         limit
     }).then(({ data }) => {
         commit(types.RECEIVE_COMMENT, {
-            ...data,
+            ...data.data,
             page,
             path
         })
@@ -37,10 +38,10 @@ export const getComment = ({ commit, state: {route: { path, params: { id }}} }, 
 }
 
 export const postComment = ({ commit, state: {route: { path, params: { id }}} }, config) => {
-    return api.post('frontend/comment/post', config).then(json => {
-        if (json.code === 200) {
-            commit(types.POST_COMMENT, json.data)
-            return json
+    return api.post('frontend/comment/post', config).then(({data}) => {
+        if (data.code === 200) {
+            commit(types.POST_COMMENT, data.data)
+            return data
         }
     })
 }

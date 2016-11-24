@@ -5,7 +5,7 @@ export const getAdminTopics = ({commit, state: {route: { path, params: { page } 
     config.page = page
     return api.get('admin/topics', config).then(({ data }) => {
         commit(types.RECEIVE_ADMIN_TOPICS, {
-            ...data,
+            ...data.data,
             path
         })
     })

@@ -86,7 +86,7 @@ export default {
                     id: this.$route.params.id,
                     content: this.form.content,
                     username: this.form.username
-                }).then(({code, message}) => {
+                }).then(({code}) => {
                     if (code === 200) {
                         this.form.content = ''
                         this.form.username = ''
@@ -94,8 +94,6 @@ export default {
                             content: '评论发布成功!',
                             type: 'success'
                         })
-                    } else {
-                        this.$store.dispatch('showMsg', message)
                     }
                 })
             }

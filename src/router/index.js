@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import ls from 'store2'
 import cookies from 'js-cookie'
 
+import inBrowser from '../utils'
+
 import index from '../pages/index.vue'
 import article from '../pages/article.vue'
 import adminPost from '../pages/admin-post.vue'
@@ -24,7 +26,7 @@ const scrollBehavior = to => {
 }
 
 const guardRoute = (to, from, next) => {
-    var token = ls.get('token') && cookies.get('user')
+    var token = ls.get('token') && cookies.get('user') || !inBrowser
     if (!token) {
         next('/')
     } else {

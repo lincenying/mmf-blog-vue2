@@ -1,10 +1,9 @@
-@charset "utf-8";
 /* 清除内外边距 */
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
 dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
 pre, /* text formatting elements 文本格式元素 */
-fieldset, button, input, textarea, /* form elements 表单元素 */
-th, td { /* table elements 表格元素 */
+fieldset, button, input, textarea,
+th, td {
     margin: 0;
     padding: 0;
 }
@@ -834,6 +833,19 @@ textarea.form-control {
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
     margin-bottom: 10px;
+}
+.global-msg {
+    position: fixed;
+    _position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #7e7e10;
+    font-size: 14px;
+    line-height: 40px;
+    background: rgba(237,237,99,.8);
+    z-index: 20
 }
 
 .arrow {

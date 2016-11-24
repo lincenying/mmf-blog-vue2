@@ -40,7 +40,8 @@ module.exports = {
         ],
         alias: {
             'src': path.resolve(__dirname, '../src'),
-            'components': path.resolve(__dirname, '../src/components')
+            'components': path.resolve(__dirname, '../src/components'),
+            'api-config': path.resolve(__dirname, '../src/api/config-client')
         }
     },
     resolveLoader: {

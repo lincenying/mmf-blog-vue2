@@ -4,3 +4,11 @@
         <span class="beian"><i></i> <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=000000000000">浙公网安备 000000000000号</a></span>
     </div>
 </template>
+<script>
+export default {
+    name: 'copyright',
+    serverCacheKey: () => {
+        return `components::copyright`
+    }
+}
+</script>

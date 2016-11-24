@@ -28,8 +28,8 @@
 
 <script lang="babel">
 /* global window, editormd, postEditor */
-import ajaxForm from 'vue2-ajax-form'
-import config from '../config'
+import ajaxForm from '../components/app/ajax-form.vue'
+import config from 'api-config'
 export default {
     components: {
         ajaxForm

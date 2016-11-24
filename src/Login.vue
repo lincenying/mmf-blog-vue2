@@ -20,7 +20,7 @@
     /* global window */
     import './assets/css/login.css'
     import '../node_modules/toastr/build/toastr.css'
-    import config from './config'
+    import config from 'api-config'
     import { mapGetters } from 'vuex'
     import ls from 'store2'
     import ajaxForm from 'vue2-ajax-form'

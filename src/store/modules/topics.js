@@ -12,7 +12,8 @@ const state = {
     article: {
         data: {},
         prev: {},
-        next: {}
+        next: {},
+        path: ''
     },
     comment: {
         list: [],
@@ -36,12 +37,12 @@ const mutations = {
         // state.topic.page = page
         // state.topic.path = path
     },
-    [RECEIVE_ARTICLE](state, {data, prev, next}) {
+    [RECEIVE_ARTICLE](state, {data, prev, next, path}) {
         // state.article.data = data
         // state.article.prev = prev
         // state.article.next = next
         state.article = {
-            data, prev, next
+            data, prev, next, path
         }
     },
     [RECEIVE_COMMENT](state, {hasNext, list, path, page}) {

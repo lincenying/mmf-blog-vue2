@@ -6,6 +6,7 @@
 </template>
 <script>
 export default {
+    name: 'arrow',
     methods: {
         goBack() {
             this.$router.go(-1)
@@ -13,6 +14,9 @@ export default {
         goTop() {
             window.scrollTo(0, 0)
         }
+    },
+    serverCacheKey: () => {
+        return `components::arrow`
     }
 }
 </script>

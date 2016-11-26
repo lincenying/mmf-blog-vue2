@@ -60,7 +60,7 @@ import { mapGetters } from 'vuex'
 export default {
     computed: {
         ...mapGetters({
-            comments: 'getComment'
+            comments: 'frontend/getComment'
         })
     },
     data () {
@@ -73,7 +73,7 @@ export default {
     },
     methods: {
         loadcomment() {
-            this.$store.dispatch(`getComment`, {
+            this.$store.dispatch(`frontend/getComment`, {
                 page: this.comments.page + 1,
                 limit: 5
             })
@@ -82,7 +82,7 @@ export default {
             if (this.form.content === '') {
                 this.$store.dispatch('showMsg', '请输入评论内容!')
             } else {
-                this.$store.dispatch('postComment', {
+                this.$store.dispatch('frontend/postComment', {
                     id: this.$route.params.id,
                     content: this.form.content,
                     username: this.form.username

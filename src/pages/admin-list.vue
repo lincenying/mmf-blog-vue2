@@ -22,12 +22,12 @@
 <script lang="babel">
 import { mapGetters } from 'vuex'
 const fetchInitialData = async store => {
-    await store.dispatch('getAdminTopics', {limit: 20})
+    await store.dispatch('admin/getTopics', {limit: 20})
 }
 export default {
     computed: {
         ...mapGetters({
-            topics: 'getAdminTopics'
+            topics: 'admin/getTopics'
         }),
         curPage() {
             return parseInt(this.$route.params.page, 10)
@@ -41,12 +41,12 @@ export default {
     },
     methods: {
         mdel(id) {
-            this.$store.dispatch('deleteArticle', {
+            this.$store.dispatch('admin/deleteArticle', {
                 id
             })
         },
         recover(id) {
-            this.$store.dispatch('recoverArticle', {
+            this.$store.dispatch('admin/recoverArticle', {
                 id
             })
         }

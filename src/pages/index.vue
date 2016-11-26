@@ -25,7 +25,7 @@ const fetchInitialData = async (store, config = { page: 1}) => {
         id,
         qs
     }
-    await store.dispatch('getTopics', base)
+    await store.dispatch('frontend/getTopics', base)
     if (config.page === 1) ssp(path)
 }
 export default {
@@ -35,7 +35,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            topics: 'getTopics'
+            topics: 'frontend/getTopics'
         }),
         isPC() {
             return ua() === "PC"

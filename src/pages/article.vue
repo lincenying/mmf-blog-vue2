@@ -12,14 +12,14 @@ import { mapGetters } from 'vuex'
 import articleItem from '../components/article-item.vue'
 import comment from '../components/comment.vue'
 const fetchInitialData = async store => {
-    await store.dispatch(`getArticle`)
-    await store.dispatch(`getComment`, { page: 1, limit: 5})
+    await store.dispatch(`frontend/getArticle`)
+    await store.dispatch(`frontend/getComment`, { page: 1, limit: 5})
 }
 export default {
     prefetch: fetchInitialData,
     computed: {
         ...mapGetters({
-            article: 'getArticle'
+            article: 'frontend/getArticle'
         })
     },
     components: {

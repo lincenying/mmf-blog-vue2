@@ -32,7 +32,7 @@ import config from 'api-config'
 export default {
     computed: {
         ...mapGetters({
-            article: 'getAdminArticle'
+            article: 'admin/getArticle'
         })
     },
     components: {
@@ -85,7 +85,7 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('getAdminArticle').then(({ data }) => {
+        this.$store.dispatch('admin/getArticle').then(({ data }) => {
             this.form = {
                 ...data.data
             }

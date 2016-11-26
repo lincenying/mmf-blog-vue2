@@ -1,9 +1,12 @@
+import toastr from 'toastr'
 import {
     GLOBAL_HIDEMSG,
     GLOBAL_LOADDING,
     GLOBAL_PROGRESS,
     GLOBAL_SHOWMSG
 } from '../mutation-types'
+
+toastr.options.positionClass = 'toast-top-center'
 
 const state = {
     loading: false,
@@ -12,6 +15,26 @@ const state = {
         type: '',
         content: '',
         title: ''
+    }
+}
+
+const actions = {
+    ['gProgress']({commit}, num) {
+        commit(GLOBAL_PROGRESS, num)
+    },
+    ['showMsg']({commit}, config) {
+        let content, type
+        if (typeof config === 'string') {
+            content = config
+            type = 'error'
+        } else {
+            content = config.content
+            type = config.type
+        }
+        toastr[type](content)
+    },
+    ['hideMsg']() {
+        toastr.clear()
     }
 }
 
@@ -34,7 +57,15 @@ const mutations = {
     }
 }
 
+const getters = {
+    ['getGlobal'](state) {
+        return state
+    }
+}
+
 export default {
+    actions,
     state,
-    mutations
+    mutations,
+    getters
 }

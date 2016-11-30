@@ -69,14 +69,14 @@ const actions = {
 }
 
 const mutations = {
-    [RECEIVE_TOPICS](state, {hasNext, list, page, path}) {
+    [RECEIVE_TOPICS](state, {list, hasNext, hasPrev, page, path}) {
         if (page === 1) {
             list = [].concat(list)
         } else {
             list = state.topic.list.concat(list)
         }
         state.topic = {
-            list, hasNext, page, path
+            list, hasNext, hasPrev, page, path
         }
     },
     [RECEIVE_ARTICLE](state, {data, prev, next, path}) {

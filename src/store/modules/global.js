@@ -1,4 +1,5 @@
 import toastr from 'toastr'
+import {inBrowser} from '../../utils'
 import {
     GLOBAL_HIDEMSG,
     GLOBAL_LOADDING,
@@ -31,7 +32,7 @@ const actions = {
             content = config.content
             type = config.type
         }
-        toastr[type](content)
+        if (inBrowser) toastr[type](content)
     },
     ['hideMsg']() {
         toastr.clear()

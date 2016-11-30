@@ -23,7 +23,7 @@
             <div class="w-icon w-icon-3"></div>
             <router-link v-if="article.prev.prev_id" :to="'/article/' + article.prev.prev_id" id="__prev_permalink__" class="prev">上一篇 &gt; {{ article.prev.prev_title }}</router-link>
             <span v-else class="prev">上一篇</span>
-            <router-link v-if="article.next.next_id" :to="'/article/' + article.next.next_id" id="__next_permalink__" class="next">{{ article.prev.prev_title }} &lt; 下一篇</router-link>
+            <router-link v-if="article.next.next_id" :to="'/article/' + article.next.next_id" id="__next_permalink__" class="next">{{ article.next.next_title }} &lt; 下一篇</router-link>
             <span v-else class="next">下一篇</span>
         </div>
     </div>

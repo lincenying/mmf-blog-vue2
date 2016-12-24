@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ls from 'store2'
+import Meta from 'vue-meta'
 import cookies from 'js-cookie'
 
 import inBrowser from '../utils'
 
-import index from '../pages/index.vue'
-import article from '../pages/article.vue'
-import adminPost from '../pages/admin-post.vue'
-import adminEdit from '../pages/admin-edit.vue'
-import adminList from '../pages/admin-list.vue'
+import index from '../pages/frontend-index.vue'
+import article from '../pages/frontend-article.vue'
+import about from '../pages/frontend-about.vue'
+import account from '../pages/frontend-user-account.vue'
+import password from '../pages/frontend-user-password.vue'
 
 Vue.use(VueRouter)
+Vue.use(Meta)
 
 const scrollBehavior = to => {
     const position = {}
@@ -26,7 +27,7 @@ const scrollBehavior = to => {
 }
 
 const guardRoute = (to, from, next) => {
-    var token = ls.get('token') && cookies.get('user') || !inBrowser
+    var token = cookies.get('user') || !inBrowser
     if (!token) {
         next('/')
     } else {
@@ -40,12 +41,13 @@ const router = new VueRouter({
     scrollBehavior,
     routes: [
         { name:'index', path: '/', component: index },
-        { name:'category', path: '/category/:id(\\d+)', component: index },
-        { name:'search', path: '/search/:qs', component: index },
+        { name:'trending', path: '/trending/:by', component: index },
+        { name:'category', path: '/category/:id', component: index },
+        { name:'search', path: '/search/:key', component: index },
         { name:'article', path: '/article/:id', component: article, meta: { scrollToTop: true } },
-        { name:'list', path: '/admin/list/:page(\\d+)', component: adminList, meta: { scrollToTop: true }, beforeEnter: guardRoute },
-        { name:'post', path: '/admin/post', component: adminPost, meta: { scrollToTop: true }, beforeEnter: guardRoute },
-        { name:'edit', path: '/admin/edit/:id/:page', component: adminEdit, meta: { scrollToTop: true }, beforeEnter: guardRoute }
+        { name:'about', path: '/about', component: about, meta: { scrollToTop: true } },
+        { name:'account', path: '/user/account', component: account, meta: { scrollToTop: true }, beforeEnter: guardRoute },
+        { name:'password', path: '/user/password', component: password, meta: { scrollToTop: true }, beforeEnter: guardRoute }
     ]
 })
 

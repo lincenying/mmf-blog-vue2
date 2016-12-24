@@ -5,17 +5,18 @@ import { inBrowser } from '../utils'
 import config from 'api-config'
 
 axios.interceptors.request.use(config => {
-    store.dispatch('gProgress', 50)
+    store.dispatch('global/gProgress', 50)
     return config
 }, error => {
     return Promise.reject(error)
 })
 
 axios.interceptors.response.use(response => {
-    store.dispatch('gProgress', 100)
+    store.dispatch('global/gProgress', 100)
     return response
 }, error => {
-    store.dispatch('gProgress', 100)
+    store.dispatch('global/gProgress', 100)
+    store.dispatch('global/showMsg', error.toString())
     return Promise.reject(error)
 })
 
@@ -33,10 +34,13 @@ function checkStatus(response) {
 
 function checkCode(res) {
     if (inBrowser && res.data.code === -500) {
-        window.location.href = '/login'
+        window.location.href = '/backend'
+        return
+    } else if (inBrowser && res.data.code === -400) {
+        window.location.href = '/'
         return
     } else if (res.data.code !== 200) {
-        store.dispatch('showMsg', res.data.message)
+        store.dispatch('global/showMsg', res.data.message)
     }
     return res
 }
@@ -47,7 +51,7 @@ export default {
             method: 'post',
             url: config.api + url,
             data: qs.stringify(data),
-            timeout: 3000,
+            timeout: config.timeout,
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -59,7 +63,7 @@ export default {
             method: 'get',
             url: config.api + url,
             params,
-            timeout: 3000,
+            timeout: config.timeout,
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
             }

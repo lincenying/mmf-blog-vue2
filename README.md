@@ -22,7 +22,7 @@ vue2 服务端渲染版本: [https://github.com/lincenying/mmf-blog-vue2-ssr](ht
 
 ---
 
-先安装 api server: https://github.com/lincenying/mmf-blog-api
+先安装 api server: https://github.com/lincenying/mmf-blog-api-v2
 
 ```
 // 安装依赖
@@ -39,4 +39,4 @@ npm run dev
 http://localhost:8080
 
 登录
-http://localhost:8080/login.html
+http://localhost:8080/admin.html

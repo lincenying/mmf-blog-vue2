@@ -16,9 +16,9 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
     entry: {
-        app: './src/main.js',
-        login: './src/login.js',
-        vendor: ['vue', 'vue-router', 'vuex', 'vuex-router-sync', './src/polyfill']
+        app: './src/app.js',
+        admin: './src/admin.js',
+        vendor: ['vue', 'vue-router', 'vuex', 'vuex-router-sync', 'axios', './src/polyfill']
     },
     output: {
         path: config.build.assetsRoot,
@@ -39,8 +39,12 @@ module.exports = {
             'E:\\web\\npm\\node_modules'
         ],
         alias: {
-            'src': path.resolve(__dirname, '../src'),
-            'components': path.resolve(__dirname, '../src/components'),
+            '~src': path.resolve(__dirname, '../src'),
+            '~components': path.resolve(__dirname, '../src/components'),
+            '~api': path.resolve(__dirname, '../src/api'),
+            '~pages': path.resolve(__dirname, '../src/pages'),
+            '~store': path.resolve(__dirname, '../src/store'),
+            '~utils': path.resolve(__dirname, '../src/utils'),
             'api-config': path.resolve(__dirname, '../src/api/config-client')
         }
     },

@@ -1,27 +1,18 @@
 import toastr from 'toastr'
-import {inBrowser} from '../../utils'
-import {
-    GLOBAL_HIDEMSG,
-    GLOBAL_LOADDING,
-    GLOBAL_PROGRESS,
-    GLOBAL_SHOWMSG
-} from '../mutation-types'
+import {inBrowser} from '~utils'
 
 toastr.options.positionClass = 'toast-top-center'
 
 const state = {
     loading: false,
     progress: 0,
-    message: {
-        type: '',
-        content: '',
-        title: ''
-    }
+    showLoginModal: false,
+    showRegisterModal: false
 }
 
 const actions = {
-    ['gProgress']({commit}, num) {
-        commit(GLOBAL_PROGRESS, num)
+    ['gProgress']({commit}, payload) {
+        commit('progress', payload)
     },
     ['showMsg']({commit}, config) {
         let content, type
@@ -40,21 +31,14 @@ const actions = {
 }
 
 const mutations = {
-    [GLOBAL_LOADDING](state, status) {
-        state.loading = status
+    ['progress'](state, payload) {
+        state.progress = payload
     },
-    [GLOBAL_PROGRESS](state, num) {
-        state.progress = num
+    ['showLoginModal'](state, payload) {
+        state.showLoginModal = payload
     },
-    [GLOBAL_SHOWMSG](state, action) {
-        state.message = {...action}
-    },
-    [GLOBAL_HIDEMSG](state) {
-        state.message = {
-            type: '',
-            content: '',
-            title: ''
-        }
+    ['showRegisterModal'](state, payload) {
+        state.showRegisterModal = payload
     }
 }
 

@@ -1,54 +1,36 @@
 <template>
-<div class="g-doc">
-    <div class="g-hd">
-        <About></About>
-        <Navigation :visit="visit" :search="search"></Navigation>
-    </div>
+<div id="app" class="g-doc">
+    <Navigation :backend="backend"></Navigation>
     <transition name="fade" mode="out-in">
         <router-view :key="key" class="router"></router-view>
     </transition>
-    <Copyright></Copyright>
-    <Arrow></Arrow>
+    <sign-up v-if="!backend" :show="global.showRegisterModal"></sign-up>
+    <sign-in v-if="!backend" :show="global.showLoginModal"></sign-in>
 </div>
 </template>
 <script lang="babel">
-import '../static/editor.md/css/editormd.css'
-import './assets/css/hljs/googlecode.css'
-import './assets/css/style.css'
-import '../node_modules/toastr/build/toastr.css'
-import '../node_modules/nprogress/nprogress.css'
 import { mapGetters } from 'vuex'
 import NProgress from 'nprogress'
-import About from './components/about.vue'
 import Navigation from './components/navigation.vue'
-import Copyright from './components/copyright.vue'
-import Arrow from './components/arrow.vue'
+import signUp from './components/signup.vue'
+import signIn from './components/signin.vue'
+
 export default {
     computed: {
         ...mapGetters({
-            global: 'getGlobal'
+            global: 'global/getGlobal'
         }),
-        visit() {
-            return !['list', 'post', 'edit'].includes(this.$route.name)
-        },
         key() {
             return this.$route.path.replace(/\//g, '_')
+        },
+        backend() {
+            return this.$route.path.indexOf('backend') >= 0
         }
     },
     components: {
-        About,
         Navigation,
-        Copyright,
-        Arrow
-    },
-    methods: {
-        search(e) {
-            var qs = e.target.value
-            if (qs === "") {
-                return false
-            }
-            this.$router.replace('/search/' + qs)
-        }
+        signUp,
+        signIn
     },
     watch: {
         'global.progress'(val) {
@@ -65,6 +47,10 @@ export default {
     }
 }
 </script>
+<style src="./assets/css/hljs/googlecode.css"></style>
+<style src="./assets/css/style.css"></style>
+<style src="../node_modules/toastr/build/toastr.css"></style>
+<style src="../node_modules/nprogress/nprogress.css"></style>
 <style media="screen">
     .fade-enter-active, .fade-leave-active {
         transition: all 0.3s ease;
@@ -83,7 +69,7 @@ export default {
     .beian i {
         width: 14px;
         height: 14px;
-        background: url(http://beian.gov.cn/img/ghs.png);
+        background: url(http://ww4.sinaimg.cn/large/005uQRNCgw1f9xoio7mdej300k00k3y9.jpg);
         background-size: cover;
         display: inline-block;
         vertical-align: top;

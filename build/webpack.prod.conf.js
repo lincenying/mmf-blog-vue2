@@ -65,10 +65,10 @@ module.exports = merge(baseWebpackConfig, {
         }),
         new HtmlWebpackPlugin({
             chunks: [
-                'manifest', 'vendor', 'login'
+                'manifest', 'vendor', 'admin'
             ],
-            filename: 'login.html',
-            template: 'src/template/login.html',
+            filename: 'admin.html',
+            template: 'src/template/admin.html',
             inject: true,
             minify: {
                 removeComments: true,

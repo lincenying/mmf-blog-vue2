@@ -25,7 +25,7 @@ const state = {
 }
 
 const actions = {
-    ['frontend/getTopics']({commit, rootState: {route: { path }}}, config) {
+    ['getTopics']({commit, rootState: {route: { path }}}, config) {
         return api.get('frontend/topics', config).then(({ data }) => {
             commit(RECEIVE_TOPICS, {
                 ...config,
@@ -34,7 +34,7 @@ const actions = {
             })
         })
     },
-    ['frontend/getArticle']({ commit, rootState: {route: { path, params: { id }}} }) {
+    ['getArticle']({ commit, rootState: {route: { path, params: { id }}} }) {
         return api.get('frontend/article', {
             markdown: 1,
             id
@@ -45,7 +45,7 @@ const actions = {
             })
         })
     },
-    ['frontend/getComment']({ commit, rootState: {route: { path, params: { id }}} }, { page, limit }) {
+    ['getComment']({ commit, rootState: {route: { path, params: { id }}} }, { page, limit }) {
         return api.get('frontend/comment/list', {
             page,
             id,
@@ -58,7 +58,7 @@ const actions = {
             })
         })
     },
-    ['frontend/postComment']({ commit, rootState: {route: { path, params: { id }}} }, config) {
+    ['postComment']({ commit, rootState: {route: { path, params: { id }}} }, config) {
         return api.post('frontend/comment/post', config).then(({data}) => {
             if (data.code === 200) {
                 commit(POST_COMMENT, data.data)
@@ -100,18 +100,19 @@ const mutations = {
 }
 
 const getters = {
-    ['frontend/getTopics'](state) {
+    ['getTopics'](state) {
         return state.topic
     },
-    ['frontend/getArticle'](state) {
+    ['getArticle'](state) {
         return state.article
     },
-    ['frontend/getComment'](state) {
+    ['getComment'](state) {
         return state.comment
     }
 }
 
 export default {
+    namespaced: true,
     state,
     actions,
     mutations,

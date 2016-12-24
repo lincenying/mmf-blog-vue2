@@ -23,6 +23,7 @@ var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirect
 rm('-rf', assetsPath)
 mkdir('-p', assetsPath)
 cp('-R', 'static/', './dist/')
+cp('-R', 'favicon.ico', './dist/')
 
 webpack(webpackConfig, function(err, stats) {
     spinner.stop()

@@ -18,7 +18,7 @@ const state = {
 }
 
 const actions = {
-    ['admin/getTopics'] ({commit, rootState: {route: { path, params: { page } }}}, config) {
+    ['getTopics'] ({commit, rootState: {route: { path, params: { page } }}}, config) {
         config.page = page
         return api.get('admin/topics', config).then(({ data }) => {
             commit(RECEIVE_ADMIN_TOPICS, {
@@ -27,17 +27,17 @@ const actions = {
             })
         })
     },
-    ['admin/getArticle'] ({ rootState: {route: { params: { id }}} }) {
+    ['getArticle'] ({ rootState: {route: { params: { id }}} }) {
         return api.get('admin/article', {
             id
         })
     },
-    ['admin/deleteArticle'] ({commit}, config) {
+    ['deleteArticle'] ({commit}, config) {
         api.get('admin/article/delete', config).then(() => {
             commit(DELETE_ARTICLE, config.id)
         })
     },
-    ['admin/recoverArticle'] ({commit}, config) {
+    ['recoverArticle'] ({commit}, config) {
         api.get('admin/article/recover', config).then(() => {
             commit(RECOVER_ARTICLE, config.id)
         })
@@ -72,15 +72,16 @@ const mutations = {
 }
 
 const getters = {
-    ['admin/getTopics'] (state) {
+    ['getTopics'] (state) {
         return state.topic
     },
-    ['admin/getArticle'] (state) {
+    ['getArticle'] (state) {
         return state.article
     }
 }
 
 export default {
+    namespaced: true,
     state,
     actions,
     mutations,

@@ -9,7 +9,8 @@ const state = {
     },
     item: {
         data: {},
-        path: ''
+        path: '',
+        isLoad: false
     },
     trending: []
 }
@@ -55,7 +56,7 @@ const mutations = {
     },
     ['receiveArticleItem'](state, {data, path}) {
         state.item = {
-            data, path
+            data, path, isLoad: true
         }
     },
     ['receiveTrending'](state, data) {

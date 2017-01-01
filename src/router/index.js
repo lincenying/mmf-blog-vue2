@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Meta from 'vue-meta'
 import cookies from 'js-cookie'
 
-import inBrowser from '../utils'
+import {inBrowser} from '../utils'
 
 import index from '../pages/frontend-index.vue'
 import article from '../pages/frontend-article.vue'

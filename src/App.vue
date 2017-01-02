@@ -47,31 +47,31 @@ export default {
     }
 }
 </script>
-<style src="./assets/css/hljs/googlecode.css"></style>
-<style src="./assets/css/style.css"></style>
-<style src="../node_modules/toastr/build/toastr.css"></style>
-<style src="../node_modules/nprogress/nprogress.css"></style>
 <style media="screen">
-    .fade-enter-active, .fade-leave-active {
-        transition: all 0.3s ease;
-    }
-    .fade-enter {
-        opacity: 1;
-        transform: translate3d(0, 100px, 0);
-    }
-    .fade-leave-active {
-        opacity: 0;
-        transform: translate3d(100px, 0, 0);
-    }
-    .beian {
-        float: right;
-    }
-    .beian i {
-        width: 14px;
-        height: 14px;
-        background: url(http://ww4.sinaimg.cn/large/005uQRNCgw1f9xoio7mdej300k00k3y9.jpg);
-        background-size: cover;
-        display: inline-block;
-        vertical-align: top;
-    }
+@import "./assets/css/hljs/googlecode.css";
+@import "./assets/css/style.css";
+@import "../node_modules/toastr/build/toastr.css";
+@import "../node_modules/nprogress/nprogress.css";
+.fade-enter-active, .fade-leave-active {
+    transition: all 0.3s ease;
+}
+.fade-enter {
+    opacity: 1;
+    transform: translate3d(0, 100px, 0);
+}
+.fade-leave-active {
+    opacity: 0;
+    transform: translate3d(100px, 0, 0);
+}
+.beian {
+    float: right;
+}
+.beian i {
+    width: 14px;
+    height: 14px;
+    background: url(http://ww4.sinaimg.cn/large/005uQRNCgw1f9xoio7mdej300k00k3y9.jpg);
+    background-size: cover;
+    display: inline-block;
+    vertical-align: top;
+}
 </style>

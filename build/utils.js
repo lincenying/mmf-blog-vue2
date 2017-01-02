@@ -15,6 +15,7 @@ exports.cssLoaders = function(options) {
     options = options || {}
     // generate loader string to be used with extract text plugin
     function generateLoaders(loaders) {
+        loaders = ['css', 'postcss'].concat(loaders)
         var sourceLoader = loaders.map(function(loader) {
             var extraParamChar
             if (/\?/.test(loader)) {
@@ -38,11 +39,11 @@ exports.cssLoaders = function(options) {
 
     // http://vuejs.github.io/vue-loader/configurations/extract-css.html
     return {
-        css: generateLoaders(['css', 'postcss']),
-        postcss: generateLoaders(['css', 'postcss']),
-        less: generateLoaders(['css', 'postcss', 'less']),
-        sass: generateLoaders(['css', 'postcss', 'sass?indentedSyntax']),
-        scss: generateLoaders(['css', 'postcss', 'sass'])
+        css: generateLoaders([]),
+        postcss: generateLoaders([]),
+        less: generateLoaders(['less']),
+        sass: generateLoaders(['sass?indentedSyntax']),
+        scss: generateLoaders(['sass'])
     }
 }
 

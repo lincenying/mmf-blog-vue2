@@ -22,7 +22,11 @@ vue2 服务端渲染版本: [https://github.com/lincenying/mmf-blog-vue2-ssr](ht
 
 ---
 
-先安装 api server: https://github.com/lincenying/mmf-blog-api-v2
+先安装 api server:
+
+https://github.com/lincenying/mmf-blog-api-v2 (express版)
+
+https://github.com/lincenying/mmf-blog-api-v2 (koa2版)
 
 ```
 // 安装依赖

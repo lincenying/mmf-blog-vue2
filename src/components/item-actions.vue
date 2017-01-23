@@ -11,6 +11,9 @@ import cookies from 'js-cookie'
 import api from '~api'
 export default {
     name: 'item-actions',
+    serverCacheKey: props => {
+        return `frontend::topics::item::actions::${props.item._id}`
+    },
     props: ['item'],
     methods: {
         async like() {

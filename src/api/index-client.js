@@ -1,8 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import store from '../store'
-import { inBrowser } from '../utils'
-import config from 'api-config'
+import config from './config-client'
 
 axios.interceptors.request.use(config => {
     store.dispatch('global/gProgress', 50)
@@ -33,10 +32,10 @@ function checkStatus(response) {
 }
 
 function checkCode(res) {
-    if (inBrowser && res.data.code === -500) {
+    if (res.data.code === -500) {
         window.location.href = '/backend'
         return
-    } else if (inBrowser && res.data.code === -400) {
+    } else if (res.data.code === -400) {
         window.location.href = '/'
         return
     } else if (res.data.code !== 200) {

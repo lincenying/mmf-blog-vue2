@@ -584,7 +584,7 @@ a {
     opacity: .8;
 }
 
-.feed .feed-desc-wrap {
+.feed .feed-main-link-wrap + .feed-desc-wrap {
     margin-top: 10px;
 }
 

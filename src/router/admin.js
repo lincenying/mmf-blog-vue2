@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import cookies from 'js-cookie'
 
-import { inBrowser } from '../utils'
+import {inBrowser} from '../utils'
 
 import login from '../pages/backend-login.vue'
 import articleList from '../pages/backend-article-list.vue'
@@ -35,7 +35,7 @@ const scrollBehavior = to => {
 }
 
 const guardRoute = (to, from, next) => {
-    var token = cookies.get('b_user') || !inBrowser
+    const token = cookies.get('b_user') || !inBrowser
     if (!token) {
         next('/')
     } else {
@@ -44,7 +44,7 @@ const guardRoute = (to, from, next) => {
 }
 
 const router = new VueRouter({
-    mode: 'hash',
+    mode: 'history',
     base: __dirname,
     scrollBehavior,
     routes: [

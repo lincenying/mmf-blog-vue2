@@ -90,7 +90,7 @@ export default {
                 height: 500,
                 markdown: data.content,
                 placeholder: '请输入内容...',
-                path: 'http://static.mmxiaowu.com/vue/static/editor.md/lib/',
+                path: '/static/editor.md/lib/',
                 toolbarIcons() {
                     return [
                         "bold", "italic", "quote", "|",

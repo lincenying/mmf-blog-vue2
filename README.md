@@ -45,3 +45,16 @@ http://localhost:8080
 
 登录
 http://localhost:8080/admin.html
+
+# 注意:
+由于`babelrc`配置了
+```
+"presets": [
+    ["env", {
+        "targets": {
+            "chrome": 52
+        }
+    }]
+]
+```
+所以, 在开发环境下, 请用 chrome52+ 打开, 如果需要其他低版本浏览器, 请自行修改根目录的`.babelrc`文件

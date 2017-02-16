@@ -1,11 +1,27 @@
 {
-    "presets": ["es2015", "stage-2"],
-    "plugins": [
-        "transform-export-extensions",
-        ["transform-runtime", {
-            "polyfill": true,
-            "regenerator": true
-        }]
-    ],
-    "comments": false
+    "env": {
+        "production": {
+            "presets": ["es2015", "stage-2"],
+            "plugins": [
+                "transform-export-extensions",
+                ["transform-runtime", {
+                    "polyfill": true,
+                    "regenerator": true
+                }]
+            ],
+            "comments": false
+        },
+        "development": {
+            "presets": [
+                ["env", {
+                    "targets": {
+                        "chrome": 52
+                    }
+                }]
+            ],
+            "plugins": [
+                "transform-object-rest-spread"
+            ]
+        }
+    }
 }

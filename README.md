@@ -28,14 +28,15 @@ https://github.com/lincenying/mmf-blog-api-v2 (express版)
 
 https://github.com/lincenying/mmf-blog-api-koa2-v2 (koa2版)
 
-```
-// 安装依赖
-npm install  or  yarn
+```bash
+# 安装依赖
+npm install  #or  yarn
+# 注意: 不要用 cnpm 安装依赖
 
-// 生产模式
+# 生产模式
 npm run build
 
-// 开发模式
+# 开发模式
 npm run dev
 ```
 

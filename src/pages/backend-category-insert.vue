@@ -44,7 +44,7 @@ export default {
                     type: 'success',
                     content: message
                 })
-                this.$store.commit('backend/category/insertCategoryItem', {
+                this.$store.commit('global/category/insertCategoryItem', {
                     ...this.form,
                     _id: data
                 })

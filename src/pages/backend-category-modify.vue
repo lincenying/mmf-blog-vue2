@@ -21,7 +21,7 @@ import api from '~api'
 import { mapGetters } from 'vuex'
 import aInput from '../components/_input.vue'
 const fetchInitialData = async store => {
-    await store.dispatch('backend/category/getCategoryItem')
+    await store.dispatch('global/category/getCategoryItem')
 }
 export default {
     name: 'backend-category-modify',
@@ -39,7 +39,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            item: 'backend/category/getCategoryItem'
+            item: 'global/category/getCategoryItem'
         })
     },
     methods: {
@@ -54,7 +54,7 @@ export default {
                     type: 'success',
                     content: message
                 })
-                this.$store.commit('backend/category/updateCategoryItem', this.form)
+                this.$store.commit('global/category/updateCategoryItem', this.form)
                 this.$router.push('/backend/category/list')
             }
         }

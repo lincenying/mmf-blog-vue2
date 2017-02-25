@@ -1,3 +1,7 @@
+html {
+    overflow-y: scroll; 
+    background: #ebf0f0;
+}
 /* 清除内外边距 */
 
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
@@ -136,10 +140,6 @@ article, aside, canvas, figure, figure img, figcaption, hgroup, footer, header, 
 
 nav ul, nav ol {
     list-style: none;
-}
-
-html {
-    background: #ebf0f0;
 }
 
 .hidden {

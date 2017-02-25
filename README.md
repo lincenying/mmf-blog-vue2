@@ -44,7 +44,7 @@ npm run dev
 http://localhost:8080
 
 登录
-http://localhost:8080/admin.html
+http://localhost:8080/backend
 
 # 注意:
 由于`babelrc`配置了

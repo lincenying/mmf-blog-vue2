@@ -1,14 +1,15 @@
 {
     "env": {
         "production": {
-            "presets": ["es2015", "stage-2"],
-            "plugins": [
-                "transform-export-extensions",
-                ["transform-runtime", {
-                    "polyfill": true,
-                    "regenerator": true
-                }]
+            "presets": [
+                ["latest", {
+                    "es2015": {
+                        "modules": false
+                    }
+                }],
+                "stage-2"
             ],
+            "plugins": ["transform-runtime"],
             "comments": false
         },
         "development": {
@@ -16,7 +17,8 @@
                 ["env", {
                     "targets": {
                         "chrome": 52
-                    }
+                    },
+                    "modules": false
                 }]
             ],
             "plugins": [

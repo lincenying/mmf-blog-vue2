@@ -24,9 +24,8 @@ export const ssp = path => {
         Vue.nextTick().then(() => {
             if (document.body.clientHeight >= scrollTop + clientHeight) {
                 window.scrollTo(0, scrollTop)
-            } else {
-                ls.remove(path)
             }
+            ls.remove(path)
         })
     }
 }

@@ -52,7 +52,7 @@ const mutations = {
         state.item = payload
     },
     ['updateAdminItem'](state, payload) {
-        state.item = payload
+        state.item.data = payload
         const index = state.lists.data.findIndex(ii => ii._id === payload._id)
         if (index > -1) {
             state.lists.data.splice(index, 1, payload)

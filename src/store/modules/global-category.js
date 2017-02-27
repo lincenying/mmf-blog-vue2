@@ -31,14 +31,10 @@ const mutations = {
         state.lists = [payload].concat(state.lists)
     },
     ['updateCategoryItem'](state, payload) {
-        state.item = {
-            ...state.item,
-            ...payload
-        }
-        const obj = state.lists.find(ii => ii._id === payload.id)
-        if (obj) {
-            obj.cate_name = payload.cate_name
-            obj.cate_order = payload.cate_order
+        state.item = payload
+        const index = state.lists.findIndex(ii => ii._id === payload._id)
+        if (index > -1) {
+            state.lists.splice(index, 1, payload)
         }
     }
 }

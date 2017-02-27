@@ -11,6 +11,7 @@
             </a-input>
         </div>
         <div class="settings-footer clearfix">
+            <router-link to="/backend/category/list" class="btn btn-blue">返回</router-link>
             <a @click="modify" href="javascript:;" class="btn btn-yellow">编辑分类</a>
         </div>
     </div>
@@ -54,7 +55,7 @@ export default {
                     type: 'success',
                     content: message
                 })
-                this.$store.commit('global/category/updateCategoryItem', this.form)
+                this.$store.commit('global/category/updateCategoryItem', data)
                 this.$router.push('/backend/category/list')
             }
         }

@@ -52,14 +52,10 @@ const mutations = {
         state.item = payload
     },
     ['updateUserItem'](state, payload) {
-        state.item = {
-            ...state.item.data,
-            ...payload
-        }
-        const obj = state.lists.data.find(ii => ii._id === payload.id)
-        if (obj) {
-            obj.username = payload.username
-            obj.email = payload.email
+        state.item = payload
+        const index = state.lists.data.findIndex(ii => ii._id === payload._id)
+        if (index > -1) {
+            state.lists.data.splice(index, 1, payload)
         }
     },
     ['deleteUser'](state, id) {

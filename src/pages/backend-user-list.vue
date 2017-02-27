@@ -10,7 +10,7 @@
             <div v-for="item in user.data" class="list-section">
                 <div class="list-username">{{ item.username }}</div>
                 <div class="list-email">{{ item.email }}</div>
-                <div class="list-date">{{ item.timestamp | timeYmd }}</div>
+                <div class="list-date">{{ item.update_date | timeYmd }}</div>
                 <div class="list-action">
                     <router-link :to="'/backend/user/modify/' + item._id" class="badge badge-success">编辑</router-link>
                     <a v-if="item.is_delete" @click="recover(item._id)" href="javascript:;">恢复</a>

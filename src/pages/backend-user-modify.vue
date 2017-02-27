@@ -53,13 +53,13 @@ export default {
                 this.$store.dispatch('global/showMsg', '请将表单填写完整!')
                 return
             }
-            const { data: { message, code} } = await api.post('backend/user/modify', this.form)
+            const { data: { message, code, data} } = await api.post('backend/user/modify', this.form)
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
                     content: message
                 })
-                this.$store.commit('backend/user/updateUserItem', this.form)
+                this.$store.commit('backend/user/updateUserItem', data)
                 this.$router.push('/backend/user/list')
             }
         }

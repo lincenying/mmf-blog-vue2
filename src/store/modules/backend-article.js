@@ -58,11 +58,9 @@ const mutations = {
         }
     },
     ['updateArticleItem'](state, data) {
-        const obj = state.lists.data.find(ii => ii._id === data.id)
-        for (const jj in obj) {
-            if (obj.hasOwnProperty(jj) && data[jj]) {
-                obj[jj] = data[jj]
-            }
+        const index = state.lists.data.findIndex(ii => ii._id === data._id)
+        if (index > -1) {
+            state.lists.data.splice(index, 1, data)
         }
     },
     ['deleteArticle'](state, id) {

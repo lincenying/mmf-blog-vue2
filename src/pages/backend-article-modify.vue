@@ -64,13 +64,13 @@ export default {
                 return
             }
             this.form.content = content
-            const { data: { message, code} } = await api.post('backend/article/modify', this.form)
+            const { data: { message, code, data} } = await api.post('backend/article/modify', this.form)
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
                     content: message
                 })
-                this.$store.commit('backend/article/updateArticleItem', this.form)
+                this.$store.commit('backend/article/updateArticleItem', data)
                 this.$router.push('/backend/article/list')
             }
         }

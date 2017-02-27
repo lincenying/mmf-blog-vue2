@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         async modify() {
-            if (!this.form.username || !this.form.password || !this.form.email) {
+            if (!this.form.username || !this.form.email) {
                 this.$store.dispatch('global/showMsg', '请将表单填写完整!')
                 return
             }

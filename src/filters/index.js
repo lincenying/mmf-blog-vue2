@@ -21,9 +21,16 @@ export function timeAgo(time) {
 }
 
 export function timeYmd(timestamp) {
-    var time = new Date(timestamp * 1000)
-    var year = time.getFullYear()
-    var month = time.getMonth() + 1
-    var date = time.getDate()
+    const preg = /^[\d]+$/
+    const isTimestamp = preg.test(timestamp)
+    if (!isTimestamp) {
+        let time = Date.parse(timestamp)
+        time /= 1000
+        timestamp = time
+    }
+    const tmp = new Date(timestamp * 1000)
+    var year = tmp.getFullYear()
+    var month = tmp.getMonth() + 1
+    var date = tmp.getDate()
     return year + "-" + (month < 10 ? '0' + month : month) + "-" + (date < 10 ? '0' + date : date)
 }

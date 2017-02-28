@@ -5,8 +5,11 @@ demo: [http://vue2.mmxiaowu.com](http://vue2.mmxiaowu.com)
 #### 说明
 
 本站采用 Vue2, Vue-Router, Vuex 搭建
-网站分成前台和后台, 前台采用 SSR 模式渲染, 后台采用 SPA 模式
+
+网站分成前台和后台, 采用 SPA 模式构建
+
 主要功能包括: 管理员, 用户, 分类, 文章, 评论, 文章点赞
+
 主要技术栈: vue2, vue2-router, vuex, webpack, babel, eslint
 
 ---
@@ -47,7 +50,8 @@ http://localhost:8080/backend
 
 # 注意:
 由于`babelrc`配置了
-```
+
+```javascript
 "presets": [
     ["env", {
         "targets": {

@@ -10,22 +10,16 @@ axios.interceptors.request.use(config => {
     return Promise.reject(error)
 })
 
-axios.interceptors.response.use(response => {
-    store.dispatch('global/gProgress', 100)
-    return response
-}, error => {
-    store.dispatch('global/gProgress', 100)
-    store.dispatch('global/showMsg', error.toString())
-    return Promise.reject(error)
-})
+axios.interceptors.response.use(response => response, error => Promise.resolve(error.response))
 
 function checkStatus(response) {
+    store.dispatch('global/gProgress', 100)
     if (response.status === 200 || response.status === 304) {
         return response
     }
     return {
         data: {
-            code: -400,
+            code: -404,
             message: response.statusText,
             data: ''
         }

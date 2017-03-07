@@ -2,15 +2,18 @@
     "env": {
         "production": {
             "presets": [
-                ["latest", {
-                    "es2015": {
-                        "modules": false
-                    }
-                }],
-                "stage-2"
+                ["env", {
+                    "targets": {
+                        "browsers": ["last 2 version", "ie 10"]
+                    },
+                    "modules": false,
+                    "debug": true
+                }]
             ],
-            "plugins": ["transform-runtime"],
-            "comments": false
+            "plugins": [
+                "transform-runtime",
+                "transform-object-rest-spread"
+            ]
         },
         "development": {
             "presets": [
@@ -18,7 +21,8 @@
                     "targets": {
                         "chrome": 52
                     },
-                    "modules": false
+                    "modules": false,
+                    "debug": true
                 }]
             ],
             "plugins": [

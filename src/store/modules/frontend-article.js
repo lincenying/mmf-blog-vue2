@@ -16,8 +16,13 @@ const state = {
 }
 
 const actions = {
-    async ['getArticleList']({commit, rootState: {route: { path }}}, config) {
-        const { data: { data, code} } = await api.get('frontend/article/list', config)
+    async ['getArticleList']({commit, state, rootState: {cookies, global, route: { fullPath }}}, config) {
+        const path = fullPath
+        if (state.lists.data.length > 0 && path === state.lists.path) {
+            global.progress = 100
+            return
+        }
+        const { data: { data, code} } = await api.get('frontend/article/list', config, cookies)
         if (data && code === 200) {
             commit('receiveArticleList', {
                 ...config,
@@ -26,8 +31,12 @@ const actions = {
             })
         }
     },
-    async ['getArticleItem']({ commit, rootState: {route: { path, params: { id }}} }) {
-        const { data: { data, code} } = await api.get('frontend/article/item', { markdown: 1, id })
+    async ['getArticleItem']({ commit, state, rootState: {cookies, route: { path, params: { id }}} }) {
+        if (path === state.item.path) {
+            global.progress = 100
+            return
+        }
+        const { data: { data, code} } = await api.get('frontend/article/item', { markdown: 1, id }, cookies)
         if (data && code === 200) {
             commit('receiveArticleItem', {
                 data,
@@ -35,7 +44,8 @@ const actions = {
             })
         }
     },
-    async ['getTrending']({ commit }) {
+    async ['getTrending']({ commit, state }) {
+        if (state.trending.length) return
         const { data: { data, code} } = await api.get('frontend/trending')
         if (data && code === 200) {
             commit('receiveTrending', data)

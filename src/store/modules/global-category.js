@@ -6,7 +6,8 @@ const state = {
 }
 
 const actions = {
-    async ['getCategoryList']({ commit }, config) {
+    async ['getCategoryList']({ commit, state }, config) {
+        if (state.lists.length) return
         const { data: { data, code} } = await api.get('backend/category/list', config)
         if (data && code === 200) {
             commit('receiveCategoryList', data.list)

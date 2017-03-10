@@ -18,7 +18,7 @@ const state = {
 const actions = {
     async ['getArticleList']({commit, state, rootState: {cookies, global, route: { fullPath }}}, config) {
         const path = fullPath
-        if (state.lists.data.length > 0 && path === state.lists.path) {
+        if (state.lists.data.length > 0 && path === state.lists.path && config.page === 1) {
             global.progress = 100
             return
         }

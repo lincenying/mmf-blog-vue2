@@ -16,13 +16,13 @@ const state = {
 }
 
 const actions = {
-    async ['getArticleList']({commit, state, rootState: {cookies, global, route: { fullPath }}}, config) {
+    async ['getArticleList']({commit, state, rootState: {global, route: { fullPath }}}, config) {
         const path = fullPath
         if (state.lists.data.length > 0 && path === state.lists.path && config.page === 1) {
             global.progress = 100
             return
         }
-        const { data: { data, code} } = await api.get('frontend/article/list', config, cookies)
+        const { data: { data, code} } = await api.get('frontend/article/list', config)
         if (data && code === 200) {
             commit('receiveArticleList', {
                 ...config,
@@ -31,12 +31,12 @@ const actions = {
             })
         }
     },
-    async ['getArticleItem']({ commit, state, rootState: {cookies, route: { path, params: { id }}} }) {
+    async ['getArticleItem']({ commit, state, rootState: {route: { path, params: { id }}} }) {
         if (path === state.item.path) {
             global.progress = 100
             return
         }
-        const { data: { data, code} } = await api.get('frontend/article/item', { markdown: 1, id }, cookies)
+        const { data: { data, code} } = await api.get('frontend/article/item', { markdown: 1, id })
         if (data && code === 200) {
             commit('receiveArticleItem', {
                 data,

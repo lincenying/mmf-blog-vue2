@@ -61,3 +61,7 @@ http://localhost:8080/backend
 ]
 ```
 所以, 在开发环境下, 请用 chrome52+ 打开, 如果需要其他低版本浏览器, 请自行修改根目录的`.babelrc`文件
+
+# LICENSE
+
+MIT

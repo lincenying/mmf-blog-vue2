@@ -32,7 +32,7 @@ express版: https://github.com/lincenying/mmf-blog-api-v2
 
 ```bash
 # 安装依赖
-npm install  #or  yarn
+yarn  #or  npm install
 # 注意: 不要用 cnpm 安装依赖
 
 # 生产模式

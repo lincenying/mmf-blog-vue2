@@ -16,7 +16,7 @@ const state = {
 
 const actions = {
     async ['getAdminList'] ({commit, rootState: {route: { path }}}, config) {
-        const { data: { data, code} } = await api.get('backend/admin/list', config)
+        const { data: { data, code} } = await api.get('backend/admin/list', {...config, cache: true})
         if (data && code === 200) {
             commit('receiveAdminList', {
                 ...data,

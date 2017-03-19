@@ -85,12 +85,3 @@ export default {
     }
 }
 </script>
-<style media="screen">
-    .flex-item {
-        display: flex;
-        margin-bottom: 10px;
-    }
-    .flex-item .flex-label {
-        width: 70px;
-    }
-</style>

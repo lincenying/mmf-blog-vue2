@@ -3,7 +3,6 @@ var path = require("path")
 var webpack = require('webpack')
 var config = require('../config')
 var merge = require('webpack-merge')
-var utils = require('./utils')
 var baseWebpackConfig = require('./webpack.base.config')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -16,7 +15,13 @@ Object
 
 module.exports = merge(baseWebpackConfig, {
     module: {
-        rules: utils.styleLoaders()
+        rules: [{
+            test: /\.css$/,
+            loader: 'style-loader!css-loader!postcss-loader'
+        }, {
+            test: /\.less$/,
+            loader: 'style-loader!css-loader!postcss-loader!less-loader'
+        }]
     },
     output: {
         // necessary for the html plugin to work properly
@@ -49,14 +54,6 @@ module.exports = merge(baseWebpackConfig, {
             filename: 'admin.html',
             template: 'src/template/admin.html',
             inject: true,
-        }),
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                context: __dirname,
-                vue: {
-                    loaders: utils.cssLoaders()
-                },
-            }
         }),
     ],
 })

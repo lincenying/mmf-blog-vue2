@@ -22,7 +22,7 @@ const actions = {
             global.progress = 100
             return
         }
-        const { data: { data, code} } = await api.get('frontend/article/list', config)
+        const { data: { data, code} } = await api.get('frontend/article/list', {...config, cache: true})
         if (data && code === 200) {
             commit('receiveArticleList', {
                 ...config,
@@ -36,7 +36,7 @@ const actions = {
             global.progress = 100
             return
         }
-        const { data: { data, code} } = await api.get('frontend/article/item', { markdown: 1, id })
+        const { data: { data, code} } = await api.get('frontend/article/item', { id, markdown: 1, cache: true })
         if (data && code === 200) {
             commit('receiveArticleItem', {
                 data,
@@ -46,7 +46,7 @@ const actions = {
     },
     async ['getTrending']({ commit, state }) {
         if (state.trending.length) return
-        const { data: { data, code} } = await api.get('frontend/trending')
+        const { data: { data, code} } = await api.get('frontend/trending', { cache: true})
         if (data && code === 200) {
             commit('receiveTrending', data)
         }

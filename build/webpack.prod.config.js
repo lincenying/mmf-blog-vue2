@@ -1,7 +1,6 @@
 /* global require, module, process */
 var path = require("path")
 var config = require('../config')
-var utils = require('./utils')
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.config')
@@ -12,15 +11,19 @@ config.build.productionSourceMap = false
 
 module.exports = merge(baseWebpackConfig, {
     module: {
-        rules: utils.styleLoaders({sourceMap: config.build.productionSourceMap, extract: true})
+        rules: [{
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader'])
+        },  {
+            test: /\.less/,
+            loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'less-loader'])
+        }]
     },
-    devtool: config.build.productionSourceMap
-        ? '#source-map'
-        : false,
+    devtool: config.build.productionSourceMap ? '#source-map' : false,
     output: {
         path: config.build.assetsRoot,
-        filename: utils.assetsPath('js/[name].[chunkhash:7].js'),
-        chunkFilename: utils.assetsPath('js/[id].[chunkhash:7].js')
+        filename: 'static/js/[name].[chunkhash:7].js',
+        chunkFilename: 'static/js/[id].[chunkhash:7].js',
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -46,7 +49,7 @@ module.exports = merge(baseWebpackConfig, {
         }),
         // new webpack.optimize.OccurenceOrderPlugin(),
         // extract css into its own file
-        new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash:7].css')),
+        new ExtractTextPlugin('static/css/[name].[contenthash:7].css'),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
@@ -76,14 +79,5 @@ module.exports = merge(baseWebpackConfig, {
                 removeAttributeQuotes: true
             }
         }),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            options: {
-                context: __dirname,
-                vue: {
-                    loaders: utils.cssLoaders({sourceMap: config.build.productionSourceMap, extract: true})
-                }
-            }
-        })
     ]
 })

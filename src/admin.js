@@ -5,6 +5,12 @@ import router from './router/admin'
 import { sync } from 'vuex-router-sync'
 import * as filters from './filters'
 
+import "./assets/css/style.css"
+import "./assets/less/backend.less"
+import "./assets/css/hljs/googlecode.css"
+import "toastr/build/toastr.css"
+import "nprogress/nprogress.css"
+
 sync(store, router)
 
 Object.keys(filters).forEach(key => {

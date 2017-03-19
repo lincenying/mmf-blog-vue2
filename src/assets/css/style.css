@@ -1130,6 +1130,7 @@ a:hover .icon-arrow-right {
     margin: 0 auto;
 }
 
+/*
 .page-loading-symbol {
     width: 160px;
     height: 160px;
@@ -1165,7 +1166,7 @@ a:hover .icon-arrow-right {
         background-position: -4800px, 0;
     }
 }
-
+*/
 .load-more-wrap {
     text-align: center;
     padding-top: 40px;

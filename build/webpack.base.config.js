@@ -1,18 +1,15 @@
 /* global require, module, __dirname */
-
-var path = require('path')
-var webpack = require('webpack')
-
-var config = require('../config')
-var utils = require('./utils')
-
-var projectRoot = path.resolve(__dirname, '../')
-var env = process.env.NODE_ENV
+const path = require('path')
+const webpack = require('webpack')
+const config = require('../config')
+const vueConfig = require('./vue-loader.config')
+const projectRoot = path.resolve(__dirname, '../')
+const env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
-var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
-var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
-var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
+const cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
+const cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
+const useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
     performance: {
@@ -21,7 +18,7 @@ module.exports = {
     entry: {
         app: './src/app.js',
         admin: './src/admin.js',
-        vendor: ['vue', 'vue-router', 'vuex', 'vuex-router-sync', 'axios', './src/polyfill']
+        vendor: ['./src/polyfill']
     },
     output: {
         path: config.build.assetsRoot,
@@ -51,7 +48,6 @@ module.exports = {
     resolveLoader: {
         modules: [
             path.join(__dirname, '../node_modules'),
-            'E:\\web\\npm\\node_modules'
         ]
     },
     module: {
@@ -87,19 +83,26 @@ module.exports = {
                 loader: 'url-loader',
                 query: {
                     limit: 10000,
-                    name: utils.assetsPath('img/[name].[hash:7].[ext]')
+                    name: 'staticimg/[name].[hash:7].[ext]'
                 }
             }, {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader',
                 query: {
                     limit: 10000,
-                    name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+                    name: 'static/fonts/[name].[hash:7].[ext]'
                 }
             }
         ]
     },
     plugins: [
-        new webpack.ProvidePlugin({$: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery'})
+        new webpack.ProvidePlugin({$: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery'}),
+        new webpack.LoaderOptionsPlugin({
+            minimize: env === 'production',
+            options: {
+                context: __dirname,
+                vue: vueConfig,
+            }
+        }),
     ]
 }

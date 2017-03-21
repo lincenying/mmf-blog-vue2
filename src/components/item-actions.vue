@@ -27,13 +27,11 @@ export default {
             if (this.item.like_status) url = 'frontend/unlike'
             const { data: {code, message} } = await api.get(url, { id: this.item._id })
             if (code === 200) {
+                this.$store.commit('frontend/article/modifyLikeStatus', {id: this.item._id, status: !this.item.like_status})
                 this.$store.dispatch('global/showMsg', {
                     content: message,
                     type: 'success'
                 })
-                if (this.item.like_status) this.item.like--
-                else this.item.like++
-                this.item.like_status = !this.item.like_status
             }
         },
         share() {

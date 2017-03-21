@@ -71,6 +71,19 @@ const mutations = {
     },
     ['receiveTrending'](state, data) {
         state.trending = data.list
+    },
+    ['modifyLikeStatus'](state, {id, status}) {
+        if (state.item.data._id === id) {
+            if (status) state.item.data.like++
+            else  state.item.data.like--
+            state.item.data.like_status = status
+        }
+        const obj = state.lists.data.find(item => item._id === id)
+        if (obj) {
+            if (status) obj.like++
+            else  obj.like--
+            obj.like_status = status
+        }
     }
 }
 

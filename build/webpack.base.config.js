@@ -1,19 +1,22 @@
 /* global require, module, __dirname */
 const path = require('path')
 const webpack = require('webpack')
+
 const config = require('../config')
 const vueConfig = require('./vue-loader.config')
 const projectRoot = path.resolve(__dirname, '../')
-const env = process.env.NODE_ENV
+const isProd = process.env.NODE_ENV === 'production'
+
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
-const cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
-const cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
+const cssSourceMapDev = (!isProd && config.dev.cssSourceMap)
+const cssSourceMapProd = (isProd && config.build.productionSourceMap)
 const useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
     performance: {
-        hints: false
+        maxEntrypointSize: 300000,
+        hints: isProd ? 'warning' : false
     },
     entry: {
         app: './src/app.js',
@@ -22,7 +25,7 @@ module.exports = {
     },
     output: {
         path: config.build.assetsRoot,
-        publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
+        publicPath: isProd ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
         filename: '[name].js'
     },
     externals: {
@@ -98,7 +101,7 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({$: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery'}),
         new webpack.LoaderOptionsPlugin({
-            minimize: env === 'production',
+            minimize: isProd,
             options: {
                 context: __dirname,
                 vue: vueConfig,

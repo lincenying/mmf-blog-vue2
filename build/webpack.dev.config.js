@@ -1,10 +1,12 @@
 /* global require, module */
-var path = require("path")
-var webpack = require('webpack')
-var config = require('../config')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.config')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require("path")
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+
+const config = require('../config')
+const baseWebpackConfig = require('./webpack.base.config')
 
 // add hot-reload related code to entry chunks
 Object
@@ -14,6 +16,8 @@ Object
     })
 
 module.exports = merge(baseWebpackConfig, {
+    // eval-source-map is faster for development
+    devtool: '#cheap-module-eval-source-map',
     module: {
         rules: [{
             test: /\.css$/,
@@ -28,10 +32,9 @@ module.exports = merge(baseWebpackConfig, {
         // when serving the html from in-memory
         publicPath: '/'
     },
-    // eval-source-map is faster for development
-    devtool: '#eval-source-map',
     plugins: [
         new webpack.DefinePlugin({'process.env': config.dev.env}),
+        new FriendlyErrorsPlugin(),
         // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),

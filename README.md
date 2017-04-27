@@ -43,10 +43,10 @@ npm run dev
 ```
 
 首页
-http://localhost:8080
+http://localhost:8081
 
 登录
-http://localhost:8080/backend
+http://localhost:8081/backend
 
 # 注意:
 由于`babelrc`配置了

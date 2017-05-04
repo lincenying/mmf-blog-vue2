@@ -53,6 +53,7 @@
 </template>
 <script lang="babel">
 import { mapGetters } from 'vuex'
+import metaMixin from '~mixins'
 import trending from '../components/aside-trending.vue'
 
 const fetchInitialData = async store => {
@@ -62,6 +63,7 @@ const fetchInitialData = async store => {
 export default {
     name: 'frontend-index',
     prefetch: fetchInitialData,
+    mixins: [metaMixin],
     components: {
         trending
     },

@@ -24,6 +24,8 @@ import topicsItemNone from '../components/topics-item-none.vue'
 import category from '../components/aside-category.vue'
 import trending from '../components/aside-trending.vue'
 import { ssp } from '../utils'
+import metaMixin from '~mixins'
+
 const fetchInitialData = async (store, config = { page: 1}) => {
     const {params: {id, key, by}, path} = store.state.route
     const base = { ...config, limit: 10, id, key, by }
@@ -35,6 +37,7 @@ const fetchInitialData = async (store, config = { page: 1}) => {
 export default {
     name: 'frontend-index',
     prefetch: fetchInitialData,
+    mixins: [metaMixin],
     components: {
         topicsItem, topicsItemNone, category, trending
     },

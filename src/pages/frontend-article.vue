@@ -36,6 +36,7 @@
 
 <script lang="babel">
 import { mapGetters } from 'vuex'
+import metaMixin from '~mixins'
 import actions from '../components/item-actions.vue'
 import category from '../components/aside-category.vue'
 import trending from '../components/aside-trending.vue'
@@ -49,6 +50,12 @@ const fetchInitialData = async store => {
 export default {
     name: 'frontend-article',
     prefetch: fetchInitialData,
+    mixins: [metaMixin],
+    beforeRouteUpdate(to, from, next) {
+        if (to.path !== from.path) fetchInitialData(this.$store)
+        else this.$store.dispatch('global/gProgress', 100)
+        next()
+    },
     computed: {
         ...mapGetters({
             article: 'frontend/article/getArticleItem',
@@ -66,16 +73,11 @@ export default {
     methods: {
         addTarget(content) {
             if (!content) return ''
-            return content.replace(/<a(.*?)href=/g, '<a$1target="_blank" href=')
+            return content.replace(/<a(.*?)href="http/g, '<a$1target="_blank" href="http')
         }
     },
     mounted() {
         fetchInitialData(this.$store)
-    },
-    watch: {
-        '$route'() {
-            fetchInitialData(this.$store)
-        }
     },
     metaInfo () {
         const title = this.article.data.title ? this.article.data.title + ' - M.M.F 小屋' : 'M.M.F 小屋'

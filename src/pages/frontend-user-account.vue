@@ -27,9 +27,11 @@
 
 <script lang="babel">
 import api from '~api'
+import metaMixin from '~mixins'
 import account from '../components/aside-account.vue'
 import aInput from '../components/_input.vue'
 export default {
+    mixins: [metaMixin],
     data() {
         return {
             form: {

@@ -4680,9 +4680,9 @@ vue-loader@^12.0.3:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.2.2"
 
-vue-meta@^0.5.6:
-  version "0.5.6"
-  resolved "http://registry.npm.taobao.org/vue-meta/download/vue-meta-0.5.6.tgz#e4b56838167f0aa40a202f45e1eec6fb91861689"
+vue-meta@0.5.5:
+  version "0.5.5"
+  resolved "http://registry.npm.taobao.org/vue-meta/download/vue-meta-0.5.5.tgz#2911f030bbe914fed489c955421c34f759fdc8da"
   dependencies:
     deepmerge "^1.2.0"
     lodash.isplainobject "^4.0.6"

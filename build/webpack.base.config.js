@@ -42,6 +42,7 @@ module.exports = {
             '~src': path.resolve(__dirname, '../src'),
             '~components': path.resolve(__dirname, '../src/components'),
             '~api': path.resolve(__dirname, '../src/api/index-client'),
+            '~mixins': path.resolve(__dirname, '../src/mixins'),
             '~pages': path.resolve(__dirname, '../src/pages'),
             '~store': path.resolve(__dirname, '../src/store'),
             '~utils': path.resolve(__dirname, '../src/utils'),

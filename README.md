@@ -34,19 +34,11 @@ npm run build
 npm run dev
 ```
 
-<<<<<<< Updated upstream
-首页
+Home Site
 http://localhost:8081
 
-登录
-http://localhost:8081/backend
-=======
-Home Site
-http://localhost:8080
-
 Login
-http://localhost:8080/backend
->>>>>>> Stashed changes
+http://localhost:8081/backend
 
 # notice:
 Because ` babelrc ` configuration

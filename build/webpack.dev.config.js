@@ -27,11 +27,6 @@ module.exports = merge(baseWebpackConfig, {
             loader: 'style-loader!css-loader!postcss-loader!less-loader'
         }]
     },
-    output: {
-        // necessary for the html plugin to work properly
-        // when serving the html from in-memory
-        publicPath: '/'
-    },
     plugins: [
         new webpack.DefinePlugin({'process.env': config.dev.env}),
         new FriendlyErrorsPlugin(),

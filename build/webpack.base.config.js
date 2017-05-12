@@ -25,8 +25,9 @@ module.exports = {
     },
     output: {
         path: config.build.assetsRoot,
-        publicPath: isProd ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-        filename: '[name].js'
+        publicPath: config.dev.assetsPublicPath,
+        filename: '[name].js',
+        chunkFilename: '[name].js'
     },
     externals: {
         'jquery': 'jQuery'

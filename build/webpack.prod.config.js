@@ -22,8 +22,9 @@ module.exports = merge(baseWebpackConfig, {
     devtool: config.build.productionSourceMap ? '#source-map' : false,
     output: {
         path: config.build.assetsRoot,
+        publicPath: config.build.assetsPublicPath,
         filename: 'static/js/[name].[chunkhash:7].js',
-        chunkFilename: 'static/js/[id].[chunkhash:7].js',
+        chunkFilename: 'static/js/[name].[chunkhash:7].js',
     },
     plugins: [
         new webpack.DefinePlugin({

@@ -4,21 +4,21 @@ import cookies from 'js-cookie'
 
 import {inBrowser} from '../utils'
 
-import login from '../pages/backend-login.vue'
-import articleList from '../pages/backend-article-list.vue'
-import articleInsert from '../pages/backend-article-insert.vue'
-import articleModify from '../pages/backend-article-modify.vue'
-import articleComment from '../pages/backend-article-comment.vue'
+const login = r => require.ensure([], () => r(require('../pages/backend-login.vue')), 'chunk-backend-login')
+const articleList = r => require.ensure([], () => r(require('../pages/backend-article-list.vue')), 'chunk-backend-article')
+const articleInsert = r => require.ensure([], () => r(require('../pages/backend-article-insert.vue')), 'chunk-backend-article')
+const articleModify = r => require.ensure([], () => r(require('../pages/backend-article-modify.vue')), 'chunk-backend-article')
+const articleComment = r => require.ensure([], () => r(require('../pages/backend-article-comment.vue')), 'chunk-backend-article')
 
-import categoryList from '../pages/backend-category-list.vue'
-import categoryInsert from '../pages/backend-category-insert.vue'
-import categoryModify from '../pages/backend-category-modify.vue'
+const categoryList = r => require.ensure([], () => r(require('../pages/backend-category-list.vue')), 'chunk-backend-category')
+const categoryInsert = r => require.ensure([], () => r(require('../pages/backend-category-insert.vue')), 'chunk-backend-category')
+const categoryModify = r => require.ensure([], () => r(require('../pages/backend-category-modify.vue')), 'chunk-backend-category')
 
-import adminList from '../pages/backend-admin-list.vue'
-import adminModify from '../pages/backend-admin-modify.vue'
+const adminList = r => require.ensure([], () => r(require('../pages/backend-admin-list.vue')), 'chunk-backend-admin')
+const adminModify = r => require.ensure([], () => r(require('../pages/backend-admin-modify.vue')), 'chunk-backend-admin')
 
-import userList from '../pages/backend-user-list.vue'
-import userModify from '../pages/backend-user-modify.vue'
+const userList = r => require.ensure([], () => r(require('../pages/backend-user-list.vue')), 'chunk-backend-user')
+const userModify = r => require.ensure([], () => r(require('../pages/backend-user-modify.vue')), 'chunk-backend-user')
 
 Vue.use(VueRouter)
 

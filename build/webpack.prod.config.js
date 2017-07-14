@@ -34,7 +34,7 @@ module.exports = merge(baseWebpackConfig, {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            minChunks: function(module, count) {
+            minChunks(module, count) {
                 // any required modules inside node_modules are extracted to vendor
                 return (module.resource && /\.js$/.test(module.resource) && module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0)
             }
@@ -51,6 +51,7 @@ module.exports = merge(baseWebpackConfig, {
         // new webpack.optimize.OccurenceOrderPlugin(),
         // extract css into its own file
         new ExtractTextPlugin('static/css/[name].[contenthash:7].css'),
+        new webpack.optimize.ModuleConcatenationPlugin(),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
@@ -65,6 +66,12 @@ module.exports = merge(baseWebpackConfig, {
                 removeComments: true,
                 collapseWhitespace: true,
                 removeAttributeQuotes: true
+            },
+            chunksSortMode (chunk1, chunk2) {
+                var orders = ['manifest', 'vendor', 'app'];
+                var order1 = orders.indexOf(chunk1.names[0]);
+                var order2 = orders.indexOf(chunk2.names[0]);
+                return order1 - order2
             }
         }),
         new HtmlWebpackPlugin({
@@ -78,6 +85,12 @@ module.exports = merge(baseWebpackConfig, {
                 removeComments: true,
                 collapseWhitespace: true,
                 removeAttributeQuotes: true
+            },
+            chunksSortMode (chunk1, chunk2) {
+                var orders = ['manifest', 'vendor', 'admin'];
+                var order1 = orders.indexOf(chunk1.names[0]);
+                var order2 = orders.indexOf(chunk2.names[0]);
+                return order1 - order2
             }
         }),
     ]

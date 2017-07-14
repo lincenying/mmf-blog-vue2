@@ -14,7 +14,7 @@ const actions = {
     ['gProgress']({commit}, payload) {
         commit('progress', payload)
     },
-    ['showMsg']({commit}, config) {
+    ['showMsg'](store, config) {
         let content, type
         if (typeof config === 'string') {
             content = config

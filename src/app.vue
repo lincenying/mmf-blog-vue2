@@ -4,8 +4,10 @@
     <transition name="fade" mode="out-in">
         <router-view :key="key" class="router"></router-view>
     </transition>
-    <sign-up v-if="!backend" :show="global.showRegisterModal"></sign-up>
-    <sign-in v-if="!backend" :show="global.showLoginModal"></sign-in>
+    <template v-if="!backend">
+        <sign-up :show="global.showRegisterModal"></sign-up>
+        <sign-in :show="global.showLoginModal"></sign-in>
+    </template>
 </div>
 </template>
 <script lang="babel">

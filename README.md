@@ -14,6 +14,8 @@ vue2(spa): [https://github.com/lincenying/mmf-blog-vue2](https://github.com/linc
 
 vue2(ssr): [https://github.com/lincenying/mmf-blog-vue2-ssr](https://github.com/lincenying/mmf-blog-vue2-ssr)
 
+vue2(pwa ssr): [https://github.com/lincenying/mmf-blog-vue2-pwa-ssr](https://github.com/lincenying/mmf-blog-vue2-pwa-ssr)
+
 ---
 
 First installation `api server`:

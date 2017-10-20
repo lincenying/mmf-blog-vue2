@@ -62,7 +62,7 @@ export default {
         }
     },
     beforeRouteLeave(to, from, next) {
-        const scrollTop = document.body.scrollTop
+        const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
         const path = from.path
         if (scrollTop) ls.set(path, scrollTop)
         else ls.remove(path)

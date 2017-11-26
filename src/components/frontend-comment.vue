@@ -49,6 +49,7 @@ export default {
     methods: {
         loadcomment() {
             this.$store.dispatch(`global/comment/getCommentList`, {
+                id: this.$route.params.id,
                 page: this.comments.page + 1,
                 limit: 10
             })

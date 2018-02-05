@@ -910,6 +910,10 @@ a {
     padding: 25px;
 }
 
+.card-answer .answer-content .article-content {
+    word-wrap: break-word;
+}
+
 .card-answer .author-link {
     display: block;
 }

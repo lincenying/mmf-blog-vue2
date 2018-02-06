@@ -1,0 +1,127 @@
+.global-warning {
+    background: #293c3d;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+    &.active {
+        display: block;
+    }
+    &:hover {
+        color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+.global-nav {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 60px;
+    background: #54d9e0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    .wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .left-part, .right-part {
+        display: flex;
+    }
+
+    .logo-link {
+        display: block;
+        .icon {
+            margin-top: 15px;
+        }
+    }
+
+    .main-nav {
+        display: flex;
+        margin-left: 48px;
+        .icon {
+            vertical-align: -4px;
+            margin-right: 12px;
+        }
+    }
+    .nav-link {
+        font-size: 18px;
+        color: white;
+        line-height: 60px;
+        padding: 0 24px;
+        position: relative;
+        &.current:after {
+            content: '';
+            position: absolute;
+            height: 3px;
+            left: 24px;
+            right: 24px;
+            bottom: 0;
+            border-radius: 3px;
+            background: #eded63;
+        }
+    }
+
+    .btn {
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .nav-signup {
+        margin-left: 16px;
+    }
+
+    .nav-me {
+        margin-left: 10px;
+        .nav-avatar-img {
+            margin-top: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+        }
+    }
+    .nav-search {
+        font-size: 0;
+        margin-left: 16px;
+        position: relative;
+        .icon-search-white {
+            position: absolute;
+            top: 22px;
+            left: 14px;
+        }
+
+        .nav-search-input {
+            width: 180px;
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-top: 10px;
+            line-height: 16px;
+            color: white;
+            line-height: 18px;
+            height: 40px;
+            padding: 0 14px 0 40px;
+        }
+
+        .nav-search-input::-webkit-input-placeholder {
+            color: white;
+        }
+
+        .nav-search-input::-moz-placeholder {
+            color: white;
+        }
+
+        .nav-search-input:-moz-placeholder {
+            color: white;
+        }
+
+        .nav-search-input:-ms-input-placeholder {
+            color: white;
+        }
+    }
+}

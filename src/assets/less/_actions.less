@@ -1,0 +1,84 @@
+.actions-wrap {
+    border-top: 1px solid #eef2f2;
+    height: 48px;
+    font-size: 0;
+    .action-item {
+        width: 25%;
+        display: inline-block;
+        color: #777;
+        font-size: 14px;
+        text-align: center;
+        line-height: 48px;
+        position: relative;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        &.active {
+            color: #3aced5;
+        }
+
+        &:first-child {
+            border-radius: 0 0 0 4px;
+        }
+
+        &:last-child {
+            border-radius: 0 0 4px 0;
+        }
+
+        &+&:before {
+            content: '';
+            position: absolute;
+            height: 48px;
+            top: 0;
+            left: 0;
+            width: 1px;
+            background: -webkit-linear-gradient(rgba(238, 242, 242, 0.4), rgba(238, 242, 242, 0.8)) top;
+            background: linear-gradient(rgba(238, 242, 242, 0.4), rgba(238, 242, 242, 0.8)) top;
+        }
+        &:hover {
+            opacity: .8;
+            background: #fafbfb;
+        }
+        .icon {
+            vertical-align: -2px;
+            margin-right: 10px;
+        }
+        .icon-action-follow, .icon-action-follow-active, .icon-action-follow-blue {
+            vertical-align: -3px;
+            margin-right: 9px;
+        }
+
+        .icon-action-fav, .icon-action-fav-active {
+            margin-right: 9px;
+        }
+
+        .icon-action-share, .icon-action-share-blue {
+            vertical-align: -3px;
+        }
+    }
+    .action-item-voteup {
+        .icon-action-voteup-active {
+            display: none;
+        }
+        &.active {
+            .icon-action-voteup-active {
+                display: inline-block;
+            }
+            .icon-action-voteup {
+                display: none;
+            }
+        }
+    }
+    .action-item-fav {
+        .icon-action-fav-active {
+            display: none;
+        }
+        &.active {
+            .icon-action-fav-active {
+                display: inline-block;
+            }
+            .icon-action-fav {
+                display: none;
+            }
+        }
+    }
+}

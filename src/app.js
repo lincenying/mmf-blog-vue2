@@ -5,8 +5,7 @@ import router from './router'
 import { sync } from 'vuex-router-sync'
 import * as filters from './filters'
 
-import "./assets/css/style.css"
-import "./assets/less/frontend.less"
+import "./assets/less/style.less"
 import "./assets/css/hljs/googlecode.css"
 import "toastr/build/toastr.css"
 import "nprogress/nprogress.css"

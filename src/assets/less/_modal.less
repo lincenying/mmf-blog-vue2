@@ -1,0 +1,132 @@
+.modal-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    font-size: 0;
+    padding-left: 1px;
+    padding-right: 1px;
+    text-align: center;
+    font-size: 0.1px;
+    background: black;
+    background: rgba(0, 0, 0, 0.72);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    &.active {
+        visibility: visible;
+        opacity: 1;
+        overflow: auto;
+        pointer-events: auto;
+        .modal {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    .center-helper {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-left: -1px;
+    }
+}
+
+.modal {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    text-align: left;
+    visibility: hidden;
+    opacity: 0;
+    background: white;
+    margin: auto;
+    width: 360px;
+    border-radius: 12px;
+    padding: 25px;
+    box-sizing: border-box;
+    position: relative;
+    .modal-prev {
+        width: 78px;
+        height: 78px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: .25;
+        &:hover {
+            opacity: 1;
+        }
+        .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -10px;
+            margin-left: -10px;
+        }
+    }
+    .modal-close {
+        width: 78px;
+        height: 78px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        opacity: .25;
+        &:hover {
+            opacity: 1;
+        }
+        .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -8px;
+            margin-left: -8px;
+        }
+    }
+    .modal-title {
+        text-align: center;
+        font-size: 20px;
+        text-align: center;
+        font-weight: normal;
+        letter-spacing: .2em;
+        text-indent: .2em;
+    }
+    .signup-form {
+        width: 280px;
+        margin: 20px auto 10px;
+        text-align: center;
+        .input-wrap {
+            position: relative;
+            &+.input-wrap {
+                margin-top: 18px;
+            }
+        }
+        .input-info {
+            color: #bac1c2;
+            font-size: 12px;
+            margin-top: 10px;
+            margin-left: 14px;
+            text-align: left;
+            &.centered {
+                text-align: center;
+                margin-left: 0;
+            }
+        }
+        .error-info {
+            color: #ed4656;
+        }
+        .base-input {
+            width: 100%;
+        }
+        .textarea-input {
+            padding: 10px 14px;
+            height: 88px;
+            resize: none;
+        }
+        .signup-btn {
+            width: 100%;
+            padding: 0;
+            margin-top: 20px;
+        }
+    }
+}

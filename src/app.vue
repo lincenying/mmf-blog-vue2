@@ -1,5 +1,5 @@
 <template>
-<div id="app" class="g-doc">
+<div id="app" class="frontend">
     <Navigation :backend="backend"></Navigation>
     <transition name="fade" mode="out-in">
         <router-view :key="key" class="router"></router-view>
@@ -8,6 +8,7 @@
         <sign-up :show="global.showRegisterModal"></sign-up>
         <sign-in :show="global.showLoginModal"></sign-in>
     </template>
+    <back-top></back-top>
 </div>
 </template>
 <script lang="babel">
@@ -16,6 +17,7 @@ import NProgress from 'nprogress'
 import Navigation from './components/navigation.vue'
 import signUp from './components/signup.vue'
 import signIn from './components/signin.vue'
+import backTop from './components/backtop.vue'
 
 export default {
     computed: {
@@ -32,7 +34,8 @@ export default {
     components: {
         Navigation,
         signUp,
-        signIn
+        signIn,
+        backTop,
     },
     watch: {
         'global.progress'(val) {

@@ -1,5 +1,5 @@
 <template>
-<div id="app" class="g-doc">
+<div id="app" class="backend">
     <Navigation :backend="backend"></Navigation>
     <div class="main wrap clearfix">
         <div class="main-left">

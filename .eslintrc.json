@@ -1,3 +1,8 @@
 {
-    "extends": "lcy-vue"
+    "extends": ["lcy-vue", "prettier"],
+    "plugins": ["prettier"],
+    "rules": {
+        "prettier/prettier": "error",
+        "no-irregular-whitespace": 0
+    }
 }

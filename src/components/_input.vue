@@ -11,8 +11,8 @@
     </div>
 </template>
 
-<script lang="babel">
+<script>
 export default {
-    props: ['title', 'classes']
+    props: ['title', 'classes'],
 }
 </script>

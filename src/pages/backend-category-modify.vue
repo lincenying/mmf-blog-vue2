@@ -17,31 +17,37 @@
     </div>
 </template>
 
-<script lang="babel">
+<script>
 import api from '~api'
 import { mapGetters } from 'vuex'
+import checkAdmin from '~mixins/check-admin'
 import aInput from '../components/_input.vue'
-const fetchInitialData = async store => {
-    await store.dispatch('global/category/getCategoryItem')
-}
+
 export default {
     name: 'backend-category-modify',
+    mixins: [checkAdmin],
+    async asyncData({ store, route }) {
+        await store.dispatch('global/category/getCategoryItem', {
+            path: route.path,
+            id: route.params.id,
+        })
+    },
     data() {
         return {
             form: {
                 id: this.$route.params.id,
                 cate_name: '',
-                cate_order: ''
-            }
+                cate_order: '',
+            },
         }
     },
     components: {
-        aInput
+        aInput,
     },
     computed: {
         ...mapGetters({
-            item: 'global/category/getCategoryItem'
-        })
+            item: 'global/category/getCategoryItem',
+        }),
     },
     methods: {
         async modify() {
@@ -49,30 +55,32 @@ export default {
                 this.$store.dispatch('global/showMsg', '请将表单填写完整!')
                 return
             }
-            const { data: { message, code, data} } = await api.post('backend/category/modify', this.form)
+            const { data: { message, code, data } } = await api.post('backend/category/modify', this.form)
             if (code === 200 && data) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message
+                    content: message,
                 })
                 this.$store.commit('global/category/updateCategoryItem', data)
                 this.$router.push('/backend/category/list')
             }
-        }
+        },
     },
     mounted() {
-        if (!this.item._id || this.item.path !== this.$route.path) {
-            fetchInitialData(this.$store)
-        } else {
-            this.form.cate_name = this.item.cate_name
-            this.form.cate_order = this.item.cate_order
-        }
+        this.form.cate_name = this.item.data.cate_name
+        this.form.cate_order = this.item.data.cate_order
     },
     watch: {
         item(val) {
-            this.form.cate_name = val.cate_name
-            this.form.cate_order = val.cate_order
+            this.form.cate_name = val.data.cate_name
+            this.form.cate_order = val.data.cate_order
+        },
+    },
+    metaInfo() {
+        return {
+            title: '编辑分类 - M.M.F 小屋',
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
         }
-    }
+    },
 }
 </script>

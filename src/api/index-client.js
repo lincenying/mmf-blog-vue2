@@ -1,19 +1,20 @@
 import axios from 'axios'
 import qs from 'qs'
-import store from '../store'
+import { createStore } from '../store'
 import config from './config-client'
 
-axios.interceptors.request.use(config => {
-    store.dispatch('global/gProgress', 50)
-    return config
-}, error => {
-    return Promise.reject(error)
-})
+axios.interceptors.request.use(
+    config => {
+        return config
+    },
+    error => {
+        return Promise.reject(error)
+    }
+)
 
 axios.interceptors.response.use(response => response, error => Promise.resolve(error.response))
 
 function checkStatus(response) {
-    store.dispatch('global/gProgress', 100)
     if (response.status === 200 || response.status === 304) {
         return response
     }
@@ -21,8 +22,8 @@ function checkStatus(response) {
         data: {
             code: -404,
             message: response.statusText,
-            data: ''
-        }
+            data: '',
+        },
     }
 }
 
@@ -32,7 +33,7 @@ function checkCode(res) {
     } else if (res.data.code === -400) {
         window.location.href = '/'
     } else if (res.data.code !== 200) {
-        store.dispatch('global/showMsg', res.data.message)
+        createStore().dispatch('global/showMsg', res.data.message)
     }
     return res
 }
@@ -46,9 +47,11 @@ export default {
             timeout: config.timeout,
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            }
-        }).then(checkStatus).then(checkCode)
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            },
+        })
+            .then(checkStatus)
+            .then(checkCode)
     },
     get(url, params) {
         return axios({
@@ -57,8 +60,10 @@ export default {
             params,
             timeout: config.timeout,
             headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        }).then(checkStatus).then(checkCode)
-    }
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+        })
+            .then(checkStatus)
+            .then(checkCode)
+    },
 }

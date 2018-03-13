@@ -9,7 +9,7 @@
                 <i class="icon icon-arrow-down"></i>
                 <select v-model="form.category" class="select-item" name="category">
                     <option value="">请选择分类</option>
-                    <option v-for="item in category" :value="item._id + '|' + item.cate_name">{{ item.cate_name }}</option>
+                    <option v-for="item in category" :key="item._id" :value="item._id + '|' + item.cate_name">{{ item.cate_name }}</option>
                 </select>
                 <span class="input-info error">请输入分类</span>
             </a-input>
@@ -25,32 +25,39 @@
     </div>
 </template>
 
-<script lang="babel">
+<script>
 /* global postEditor */
-import api from '~api'
 import { mapGetters } from 'vuex'
+import api from '~api'
+import checkAdmin from '~mixins/check-admin'
 import aInput from '../components/_input.vue'
-const fetchInitialData = async (store, config = { limit: 99}) => {
-    await store.dispatch('global/category/getCategoryList', config)
-}
+
 export default {
     name: 'backend-article-insert',
+    mixins: [checkAdmin],
+    async asyncData({ store, route }, config = { limit: 99 }) {
+        config.all = 1
+        await store.dispatch('global/category/getCategoryList', {
+            ...config,
+            path: route.path,
+        })
+    },
     data() {
         return {
             form: {
                 title: '',
                 category: '',
-                content: ''
-            }
+                content: '',
+            },
         }
     },
     components: {
-        aInput
+        aInput,
     },
     computed: {
         ...mapGetters({
-            category: 'global/category/getCategoryList'
-        })
+            category: 'global/category/getCategoryList',
+        }),
     },
     methods: {
         async insert() {
@@ -60,39 +67,55 @@ export default {
                 return
             }
             this.form.content = content
-            const { data: { message, code, data} } = await api.post('backend/article/insert', this.form)
+            const { data: { message, code, data } } = await api.post('backend/article/insert', this.form)
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message
+                    content: message,
                 })
                 this.$store.commit('backend/article/insertArticleItem', data)
                 this.$router.push('/backend/article/list')
             }
-        }
+        },
     },
     mounted() {
-        if (this.category.length <= 0) {
-            fetchInitialData(this.$store)
-        }
         // eslint-disable-next-line
         window.postEditor = editormd("post-content", {
-            width: "100%",
+            width: '100%',
             height: 500,
-            markdown: "",
+            markdown: '',
             placeholder: '请输入内容...',
             path: '/static/editor.md/lib/',
             toolbarIcons() {
                 return [
-                    "bold", "italic", "quote", "|",
-                    "list-ul", "list-ol", "hr", "|",
-                    "link", "reference-link", "image", "code", "table", "|",
-                    "watch", "preview", "fullscreen"
+                    'bold',
+                    'italic',
+                    'quote',
+                    '|',
+                    'list-ul',
+                    'list-ol',
+                    'hr',
+                    '|',
+                    'link',
+                    'reference-link',
+                    'image',
+                    'code',
+                    'table',
+                    '|',
+                    'watch',
+                    'preview',
+                    'fullscreen',
                 ]
             },
-            watch : false,
-            saveHTMLToTextarea : true
+            watch: false,
+            saveHTMLToTextarea: true,
         })
-    }
+    },
+    metaInfo() {
+        return {
+            title: '发布文章 - M.M.F 小屋',
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+        }
+    },
 }
 </script>

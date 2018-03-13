@@ -1,54 +1,65 @@
 <template>
-<div id="app" class="frontend">
-    <Navigation :backend="backend"></Navigation>
-    <transition name="fade" mode="out-in">
-        <router-view :key="key" class="router"></router-view>
-    </transition>
-    <template v-if="!backend">
+    <div id="app" :class="backend ? 'backend' : 'frontend'">
+        <Navigation :backend="backend"></Navigation>
+        <transition :name="pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
+            <keep-alive>
+                <router-view :key="$route.fullPath" v-if="!$route.meta.notKeepAlive" class="app-view"></router-view>
+            </keep-alive>
+        </transition>
+        <transition :name="pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
+            <router-view :key="$route.fullPath" v-if="$route.meta.notKeepAlive" class="app-view"></router-view>
+        </transition>
         <sign-up :show="global.showRegisterModal"></sign-up>
         <sign-in :show="global.showLoginModal"></sign-in>
-    </template>
-    <back-top></back-top>
-</div>
+        <back-top></back-top>
+    </div>
 </template>
-<script lang="babel">
-import { mapGetters } from 'vuex'
-import NProgress from 'nprogress'
+
+<script>
+import { mapGetters, mapState } from 'vuex'
 import Navigation from './components/navigation.vue'
 import signUp from './components/signup.vue'
 import signIn from './components/signin.vue'
 import backTop from './components/backtop.vue'
+import backendMenu from './components/backend-menu.vue'
 
 export default {
-    computed: {
-        ...mapGetters({
-            global: 'global/getGlobal'
-        }),
-        key() {
-            return this.$route.path.replace(/\//g, '_')
-        },
-        backend() {
-            return this.$route.path.indexOf('backend') >= 0
-        }
-    },
+    name: 'app',
     components: {
         Navigation,
         signUp,
         signIn,
         backTop,
+        backendMenu,
     },
-    watch: {
-        'global.progress'(val) {
-            if (val === 0) {
-                NProgress.set(0)
-                NProgress.start()
-            } else if (val === 100) {
-                NProgress.done()
-            } else {
-                NProgress.set(val/100)
-                NProgress.start()
-            }
-        }
-    }
+    data() {
+        return {}
+    },
+    computed: {
+        ...mapGetters({
+            global: 'global/getGlobal',
+        }),
+        ...mapState('appShell', ['pageTransitionName']),
+        key() {
+            return this.$route.path.replace(/\//g, '_')
+        },
+        backend() {
+            return this.$route.path.indexOf('backend') >= 0
+        },
+        isLogin() {
+            return ['/backend', '/backend/'].includes(this.$route.path)
+        },
+    },
+    methods: {
+        handleBeforeEnter() {
+            this.$store.dispatch('appShell/setPageSwitching', true)
+        },
+        handleAfterEnter() {
+            this.$store.dispatch('appShell/setPageSwitching', false)
+        },
+        handleClickHeaderBack() {
+            this.$router.go(-1)
+        },
+    },
 }
 </script>

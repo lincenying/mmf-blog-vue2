@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="comment-items-wrap">
-                <div v-for="item in comments.data" class="comment-item">
+                <div v-for="item in comments.data" :key="item._id" class="comment-item">
                     <a href="javascript:;" class="comment-author-avatar-link">
                         <img src="//ww2.sinaimg.cn/large/005uQRNCgw1f4ij3d8m05j301s01smwx.jpg" alt="" class="avatar-img">
                     </a>
@@ -33,17 +33,18 @@
     </div>
 </template>
 
-<script lang="babel">
+<script>
 import cookies from 'js-cookie'
 import api from '~api'
 export default {
+    name: 'frontend-comment',
     props: ['comments'],
-    data () {
+    data() {
         return {
             form: {
                 id: this.$route.params.id,
-                content: ''
-            }
+                content: '',
+            },
         }
     },
     methods: {
@@ -51,7 +52,7 @@ export default {
             this.$store.dispatch(`global/comment/getCommentList`, {
                 id: this.$route.params.id,
                 page: this.comments.page + 1,
-                limit: 10
+                limit: 10,
             })
         },
         async postComment() {
@@ -62,21 +63,21 @@ export default {
             } else if (this.form.content === '') {
                 this.$store.dispatch('global/showMsg', '请输入评论内容!')
             } else {
-                const { data: { code, data }} = await api.post('frontend/comment/insert', this.form)
+                const { data: { code, data } } = await api.post('frontend/comment/insert', this.form)
                 if (code === 200) {
                     this.form.content = ''
                     this.$store.dispatch('global/showMsg', {
                         content: '评论发布成功!',
-                        type: 'success'
+                        type: 'success',
                     })
                     this.$store.commit('global/comment/insertCommentItem', data)
                 }
             }
         },
         reply(item) {
-            this.form.content = '回复 @'+ item.username + ': '
-            document.querySelector("#content").focus()
-        }
-    }
+            this.form.content = '回复 @' + item.username + ': '
+            document.querySelector('#content').focus()
+        },
+    },
 }
 </script>

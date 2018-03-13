@@ -21,33 +21,41 @@
     </div>
 </template>
 
-<script lang="babel">
+<script>
 import { mapGetters } from 'vuex'
 import api from '~api'
+import checkAdmin from '~mixins/check-admin'
+
 import backendMenu from '~components/backend-menu.vue'
 import aInput from '~components/_input.vue'
-const fetchInitialData = async store => {
-    await store.dispatch('backend/admin/getAdminItem')
-}
+
 export default {
+    name: 'backend-admin-modify',
+    mixins: [checkAdmin],
+    async asyncData({ store, route }) {
+        await store.dispatch('backend/admin/getAdminItem', {
+            id: route.params.id,
+            path: route.path,
+        })
+    },
     data() {
         return {
             form: {
                 id: this.$route.params.id,
                 username: '',
                 email: '',
-                password: ''
-            }
+                password: '',
+            },
         }
     },
     components: {
         aInput,
-        backendMenu
+        backendMenu,
     },
     computed: {
         ...mapGetters({
-            item: 'backend/admin/getAdminItem'
-        })
+            item: 'backend/admin/getAdminItem',
+        }),
     },
     methods: {
         async modify() {
@@ -55,30 +63,32 @@ export default {
                 this.$store.dispatch('global/showMsg', '请将表单填写完整!')
                 return
             }
-            const { data: { message, code, data} } = await api.post('backend/admin/modify', this.form)
+            const { data: { message, code, data } } = await api.post('backend/admin/modify', this.form)
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message
+                    content: message,
                 })
                 this.$store.commit('backend/admin/updateAdminItem', data)
                 this.$router.push('/backend/admin/list')
             }
-        }
+        },
     },
     mounted() {
-        if (this.item.path !== this.$route.path) {
-            fetchInitialData(this.$store)
-        } else {
-            this.form.username = this.item.data.username
-            this.form.email = this.item.data.email
-        }
+        this.form.username = this.item.data.username
+        this.form.email = this.item.data.email
     },
     watch: {
         item(val) {
             this.form.username = val.data.username
             this.form.email = val.data.email
+        },
+    },
+    metaInfo() {
+        return {
+            title: '编辑管理员 - M.M.F 小屋',
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
         }
-    }
+    },
 }
 </script>

@@ -32,5 +32,5 @@ export function timeYmd(timestamp) {
     var year = tmp.getFullYear()
     var month = tmp.getMonth() + 1
     var date = tmp.getDate()
-    return year + "-" + (month < 10 ? '0' + month : month) + "-" + (date < 10 ? '0' + date : date)
+    return year + '-' + (month < 10 ? '0' + month : month) + '-' + (date < 10 ? '0' + date : date)
 }

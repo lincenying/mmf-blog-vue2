@@ -1,5 +1,11 @@
+/**
+ * @file store index
+ * @author lincenying(lincenying@qq.com)
+ */
+
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { createAppShellState } from './modules/app-shell'
 import backendAdmin from './modules/backend-admin'
 import backendArticle from './modules/backend-article'
 import backendUser from './modules/backend-user'
@@ -10,29 +16,32 @@ import globalComment from './modules/global-comment'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-    modules: {
-        backend: {
-            namespaced: true,
-            modules: {
-                admin: backendAdmin,
-                article: backendArticle,
-                user: backendUser
-            }
+export function createStore() {
+    return new Vuex.Store({
+        modules: {
+            appShell: createAppShellState(),
+            backend: {
+                namespaced: true,
+                modules: {
+                    admin: backendAdmin,
+                    article: backendArticle,
+                    user: backendUser,
+                },
+            },
+            frontend: {
+                namespaced: true,
+                modules: {
+                    article: frontendArticle,
+                },
+            },
+            global: {
+                namespaced: true,
+                ...global,
+                modules: {
+                    category: globalCategory,
+                    comment: globalComment,
+                },
+            },
         },
-        frontend: {
-            namespaced: true,
-            modules: {
-                article: frontendArticle
-            }
-        },
-        global: {
-            namespaced: true,
-            ...global,
-            modules: {
-                category: globalCategory,
-                comment: globalComment
-            }
-        }
-    }
-})
+    })
+}

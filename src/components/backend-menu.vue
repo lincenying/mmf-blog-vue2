@@ -13,11 +13,11 @@
     </div>
 </template>
 
-<script lang="babel">
+<script>
 export default {
     name: 'backend-menu',
     serverCacheKey: () => {
         return `backend::menu`
-    }
+    },
 }
 </script>

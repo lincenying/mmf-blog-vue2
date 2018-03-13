@@ -6,7 +6,7 @@
                 <div class="list-time">分类排序</div>
                 <div class="list-action">操作</div>
             </div>
-            <div v-for="item in category" class="list-section">
+            <div v-for="item in category" :key="item._id" class="list-section">
                 <div class="list-title">{{ item.cate_name }}</div>
                 <div class="list-time">{{ item.cate_order }}</div>
                 <div class="list-action">
@@ -17,22 +17,31 @@
     </div>
 </template>
 
-<script lang="babel">
+<script>
 import { mapGetters } from 'vuex'
-const fetchInitialData = async (store, config = { limit: 99}) => {
-    await store.dispatch('global/category/getCategoryList', config)
-}
+import checkAdmin from '~mixins/check-admin'
+
 export default {
     name: 'backend-category-list',
-    computed: {
-        ...mapGetters({
-            category: 'global/category/getCategoryList'
+    mixins: [checkAdmin],
+    async asyncData({ store, route }, config = { limit: 99 }) {
+        config.all = 1
+        await store.dispatch('global/category/getCategoryList', {
+            ...config,
+            path: route.path,
         })
     },
-    mounted() {
-        if (this.category.length <= 0) {
-            fetchInitialData(this.$store)
+    computed: {
+        ...mapGetters({
+            category: 'global/category/getCategoryList',
+        }),
+    },
+    mounted() {},
+    metaInfo() {
+        return {
+            title: '分类列表 - M.M.F 小屋',
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
         }
-    }
+    },
 }
 </script>

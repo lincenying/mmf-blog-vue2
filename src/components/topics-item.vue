@@ -9,21 +9,18 @@
         <actions :item="item"></actions>
     </div>
 </template>
-<script lang="babel">
+<script>
 import actions from './item-actions.vue'
 export default {
-    name: 'index-item',
-    serverCacheKey: props => {
-        return `frontend::topics::item::${props.item._id}`
-    },
+    name: 'topics-item',
     props: ['item'],
-    data () {
+    data() {
         return {
-            showMore: false
+            showMore: false,
         }
     },
     components: {
-        actions
-    }
+        actions,
+    },
 }
 </script>

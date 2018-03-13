@@ -6,7 +6,7 @@
     </div>
 </template>
 
-<script lang="babel">
+<script>
 import api from '~api'
 export default {
     name: 'aside-account',
@@ -17,7 +17,7 @@ export default {
         async handleLogout() {
             await api.post('frontend/user/logout', {})
             window.location.href = '/'
-        }
-    }
+        },
+    },
 }
 </script>

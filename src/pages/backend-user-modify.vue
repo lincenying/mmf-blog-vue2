@@ -16,36 +16,43 @@
         </div>
         <div class="settings-footer clearfix">
             <router-link to="/backend/user/list" class="btn btn-blue">返回</router-link>
-            <a @click="modify" href="javascript:;" class="btn btn-yellow">编辑管理员</a>
+            <a @click="modify" href="javascript:;" class="btn btn-yellow">编辑用户</a>
         </div>
     </div>
 </template>
 
-<script lang="babel">
+<script>
 import { mapGetters } from 'vuex'
 import api from '~api'
+import checkAdmin from '~mixins/check-admin'
 import aInput from '~components/_input.vue'
-const fetchInitialData = async store => {
-    await store.dispatch('backend/user/getUserItem')
-}
+
 export default {
+    name: 'backend-user-modify',
+    mixins: [checkAdmin],
+    async asyncData({ store, route }) {
+        await store.dispatch('backend/user/getUserItem', {
+            id: route.params.id,
+            path: route.path,
+        })
+    },
     data() {
         return {
             form: {
                 id: this.$route.params.id,
                 username: '',
                 email: '',
-                password: ''
-            }
+                password: '',
+            },
         }
     },
     components: {
-        aInput
+        aInput,
     },
     computed: {
         ...mapGetters({
-            item: 'backend/user/getUserItem'
-        })
+            item: 'backend/user/getUserItem',
+        }),
     },
     methods: {
         async modify() {
@@ -53,30 +60,32 @@ export default {
                 this.$store.dispatch('global/showMsg', '请将表单填写完整!')
                 return
             }
-            const { data: { message, code, data} } = await api.post('backend/user/modify', this.form)
+            const { data: { message, code, data } } = await api.post('backend/user/modify', this.form)
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message
+                    content: message,
                 })
                 this.$store.commit('backend/user/updateUserItem', data)
                 this.$router.push('/backend/user/list')
             }
-        }
+        },
     },
     mounted() {
-        if (!this.item.path !== this.$route.path) {
-            fetchInitialData(this.$store)
-        } else {
-            this.form.username = this.item.data.username
-            this.form.email = this.item.data.email
-        }
+        this.form.username = this.item.data.username
+        this.form.email = this.item.data.email
     },
     watch: {
         item(val) {
             this.form.username = val.data.username
             this.form.email = val.data.email
+        },
+    },
+    metaInfo() {
+        return {
+            title: '用户编辑 - M.M.F 小屋',
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
         }
-    }
+    },
 }
 </script>

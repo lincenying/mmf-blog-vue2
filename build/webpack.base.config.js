@@ -40,6 +40,7 @@ module.exports = {
             path.join(__dirname, '../node_modules'),
         ],
         alias: {
+            '@': path.resolve(__dirname, '../src'),
             '~src': path.resolve(__dirname, '../src'),
             '~components': path.resolve(__dirname, '../src/components'),
             '~api': path.resolve(__dirname, '../src/api/index-client'),

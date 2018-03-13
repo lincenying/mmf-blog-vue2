@@ -18,7 +18,7 @@
                     <router-link to="/about" active-class="current" class="nav-link"><i class="icon icon-nav-features"></i><span class="text">关于</span></router-link>
                 </div>
             </div>
-            <div class="right-part">
+            <div v-if="!backend" class="right-part">
                 <span class="nav-search"><i class="icon icon-search-white"></i><input @keyup.enter="search($event)" placeholder="记得按回车哦" class="nav-search-input"></span>
                 <span v-if="isLogin" class="nav-me"><router-link to="/user/account" class="nav-me-link"><img src="//ww2.sinaimg.cn/large/005uQRNCgw1f4ij3d8m05j301s01smwx.jpg" class="nav-avatar-img"></router-link></span>
                 <span v-else class="nav-me"><a @click="login" href="javascript:;" class="nav-me-link"><img src="//ww2.sinaimg.cn/large/005uQRNCgw1f4ij3d8m05j301s01smwx.jpg" class="nav-avatar-img"></a></span>
@@ -27,13 +27,14 @@
     </nav>
 </template>
 
-<script lang="babel">
+<script>
 import cookies from 'js-cookie'
 export default {
+    name: 'navigation',
     props: ['backend'],
     data() {
         return {
-            isLogin: cookies.get('user')
+            isLogin: cookies.get('user'),
         }
     },
     methods: {
@@ -42,11 +43,11 @@ export default {
         },
         search(e) {
             var qs = e.target.value
-            if (qs === "") {
+            if (qs === '') {
                 return false
             }
             this.$router.replace('/search/' + qs)
-        }
-    }
+        },
+    },
 }
 </script>

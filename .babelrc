@@ -19,7 +19,7 @@
             "presets": [
                 ["env", {
                     "targets": {
-                        "chrome": 52
+                        "chrome": 60
                     },
                     "modules": false,
                     "debug": true

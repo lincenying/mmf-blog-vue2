@@ -16,6 +16,7 @@ Object
     })
 
 module.exports = merge(baseWebpackConfig, {
+    mode: 'development',
     // eval-source-map is faster for development
     devtool: '#cheap-module-eval-source-map',
     module: {
@@ -33,13 +34,10 @@ module.exports = merge(baseWebpackConfig, {
         // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ["vendor"]
-        }),
         // https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
             chunks: [
-                'vendor', 'app',
+                'vendors', 'app',
             ],
             filename: 'index.html',
             template: 'src/template/index.html',
@@ -47,7 +45,7 @@ module.exports = merge(baseWebpackConfig, {
         }),
         new HtmlWebpackPlugin({
             chunks: [
-                'vendor', 'admin',
+                'vendors', 'admin',
             ],
             filename: 'admin.html',
             template: 'src/template/admin.html',

@@ -21,7 +21,7 @@ module.exports = {
     entry: {
         app: './src/app.js',
         admin: './src/admin.js',
-        vendor: ['./src/polyfill']
+        vendors: ['./src/polyfill']
     },
     output: {
         path: config.build.assetsRoot,

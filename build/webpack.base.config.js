@@ -106,8 +106,7 @@ module.exports = {
         new webpack.LoaderOptionsPlugin({
             minimize: isProd,
             options: {
-                context: __dirname,
-                vue: vueConfig,
+                context: __dirname
             }
         }),
     ]

@@ -4,7 +4,7 @@ const config = require('../config')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -73,7 +73,7 @@ module.exports = merge(baseWebpackConfig, {
             // Options similar to the same options in webpackOptions.output
             // both options are optional
             filename: 'static/css/[name].[contenthash:7].css',
-            chunkFilename: 'static/css/[id].[contenthash:7].css',
+            chunkFilename: 'static/css/[name].[contenthash:7].css',
         }),
         // generate dist index.html with correct asset hash for caching.
         // you can customize output by editing /index.html

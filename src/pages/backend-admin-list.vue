@@ -35,45 +35,49 @@ export default {
     async asyncData({ store, route }, config = { page: 1 }) {
         await store.dispatch('backend/admin/getAdminList', {
             ...config,
-            path: route.path,
+            path: route.path
         })
     },
     computed: {
         ...mapGetters({
-            admin: 'backend/admin/getAdminList',
-        }),
+            admin: 'backend/admin/getAdminList'
+        })
     },
     methods: {
         loadMore(page = this.admin.page + 1) {
             this.$options.asyncData({ store: this.$store }, { page })
         },
         async recover(id) {
-            const { data: { code, message } } = await api.get('backend/admin/recover', { id })
+            const {
+                data: { code, message }
+            } = await api.get('backend/admin/recover', { id })
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message,
+                    content: message
                 })
                 this.$store.commit('backend/admin/recoverAdmin', id)
             }
         },
         async deletes(id) {
-            const { data: { code, message } } = await api.get('backend/admin/delete', { id })
+            const {
+                data: { code, message }
+            } = await api.get('backend/admin/delete', { id })
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message,
+                    content: message
                 })
                 this.$store.commit('backend/admin/deleteAdmin', id)
             }
-        },
+        }
     },
     mounted() {},
     metaInfo() {
         return {
             title: '管理员列表 - M.M.F 小屋',
-            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }]
         }
-    },
+    }
 }
 </script>

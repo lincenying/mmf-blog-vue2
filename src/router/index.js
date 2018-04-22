@@ -113,7 +113,7 @@ export function createRouter() {
                 name: 'article',
                 path: '/article/:id',
                 component: article,
-                meta: { scrollToTop: true, notKeepAlive: true },
+                meta: { scrollToTop: true, notKeepAlive: true }
             },
             { name: 'about', path: '/about', component: about, meta: { scrollToTop: true } },
             {
@@ -121,16 +121,16 @@ export function createRouter() {
                 path: '/user/account',
                 component: account,
                 meta: { scrollToTop: true },
-                beforeEnter: guardRoute,
+                beforeEnter: guardRoute
             },
             {
                 name: 'password',
                 path: '/user/password',
                 component: password,
                 meta: { scrollToTop: true },
-                beforeEnter: guardRoute,
-            },
-        ],
+                beforeEnter: guardRoute
+            }
+        ]
     })
     /**
      * 切换动画名称

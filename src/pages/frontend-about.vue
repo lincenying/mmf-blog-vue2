@@ -64,19 +64,19 @@ export default {
     },
     mixins: [metaMixin],
     components: {
-        trending,
+        trending
     },
     computed: {
         ...mapGetters({
-            trending: 'frontend/article/getTrending',
-        }),
+            trending: 'frontend/article/getTrending'
+        })
     },
     mounted() {},
     metaInfo() {
         return {
             title: '关于 - M.M.F 小屋',
-            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }]
         }
-    },
+    }
 }
 </script>

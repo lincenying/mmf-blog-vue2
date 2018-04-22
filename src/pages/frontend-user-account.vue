@@ -39,22 +39,24 @@ export default {
         return {
             form: {
                 username: '',
-                email: '',
-            },
+                email: ''
+            }
         }
     },
     components: {
         account,
-        aInput,
+        aInput
     },
     methods: {
         async getUser() {
-            const { data: { code, data } } = await api.get('frontend/user/account')
+            const {
+                data: { code, data }
+            } = await api.get('frontend/user/account')
             if (code === 200) {
                 this.form.username = data.username
                 this.form.email = data.email
             }
-        },
+        }
     },
     mounted() {
         this.getUser()
@@ -62,8 +64,8 @@ export default {
     metaInfo() {
         return {
             title: '帐号 - M.M.F 小屋',
-            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }]
         }
-    },
+    }
 }
 </script>

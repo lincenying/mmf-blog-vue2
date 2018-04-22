@@ -25,23 +25,23 @@ export function createStore() {
                 modules: {
                     admin: backendAdmin,
                     article: backendArticle,
-                    user: backendUser,
-                },
+                    user: backendUser
+                }
             },
             frontend: {
                 namespaced: true,
                 modules: {
-                    article: frontendArticle,
-                },
+                    article: frontendArticle
+                }
             },
             global: {
                 namespaced: true,
                 ...global,
                 modules: {
                     category: globalCategory,
-                    comment: globalComment,
-                },
-            },
-        },
+                    comment: globalComment
+                }
+            }
+        }
     })
 }

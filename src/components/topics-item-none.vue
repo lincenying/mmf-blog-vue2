@@ -11,6 +11,6 @@
 </template>
 <script>
 export default {
-    name: 'topics-item-none',
+    name: 'topics-item-none'
 }
 </script>

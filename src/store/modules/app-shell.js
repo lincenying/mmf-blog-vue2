@@ -34,7 +34,7 @@ export function createAppShellState() {
          *
          * @type {Object}
          */
-        historyPageScrollTop: {},
+        historyPageScrollTop: {}
     }
 
     const actions = {
@@ -75,7 +75,7 @@ export function createAppShellState() {
          */
         saveScrollTop({ commit }, { path, scrollTop }) {
             commit(types.SAVE_SCROLLTOP, { path, scrollTop })
-        },
+        }
     }
 
     const mutations = {
@@ -87,13 +87,13 @@ export function createAppShellState() {
         },
         [types.SAVE_SCROLLTOP](state, { path, scrollTop }) {
             state.historyPageScrollTop[path] = scrollTop
-        },
+        }
     }
 
     return {
         namespaced: true,
         actions,
         mutations,
-        state,
+        state
     }
 }

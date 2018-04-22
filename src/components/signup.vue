@@ -41,8 +41,8 @@ export default {
                 username: '',
                 email: '',
                 password: '',
-                re_password: '',
-            },
+                re_password: ''
+            }
         }
     },
     methods: {
@@ -67,15 +67,17 @@ export default {
                 this.$store.dispatch('global/showMsg', '两次输入的密码不一致!')
                 return
             }
-            const { data: { message, code } } = await api.post('frontend/user/insert', this.form)
+            const {
+                data: { message, code }
+            } = await api.post('frontend/user/insert', this.form)
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message,
+                    content: message
                 })
                 this.login()
             }
-        },
-    },
+        }
+    }
 }
 </script>

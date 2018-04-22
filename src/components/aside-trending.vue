@@ -26,6 +26,6 @@ export default {
     },
     components: {
         // Affix
-    },
+    }
 }
 </script>

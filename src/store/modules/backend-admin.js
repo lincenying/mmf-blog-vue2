@@ -6,35 +6,39 @@ const state = () => ({
         hasPrev: false,
         path: '',
         page: 1,
-        data: [],
+        data: []
     },
     item: {
         data: {},
-        path: '',
-    },
+        path: ''
+    }
 })
 
 const actions = {
     async ['getAdminList']({ commit, state }, config) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
-        const { data: { data, code } } = await api.get('backend/admin/list', { ...config, cache: true })
+        const {
+            data: { data, code }
+        } = await api.get('backend/admin/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('receiveAdminList', {
                 ...data,
                 path: config.path,
-                page: config.page,
+                page: config.page
             })
         }
     },
     async ['getAdminItem']({ commit }, config) {
-        const { data: { data, code } } = await api.get('backend/admin/item', config)
+        const {
+            data: { data, code }
+        } = await api.get('backend/admin/item', config)
         if (data && code === 200) {
             commit('receiveAdminItem', {
                 data,
-                ...config,
+                ...config
             })
         }
-    },
+    }
 }
 
 const mutations = {
@@ -50,7 +54,7 @@ const mutations = {
             hasNext,
             hasPrev,
             page,
-            path,
+            path
         }
     },
     ['receiveAdminItem'](state, payload) {
@@ -70,7 +74,7 @@ const mutations = {
     ['recoverAdmin'](state, id) {
         const obj = state.lists.data.find(ii => ii._id === id)
         if (obj) obj.is_delete = 0
-    },
+    }
 }
 
 const getters = {
@@ -79,7 +83,7 @@ const getters = {
     },
     ['getAdminItem'](state) {
         return state.item
-    },
+    }
 }
 
 export default {
@@ -87,5 +91,5 @@ export default {
     state,
     actions,
     mutations,
-    getters,
+    getters
 }

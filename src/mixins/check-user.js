@@ -7,5 +7,5 @@ export default {
             window.location.href = '/'
         }
         next()
-    },
+    }
 }

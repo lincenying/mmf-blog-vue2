@@ -40,7 +40,7 @@ export default {
         config.all = 1
         await store.dispatch('global/category/getCategoryList', {
             ...config,
-            path: route.path,
+            path: route.path
         })
     },
     data() {
@@ -51,17 +51,17 @@ export default {
                 category: '',
                 category_name: '',
                 category_old: '',
-                content: '',
-            },
+                content: ''
+            }
         }
     },
     components: {
-        aInput,
+        aInput
     },
     computed: {
         ...mapGetters({
-            category: 'global/category/getCategoryList',
-        }),
+            category: 'global/category/getCategoryList'
+        })
     },
     methods: {
         async modify() {
@@ -71,16 +71,18 @@ export default {
                 return
             }
             this.form.content = content
-            const { data: { message, code, data } } = await api.post('backend/article/modify', this.form)
+            const {
+                data: { message, code, data }
+            } = await api.post('backend/article/modify', this.form)
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message,
+                    content: message
                 })
                 this.$store.commit('backend/article/updateArticleItem', data)
                 this.$router.push('/backend/article/list')
             }
-        },
+        }
     },
     async mounted() {
         const data = await this.$store.dispatch('backend/article/getArticleItem', { id: this.$route.params.id })
@@ -113,24 +115,24 @@ export default {
                     '|',
                     'watch',
                     'preview',
-                    'fullscreen',
+                    'fullscreen'
                 ]
             },
             watch: false,
-            saveHTMLToTextarea: true,
+            saveHTMLToTextarea: true
         })
     },
     watch: {
         'form.category'(val) {
             const obj = this.category.find(item => item._id === val)
             this.form.category_name = obj.cate_name
-        },
+        }
     },
     metaInfo() {
         return {
             title: '编辑文章 - M.M.F 小屋',
-            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }]
         }
-    },
+    }
 }
 </script>

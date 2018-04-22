@@ -39,45 +39,49 @@ export default {
         config.id = route.params.id
         await store.dispatch('global/comment/getCommentList', {
             ...config,
-            path: route.path,
+            path: route.path
         })
     },
     computed: {
         ...mapGetters({
-            comments: 'global/comment/getCommentList',
-        }),
+            comments: 'global/comment/getCommentList'
+        })
     },
     methods: {
         loadMore(page = this.comments.page + 1) {
             this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
         },
         async recover(id) {
-            const { data: { code, message } } = await api.get('frontend/comment/recover', { id })
+            const {
+                data: { code, message }
+            } = await api.get('frontend/comment/recover', { id })
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message,
+                    content: message
                 })
                 this.$store.commit('global/comment/recoverComment', id)
             }
         },
         async deletes(id) {
-            const { data: { code, message } } = await api.get('frontend/comment/delete', { id })
+            const {
+                data: { code, message }
+            } = await api.get('frontend/comment/delete', { id })
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message,
+                    content: message
                 })
                 this.$store.commit('global/comment/deleteComment', id)
             }
-        },
+        }
     },
     mounted() {},
     metaInfo() {
         return {
             title: '评论列表 - M.M.F 小屋',
-            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }]
         }
-    },
+    }
 }
 </script>

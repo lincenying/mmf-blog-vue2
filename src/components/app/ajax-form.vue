@@ -8,56 +8,56 @@ export default {
     props: {
         action: {
             type: String,
-            required: true,
+            required: true
         },
         method: {
             type: String,
             default() {
                 return 'POST'
-            },
+            }
         },
         enctype: {
             type: String,
             default() {
                 return 'multipart/form-data'
-            },
+            }
         },
         responsetype: {
             type: String,
             default() {
                 return 'json'
-            },
+            }
         },
         before: {
             type: Function,
             default() {
                 return function() {}
-            },
+            }
         },
         error: {
             type: Function,
             default() {
                 return function() {}
-            },
+            }
         },
         complete: {
             type: Function,
             default() {
                 return function() {}
-            },
+            }
         },
         progress: {
             type: Function,
             default() {
                 return function() {}
-            },
+            }
         },
         after: {
             type: Function,
             default() {
                 return function() {}
-            },
-        },
+            }
+        }
     },
     methods: {
         handleAjaxFormSubmit() {
@@ -97,7 +97,7 @@ export default {
             var data = new FormData(event.target)
             xhr.send(data)
             this.after()
-        },
-    },
+        }
+    }
 }
 </script>

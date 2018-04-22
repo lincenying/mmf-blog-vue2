@@ -41,13 +41,13 @@ export default {
             form: {
                 old_password: '',
                 password: '',
-                re_password: '',
-            },
+                re_password: ''
+            }
         }
     },
     components: {
         aInput,
-        account,
+        account
     },
     methods: {
         async modify() {
@@ -58,17 +58,19 @@ export default {
                 this.$store.dispatch('global/showMsg', '两次密码输入不一致!')
                 return
             }
-            const { data: { code, data } } = await api.post('frontend/user/password', this.form)
+            const {
+                data: { code, data }
+            } = await api.post('frontend/user/password', this.form)
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: data,
+                    content: data
                 })
                 this.form.old_password = ''
                 this.form.password = ''
                 this.form.re_password = ''
             }
-        },
+        }
     },
     mounted() {
         this.$store.dispatch('global/gProgress', 100)
@@ -76,8 +78,8 @@ export default {
     metaInfo() {
         return {
             title: '密码 - M.M.F 小屋',
-            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }]
         }
-    },
+    }
 }
 </script>

@@ -17,7 +17,7 @@ export default {
         async handleLogout() {
             await api.post('frontend/user/logout', {})
             window.location.href = '/'
-        },
-    },
+        }
+    }
 }
 </script>

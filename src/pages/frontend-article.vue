@@ -45,12 +45,15 @@ import comment from '../components/frontend-comment.vue'
 export default {
     name: 'frontend-article',
     async asyncData({ store, route }) {
-        const { path, params: { id } } = route
+        const {
+            path,
+            params: { id }
+        } = route
         await Promise.all([
             store.dispatch('global/category/getCategoryList'),
             store.dispatch('frontend/article/getTrending'),
             store.dispatch(`global/comment/getCommentList`, { id, path, page: 1, limit: 10 }),
-            store.dispatch(`frontend/article/getArticleItem`, { id, path }),
+            store.dispatch(`frontend/article/getArticleItem`, { id, path })
         ])
     },
     mixins: [metaMixin],
@@ -63,20 +66,20 @@ export default {
             article: 'frontend/article/getArticleItem',
             comments: 'global/comment/getCommentList',
             category: 'global/category/getCategoryList',
-            trending: 'frontend/article/getTrending',
-        }),
+            trending: 'frontend/article/getTrending'
+        })
     },
     components: {
         actions,
         comment,
         category,
-        trending,
+        trending
     },
     methods: {
         addTarget(content) {
             if (!content) return ''
             return content.replace(/<a(.*?)href="http/g, '<a$1target="_blank" href="http')
-        },
+        }
     },
     mounted() {
         // this.$options.asyncData({store: this.$store})
@@ -85,8 +88,8 @@ export default {
         const title = this.article.data.title ? this.article.data.title + ' - M.M.F 小屋' : 'M.M.F 小屋'
         return {
             title,
-            meta: [{ vmid: 'description', name: 'description', content: title }],
+            meta: [{ vmid: 'description', name: 'description', content: title }]
         }
-    },
+    }
 }
 </script>

@@ -9,7 +9,7 @@ export default {
     name: 'back-top',
     data() {
         return {
-            scrollTop: 0,
+            scrollTop: 0
         }
     },
     methods: {
@@ -34,13 +34,13 @@ export default {
                 window.scrollTo(0, top)
                 // document.body.scrollTop = top
             }, 20)
-        },
+        }
     },
     mounted() {
         window.addEventListener('scroll', this.scrolling)
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.scrolling)
-    },
+    }
 }
 </script>

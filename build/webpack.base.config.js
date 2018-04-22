@@ -1,16 +1,16 @@
 /* global require, module, __dirname */
 const path = require('path')
 const webpack = require('webpack')
+const { VueLoaderPlugin } = require('vue-loader')
 
 const config = require('../config')
-const vueConfig = require('./vue-loader.config')
 const projectRoot = path.resolve(__dirname, '../')
 const isProd = process.env.NODE_ENV === 'production'
 
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
-const cssSourceMapDev = (!isProd && config.dev.cssSourceMap)
-const cssSourceMapProd = (isProd && config.build.productionSourceMap)
+const cssSourceMapDev = !isProd && config.dev.cssSourceMap
+const cssSourceMapProd = isProd && config.build.productionSourceMap
 const useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
@@ -30,15 +30,11 @@ module.exports = {
         chunkFilename: '[name].js'
     },
     externals: {
-        'jquery': 'jQuery'
+        jquery: 'jQuery'
     },
     resolve: {
-        extensions: [
-            '.js', '.vue'
-        ],
-        modules: [
-            path.join(__dirname, '../node_modules'),
-        ],
+        extensions: ['.js', '.vue'],
+        modules: [path.join(__dirname, '../node_modules')],
         alias: {
             '@': path.resolve(__dirname, '../src'),
             '~src': path.resolve(__dirname, '../src'),
@@ -52,62 +48,57 @@ module.exports = {
         }
     },
     resolveLoader: {
-        modules: [
-            path.join(__dirname, '../node_modules'),
-        ]
+        modules: [path.join(__dirname, '../node_modules')]
     },
     module: {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'eslint-loader',
-                enforce: "pre",
-                include: projectRoot,
-                exclude: /node_modules/
-            }, {
-                test: /\.js$/,
-                loader: 'eslint-loader',
-                enforce: "pre",
-                include: projectRoot,
-                exclude: /node_modules/
-            }, {
-                test: /\.vue$/,
-                loader: 'vue-loader'
-            }, {
+                loader: 'vue-loader',
+                options: {
+                    compilerOptions: {
+                        preserveWhitespace: false
+                    }
+                }
+            },
+            {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 include: projectRoot,
                 exclude: /node_modules/
-            }, {
-                test: /\.json$/,
-                loader: 'json-loader'
-            }, {
-                test: /\.html$/,
-                loader: 'vue-html-loader'
-            }, {
+            },
+            {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url-loader',
-                query: {
-                    limit: 10000,
-                    name: 'staticimg/[name].[hash:7].[ext]'
-                }
-            }, {
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: 'static/img/[name].[hash:7].[ext]',
+                            limit: 8192
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url-loader',
-                query: {
-                    limit: 10000,
-                    name: 'static/fonts/[name].[hash:7].[ext]'
-                }
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: 'static/fonts/[name].[hash:7].[ext]',
+                            limit: 8192
+                        }
+                    }
+                ]
             }
         ]
     },
     plugins: [
-        new webpack.ProvidePlugin({$: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery'}),
-        new webpack.LoaderOptionsPlugin({
-            minimize: isProd,
-            options: {
-                context: __dirname
-            }
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
         }),
+        new VueLoaderPlugin()
     ]
 }

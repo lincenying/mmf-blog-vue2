@@ -43,8 +43,8 @@ export default {
         return {
             form: {
                 id: this.$route.params.id,
-                content: '',
-            },
+                content: ''
+            }
         }
     },
     methods: {
@@ -52,7 +52,7 @@ export default {
             this.$store.dispatch(`global/comment/getCommentList`, {
                 id: this.$route.params.id,
                 page: this.comments.page + 1,
-                limit: 10,
+                limit: 10
             })
         },
         async postComment() {
@@ -63,12 +63,14 @@ export default {
             } else if (this.form.content === '') {
                 this.$store.dispatch('global/showMsg', '请输入评论内容!')
             } else {
-                const { data: { code, data } } = await api.post('frontend/comment/insert', this.form)
+                const {
+                    data: { code, data }
+                } = await api.post('frontend/comment/insert', this.form)
                 if (code === 200) {
                     this.form.content = ''
                     this.$store.dispatch('global/showMsg', {
                         content: '评论发布成功!',
-                        type: 'success',
+                        type: 'success'
                     })
                     this.$store.commit('global/comment/insertCommentItem', data)
                 }
@@ -77,7 +79,7 @@ export default {
         reply(item) {
             this.form.content = '回复 @' + item.username + ': '
             document.querySelector('#content').focus()
-        },
-    },
+        }
+    }
 }
 </script>

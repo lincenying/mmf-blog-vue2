@@ -20,7 +20,7 @@ export default {
             duration: 3000,
             height: '2px',
             color: '#ffca2b',
-            failedColor: '#ff0000',
+            failedColor: '#ff0000'
         }
     },
     methods: {
@@ -82,8 +82,8 @@ export default {
         fail() {
             this.canSuccess = false
             return this
-        },
-    },
+        }
+    }
 }
 </script>
 

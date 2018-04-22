@@ -26,7 +26,7 @@ function getOffset(element) {
     const clientLeft = docEl.clientLeft || 0
     return {
         top: rect.top + scrollTop - clientTop,
-        left: rect.left + scrollLeft - clientLeft,
+        left: rect.left + scrollLeft - clientLeft
     }
 }
 export default {
@@ -34,16 +34,16 @@ export default {
     props: {
         offsetTop: {
             type: Number,
-            default: 0,
+            default: 0
         },
         offsetBottom: {
-            type: Number,
-        },
+            type: Number
+        }
     },
     data() {
         return {
             affix: false,
-            styles: {},
+            styles: {}
         }
     },
     computed: {
@@ -57,10 +57,10 @@ export default {
         classes() {
             return [
                 {
-                    [`${prefixCls}`]: this.affix,
-                },
+                    [`${prefixCls}`]: this.affix
+                }
             ]
-        },
+        }
     },
     mounted() {
         window.addEventListener('scroll', this.handleScroll, false)
@@ -83,7 +83,7 @@ export default {
                 this.styles = {
                     top: `${this.offsetTop}px`,
                     left: `${elOffset.left}px`,
-                    width: `${this.$el.offsetWidth}px`,
+                    width: `${this.$el.offsetWidth}px`
                 }
                 this.$emit('on-change', true)
             } else if (elOffset.top - this.offsetTop > scrollTop && this.offsetType === 'top' && affix) {
@@ -101,7 +101,7 @@ export default {
                 this.styles = {
                     bottom: `${this.offsetBottom}px`,
                     left: `${elOffset.left}px`,
-                    width: `${this.$el.offsetWidth}px`,
+                    width: `${this.$el.offsetWidth}px`
                 }
                 this.$emit('on-change', true)
             } else if (
@@ -113,7 +113,7 @@ export default {
                 this.styles = null
                 this.$emit('on-change', false)
             }
-        },
-    },
+        }
+    }
 }
 </script>

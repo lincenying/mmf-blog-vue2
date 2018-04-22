@@ -36,45 +36,49 @@ export default {
     async asyncData({ store, route }, config = { page: 1 }) {
         await store.dispatch('backend/article/getArticleList', {
             ...config,
-            path: route.path,
+            path: route.path
         })
     },
     computed: {
         ...mapGetters({
-            topics: 'backend/article/getArticleList',
-        }),
+            topics: 'backend/article/getArticleList'
+        })
     },
     methods: {
         loadMore(page = this.topics.page + 1) {
             this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
         },
         async recover(id) {
-            const { data: { code, message } } = await api.get('backend/article/recover', { id })
+            const {
+                data: { code, message }
+            } = await api.get('backend/article/recover', { id })
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message,
+                    content: message
                 })
                 this.$store.commit('backend/article/recoverArticle', id)
             }
         },
         async deletes(id) {
-            const { data: { code, message } } = await api.get('backend/article/delete', { id })
+            const {
+                data: { code, message }
+            } = await api.get('backend/article/delete', { id })
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message,
+                    content: message
                 })
                 this.$store.commit('backend/article/deleteArticle', id)
             }
-        },
+        }
     },
     mounted() {},
     metaInfo() {
         return {
             title: '文章列表 - M.M.F 小屋',
-            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }]
         }
-    },
+    }
 }
 </script>

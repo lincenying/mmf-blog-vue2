@@ -23,15 +23,17 @@ export default {
             }
             let url = 'frontend/like'
             if (this.item.like_status) url = 'frontend/unlike'
-            const { data: { code, message } } = await api.get(url, { id: this.item._id })
+            const {
+                data: { code, message }
+            } = await api.get(url, { id: this.item._id })
             if (code === 200) {
                 this.$store.commit('frontend/article/modifyLikeStatus', {
                     id: this.item._id,
-                    status: !this.item.like_status,
+                    status: !this.item.like_status
                 })
                 this.$store.dispatch('global/showMsg', {
                     content: message,
-                    type: 'success',
+                    type: 'success'
                 })
             }
         },
@@ -52,7 +54,7 @@ export default {
                     left +
                     ', toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no'
             )
-        },
-    },
+        }
+    }
 }
 </script>

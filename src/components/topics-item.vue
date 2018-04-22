@@ -16,11 +16,11 @@ export default {
     props: ['item'],
     data() {
         return {
-            showMore: false,
+            showMore: false
         }
     },
     components: {
-        actions,
-    },
+        actions
+    }
 }
 </script>

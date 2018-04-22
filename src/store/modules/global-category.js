@@ -2,26 +2,30 @@ import api from '~api'
 
 const state = {
     lists: [],
-    item: {},
+    item: {}
 }
 
 const actions = {
     async ['getCategoryList']({ commit, state }, config) {
         if (state.lists.length) return
-        const { data: { data, code } } = await api.get('backend/category/list', { ...config, cache: true })
+        const {
+            data: { data, code }
+        } = await api.get('backend/category/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('receiveCategoryList', data.list)
         }
     },
     async ['getCategoryItem']({ commit }, config) {
-        const { data: { data, code } } = await api.get('backend/category/item', config)
+        const {
+            data: { data, code }
+        } = await api.get('backend/category/item', config)
         if (data && code === 200) {
             commit('receiveCategoryItem', {
                 data,
-                ...config,
+                ...config
             })
         }
-    },
+    }
 }
 
 const mutations = {
@@ -40,7 +44,7 @@ const mutations = {
         if (index > -1) {
             state.lists.splice(index, 1, payload)
         }
-    },
+    }
 }
 
 const getters = {
@@ -49,7 +53,7 @@ const getters = {
     },
     ['getCategoryItem'](state) {
         return state.item
-    },
+    }
 }
 
 export default {
@@ -57,5 +61,5 @@ export default {
     state,
     actions,
     mutations,
-    getters,
+    getters
 }

@@ -28,7 +28,7 @@ export default {
     name: 'backend',
     computed: {
         ...mapGetters({
-            global: 'global/getGlobal',
+            global: 'global/getGlobal'
         }),
         ...mapState('appShell', ['pageTransitionName']),
         key() {
@@ -39,11 +39,11 @@ export default {
         },
         isLogin() {
             return ['/backend', '/backend/'].includes(this.$route.path)
-        },
+        }
     },
     components: {
         backendMenu,
-        Navigation,
+        Navigation
     },
     methods: {
         handleBeforeEnter() {
@@ -54,7 +54,7 @@ export default {
         },
         handleClickHeaderBack() {
             this.$router.go(-1)
-        },
+        }
     },
     watch: {
         'global.progress'(val) {
@@ -67,7 +67,7 @@ export default {
                 NProgress.set(val / 100)
                 NProgress.start()
             }
-        },
-    },
+        }
+    }
 }
 </script>

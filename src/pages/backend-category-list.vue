@@ -28,20 +28,20 @@ export default {
         config.all = 1
         await store.dispatch('global/category/getCategoryList', {
             ...config,
-            path: route.path,
+            path: route.path
         })
     },
     computed: {
         ...mapGetters({
-            category: 'global/category/getCategoryList',
-        }),
+            category: 'global/category/getCategoryList'
+        })
     },
     mounted() {},
     metaInfo() {
         return {
             title: '分类列表 - M.M.F 小屋',
-            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }]
         }
-    },
+    }
 }
 </script>

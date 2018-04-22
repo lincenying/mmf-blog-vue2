@@ -5,21 +5,23 @@ const state = () => ({
         data: [],
         hasNext: 0,
         page: 1,
-        path: '',
-    },
+        path: ''
+    }
 })
 
 const actions = {
     async ['getCommentList']({ commit, state }, config) {
         if (config.path === state.lists.path && config.page === 1) return
-        const { data: { data, code } } = await api.get('frontend/comment/list', { ...config, cache: true })
+        const {
+            data: { data, code }
+        } = await api.get('frontend/comment/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('recevieCommentList', {
                 ...config,
-                ...data,
+                ...data
             })
         }
-    },
+    }
 }
 
 const mutations = {
@@ -34,7 +36,7 @@ const mutations = {
             hasNext,
             hasPrev,
             page,
-            path,
+            path
         }
     },
     ['insertCommentItem'](state, data) {
@@ -47,13 +49,13 @@ const mutations = {
     ['recoverComment'](state, id) {
         const obj = state.lists.data.find(ii => ii._id === id)
         obj.is_delete = 0
-    },
+    }
 }
 
 const getters = {
     ['getCommentList'](state) {
         return state.lists
-    },
+    }
 }
 
 export default {
@@ -61,5 +63,5 @@ export default {
     state,
     actions,
     mutations,
-    getters,
+    getters
 }

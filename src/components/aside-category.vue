@@ -14,6 +14,6 @@ export default {
     props: ['category'],
     serverCacheKey: () => {
         return `aside::category`
-    },
+    }
 }
 </script>

@@ -39,7 +39,7 @@ export default {
         config.all = 1
         await store.dispatch('global/category/getCategoryList', {
             ...config,
-            path: route.path,
+            path: route.path
         })
     },
     data() {
@@ -47,17 +47,17 @@ export default {
             form: {
                 title: '',
                 category: '',
-                content: '',
-            },
+                content: ''
+            }
         }
     },
     components: {
-        aInput,
+        aInput
     },
     computed: {
         ...mapGetters({
-            category: 'global/category/getCategoryList',
-        }),
+            category: 'global/category/getCategoryList'
+        })
     },
     methods: {
         async insert() {
@@ -67,16 +67,18 @@ export default {
                 return
             }
             this.form.content = content
-            const { data: { message, code, data } } = await api.post('backend/article/insert', this.form)
+            const {
+                data: { message, code, data }
+            } = await api.post('backend/article/insert', this.form)
             if (code === 200) {
                 this.$store.dispatch('global/showMsg', {
                     type: 'success',
-                    content: message,
+                    content: message
                 })
                 this.$store.commit('backend/article/insertArticleItem', data)
                 this.$router.push('/backend/article/list')
             }
-        },
+        }
     },
     mounted() {
         // eslint-disable-next-line
@@ -104,18 +106,18 @@ export default {
                     '|',
                     'watch',
                     'preview',
-                    'fullscreen',
+                    'fullscreen'
                 ]
             },
             watch: false,
-            saveHTMLToTextarea: true,
+            saveHTMLToTextarea: true
         })
     },
     metaInfo() {
         return {
             title: '发布文章 - M.M.F 小屋',
-            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }],
+            meta: [{ vmid: 'description', name: 'description', content: 'M.M.F 小屋' }]
         }
-    },
+    }
 }
 </script>

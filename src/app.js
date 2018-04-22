@@ -67,10 +67,10 @@ Vue.mixin({
     beforeRouteLeave(to, from, next) {
         this.$store.dispatch('appShell/saveScrollTop', {
             path: from.fullPath,
-            scrollTop: Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop),
+            scrollTop: Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
         })
         next()
-    },
+    }
 })
 
 // 此时异步组件已经加载完成
@@ -102,7 +102,7 @@ router.beforeResolve((to, from, next) => {
                         store,
                         route: to,
                         isServer: false,
-                        isClient: true,
+                        isClient: true
                     })
                     .then(() => {
                         c.asyncDataFetched = true
@@ -119,6 +119,6 @@ router.beforeResolve((to, from, next) => {
 const app = new Vue({
     router,
     store,
-    ...App,
+    ...App
 })
 app.$mount('#app')

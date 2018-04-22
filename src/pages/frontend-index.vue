@@ -27,11 +27,14 @@ import metaMixin from '~mixins'
 export default {
     name: 'frontend-index',
     async asyncData({ store, route }, config = { page: 1 }) {
-        const { params: { id, key, by }, path } = route
+        const {
+            params: { id, key, by },
+            path
+        } = route
         await Promise.all([
             store.dispatch('global/category/getCategoryList'),
             store.dispatch('frontend/article/getTrending'),
-            store.dispatch('frontend/article/getArticleList', { ...config, limit: 10, id, path, key, by }),
+            store.dispatch('frontend/article/getArticleList', { ...config, limit: 10, id, path, key, by })
         ])
     },
     mixins: [metaMixin],
@@ -39,21 +42,21 @@ export default {
         topicsItem,
         topicsItemNone,
         category,
-        trending,
+        trending
     },
     computed: {
         ...mapGetters({
             topics: 'frontend/article/getArticleList',
             category: 'global/category/getCategoryList',
-            trending: 'frontend/article/getTrending',
-        }),
+            trending: 'frontend/article/getTrending'
+        })
     },
     methods: {
         async loadMore(page = this.topics.page + 1) {
             this.$loading.start()
             await this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
             this.$loading.finish()
-        },
+        }
     },
     activated() {
         this.loadMore(1)
@@ -73,8 +76,8 @@ export default {
         }
         return {
             title,
-            meta: [{ vmid: 'description', name: 'description', content: title }],
+            meta: [{ vmid: 'description', name: 'description', content: title }]
         }
-    },
+    }
 }
 </script>

@@ -63,14 +63,14 @@ const router = new VueRouter({
             path: '/backend/admin/list',
             component: adminList,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
         {
             name: 'admin_modify',
             path: '/backend/admin/modify/:id',
             component: adminModify,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
 
         {
@@ -78,28 +78,28 @@ const router = new VueRouter({
             path: '/backend/article/list',
             component: articleList,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
         {
             name: 'article_insert',
             path: '/backend/article/insert',
             component: articleInsert,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
         {
             name: 'article_modify',
             path: '/backend/article/modify/:id',
             component: articleModify,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
         {
             name: 'article_comment',
             path: '/backend/article/comment/:id',
             component: articleComment,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
 
         {
@@ -107,21 +107,21 @@ const router = new VueRouter({
             path: '/backend/category/list',
             component: categoryList,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
         {
             name: 'category_insert',
             path: '/backend/category/insert',
             component: categoryInsert,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
         {
             name: 'category_modify',
             path: '/backend/category/modify/:id',
             component: categoryModify,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
 
         {
@@ -129,18 +129,18 @@ const router = new VueRouter({
             path: '/backend/user/list',
             component: userList,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
         {
             name: 'user_modify',
             path: '/backend/user/modify/:id',
             component: userModify,
             meta: { scrollToTop: true },
-            beforeEnter: guardRoute,
+            beforeEnter: guardRoute
         },
 
-        { path: '*', redirect: { name: 'login' } },
-    ],
+        { path: '*', redirect: { name: 'login' } }
+    ]
 })
 
 export default router

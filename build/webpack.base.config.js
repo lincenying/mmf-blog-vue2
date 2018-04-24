@@ -20,8 +20,7 @@ module.exports = {
     },
     entry: {
         app: './src/app.js',
-        admin: './src/admin.js',
-        vendors: ['./src/polyfill']
+        admin: './src/admin.js'
     },
     output: {
         path: config.build.assetsRoot,

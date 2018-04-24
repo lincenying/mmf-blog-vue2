@@ -3,6 +3,7 @@
  * @author lincenying(lincenying@qq.com)
  */
 
+import './polyfill'
 import Vue from 'vue'
 
 import { createRouter } from './router'

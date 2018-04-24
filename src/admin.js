@@ -1,3 +1,4 @@
+import './polyfill'
 import Vue from 'vue'
 
 import App from './admin.vue'

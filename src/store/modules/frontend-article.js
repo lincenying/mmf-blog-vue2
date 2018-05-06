@@ -1,5 +1,3 @@
-import api from '~api'
-
 const state = () => ({
     lists: {
         data: [],
@@ -16,11 +14,18 @@ const state = () => ({
 })
 
 const actions = {
-    async ['getArticleList']({ commit, state }, config) {
+    async ['getArticleList'](
+        {
+            commit,
+            state,
+            rootState: { $api }
+        },
+        config
+    ) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
         const {
             data: { data, code }
-        } = await api.get('frontend/article/list', { ...config, cache: true })
+        } = await $api.get('frontend/article/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('receiveArticleList', {
                 ...config,
@@ -28,11 +33,18 @@ const actions = {
             })
         }
     },
-    async ['getArticleItem']({ commit, state }, config) {
+    async ['getArticleItem'](
+        {
+            commit,
+            state,
+            rootState: { $api }
+        },
+        config
+    ) {
         if (config.path === state.item.path) return
         const {
             data: { data, code }
-        } = await api.get('frontend/article/item', { ...config, markdown: 1, cache: true })
+        } = await $api.get('frontend/article/item', { ...config, markdown: 1, cache: true })
         if (data && code === 200) {
             commit('receiveArticleItem', {
                 data,
@@ -40,11 +52,11 @@ const actions = {
             })
         }
     },
-    async ['getTrending']({ commit, state }) {
+    async ['getTrending']({ commit, state, rootState: { $api } }) {
         if (state.trending.length) return
         const {
             data: { data, code }
-        } = await api.get('frontend/trending', { cache: true })
+        } = await $api.get('frontend/trending', { cache: true })
         if (data && code === 200) {
             commit('receiveTrending', data)
         }

@@ -2,6 +2,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
+const WebpackBar = require('webpackbar')
 
 const config = require('../config')
 const projectRoot = path.resolve(__dirname, '../')
@@ -16,7 +17,10 @@ const useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 module.exports = {
     performance: {
         maxEntrypointSize: 300000,
-        hints: isProd ? 'warning' : false
+        hints: isProd ? 'warning' : false,
+        assetFilter: function(assetFilename) {
+            return assetFilename.endsWith('.js')
+        }
     },
     entry: {
         app: './src/app.js',
@@ -98,6 +102,7 @@ module.exports = {
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new WebpackBar()
     ]
 }

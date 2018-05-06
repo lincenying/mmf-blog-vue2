@@ -18,8 +18,9 @@
 </template>
 
 <script>
-import api from '~api'
+// import api from '~api'
 import { mapGetters } from 'vuex'
+import { showMsg } from '~utils'
 import checkAdmin from '~mixins/check-admin'
 import aInput from '../components/_input.vue'
 
@@ -52,14 +53,14 @@ export default {
     methods: {
         async modify() {
             if (!this.form.cate_name || !this.form.cate_order) {
-                this.$store.dispatch('global/showMsg', '请将表单填写完整!')
+                showMsg('请将表单填写完整!')
                 return
             }
             const {
                 data: { message, code, data }
-            } = await api.post('backend/category/modify', this.form)
+            } = await this.$store.$api.post('backend/category/modify', this.form)
             if (code === 200 && data) {
-                this.$store.dispatch('global/showMsg', {
+                showMsg({
                     type: 'success',
                     content: message
                 })

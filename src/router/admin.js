@@ -1,32 +1,25 @@
+/* eslint-disable no-inline-comments */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import cookies from 'js-cookie'
 
 import { inBrowser } from '../utils'
 
-const login = r => require.ensure([], () => r(require('../pages/backend-login.vue')), 'chunk-backend-login')
-const articleList = r =>
-    require.ensure([], () => r(require('../pages/backend-article-list.vue')), 'chunk-backend-article')
-const articleInsert = r =>
-    require.ensure([], () => r(require('../pages/backend-article-insert.vue')), 'chunk-backend-article')
-const articleModify = r =>
-    require.ensure([], () => r(require('../pages/backend-article-modify.vue')), 'chunk-backend-article')
-const articleComment = r =>
-    require.ensure([], () => r(require('../pages/backend-article-comment.vue')), 'chunk-backend-article')
+const login = () => import(/* webpackChunkName: "backend-login" */ '../pages/backend-login.vue')
+const articleList = () => import(/* webpackChunkName: "backend-topics" */ '../pages/backend-article-list.vue')
+const articleInsert = () => import(/* webpackChunkName: "backend-topics" */ '../pages/backend-article-insert.vue')
+const articleModify = () => import(/* webpackChunkName: "backend-topics" */ '../pages/backend-article-modify.vue')
+const articleComment = () => import(/* webpackChunkName: "backend-topics" */ '../pages/backend-article-comment.vue')
 
-const categoryList = r =>
-    require.ensure([], () => r(require('../pages/backend-category-list.vue')), 'chunk-backend-category')
-const categoryInsert = r =>
-    require.ensure([], () => r(require('../pages/backend-category-insert.vue')), 'chunk-backend-category')
-const categoryModify = r =>
-    require.ensure([], () => r(require('../pages/backend-category-modify.vue')), 'chunk-backend-category')
+const categoryList = () => import(/* webpackChunkName: "backend-category" */ '../pages/backend-category-list.vue')
+const categoryInsert = () => import(/* webpackChunkName: "backend-category" */ '../pages/backend-category-insert.vue')
+const categoryModify = () => import(/* webpackChunkName: "backend-category" */ '../pages/backend-category-modify.vue')
 
-const adminList = r => require.ensure([], () => r(require('../pages/backend-admin-list.vue')), 'chunk-backend-admin')
-const adminModify = r =>
-    require.ensure([], () => r(require('../pages/backend-admin-modify.vue')), 'chunk-backend-admin')
+const adminList = () => import(/* webpackChunkName: "backend-admin" */ '../pages/backend-admin-list.vue')
+const adminModify = () => import(/* webpackChunkName: "backend-admin" */ '../pages/backend-admin-modify.vue')
 
-const userList = r => require.ensure([], () => r(require('../pages/backend-user-list.vue')), 'chunk-backend-user')
-const userModify = r => require.ensure([], () => r(require('../pages/backend-user-modify.vue')), 'chunk-backend-user')
+const userList = () => import(/* webpackChunkName: "backend-user" */ '../pages/backend-user-list.vue')
+const userModify = () => import(/* webpackChunkName: "backend-user" */ '../pages/backend-user-modify.vue')
 
 Vue.use(VueRouter)
 
@@ -57,7 +50,6 @@ const router = new VueRouter({
     scrollBehavior,
     routes: [
         { name: 'login', path: '/backend', component: login },
-
         {
             name: 'admin_list',
             path: '/backend/admin/list',
@@ -72,7 +64,6 @@ const router = new VueRouter({
             meta: { scrollToTop: true },
             beforeEnter: guardRoute
         },
-
         {
             name: 'article_list',
             path: '/backend/article/list',
@@ -101,7 +92,6 @@ const router = new VueRouter({
             meta: { scrollToTop: true },
             beforeEnter: guardRoute
         },
-
         {
             name: 'category_list',
             path: '/backend/category/list',
@@ -123,7 +113,6 @@ const router = new VueRouter({
             meta: { scrollToTop: true },
             beforeEnter: guardRoute
         },
-
         {
             name: 'user_list',
             path: '/backend/user/list',
@@ -138,7 +127,6 @@ const router = new VueRouter({
             meta: { scrollToTop: true },
             beforeEnter: guardRoute
         },
-
         { path: '*', redirect: { name: 'login' } }
     ]
 })

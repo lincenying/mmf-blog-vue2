@@ -1,5 +1,3 @@
-import api from '~api'
-
 const state = () => ({
     lists: {
         data: [],
@@ -11,11 +9,18 @@ const state = () => ({
 })
 
 const actions = {
-    async ['getArticleList']({ commit, state }, config) {
+    async ['getArticleList'](
+        {
+            commit,
+            state,
+            rootState: { $api }
+        },
+        config
+    ) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
         const {
             data: { data, code }
-        } = await api.get('backend/article/list', config)
+        } = await $api.get('backend/article/list', config)
         if (data && code === 200) {
             commit('receiveArticleList', {
                 ...data,
@@ -23,26 +28,43 @@ const actions = {
             })
         }
     },
-    async ['getArticleItem'](store, config) {
+    async ['getArticleItem'](
+        {
+            rootState: { $api }
+        },
+        config
+    ) {
         const {
             data: { data, code }
-        } = await api.get('backend/article/item', config)
+        } = await $api.get('backend/article/item', config)
         if (data && code === 200) {
             return data
         }
     },
-    async ['deleteArticle']({ commit }, config) {
+    async ['deleteArticle'](
+        {
+            commit,
+            rootState: { $api }
+        },
+        config
+    ) {
         const {
             data: { code }
-        } = await api.get('backend/article/delete', config)
+        } = await $api.get('backend/article/delete', config)
         if (code === 200) {
             commit('deleteArticle', config.id)
         }
     },
-    async ['recoverArticle']({ commit }, config) {
+    async ['recoverArticle'](
+        {
+            commit,
+            rootState: { $api }
+        },
+        config
+    ) {
         const {
             data: { code }
-        } = await api.get('backend/article/recover', config)
+        } = await $api.get('backend/article/recover', config)
         if (code === 200) {
             commit('recoverArticle', config.id)
         }

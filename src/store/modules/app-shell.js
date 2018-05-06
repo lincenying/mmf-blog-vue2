@@ -4,8 +4,6 @@
  * @author lincenying(lincenying@qq.com)
  */
 
-import * as types from '../mutation-types'
-
 export function createAppShellState() {
     const state = {
         /**
@@ -44,7 +42,7 @@ export function createAppShellState() {
          * @param {Function} commit commit
          */
         enablePageTransition({ commit }) {
-            commit(types.ENABLE_PAGE_TRANSITION, true)
+            commit('enablePageTransition', true)
         },
 
         /**
@@ -53,7 +51,7 @@ export function createAppShellState() {
          * @param {Function} commit commit
          */
         disablePageTransition({ commit }) {
-            commit(types.DISABLE_PAGE_TRANSITION, false)
+            commit('disablePageTransition', false)
         },
 
         /**
@@ -63,7 +61,7 @@ export function createAppShellState() {
          * @param {boolean} isPageSwitching isPageSwitching
          */
         setPageSwitching({ commit }, isPageSwitching) {
-            commit(types.SET_PAGE_SWITCHING, isPageSwitching)
+            commit('setPageSwitching', isPageSwitching)
         },
 
         /**
@@ -74,18 +72,18 @@ export function createAppShellState() {
          * @param {number} options.scrollTop scrollTop
          */
         saveScrollTop({ commit }, { path, scrollTop }) {
-            commit(types.SAVE_SCROLLTOP, { path, scrollTop })
+            commit('saveScrollTop', { path, scrollTop })
         }
     }
 
     const mutations = {
-        [types.SET_PAGE_SWITCHING](state, isPageSwitching) {
+        ['setPageSwitching'](state, isPageSwitching) {
             state.isPageSwitching = isPageSwitching
         },
-        [types.SET_PAGE_TRANSITION_NAME](state, { pageTransitionName }) {
+        ['setPageTransitionName'](state, { pageTransitionName }) {
             state.pageTransitionName = pageTransitionName
         },
-        [types.SAVE_SCROLLTOP](state, { path, scrollTop }) {
+        ['saveScrollTop'](state, { path, scrollTop }) {
             state.historyPageScrollTop[path] = scrollTop
         }
     }

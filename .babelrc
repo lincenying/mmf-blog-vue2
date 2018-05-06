@@ -7,12 +7,13 @@
                         "browsers": ["last 2 version", "ie 10"]
                     },
                     "modules": false,
-                    "debug": true
+                    "debug": false
                 }]
             ],
             "plugins": [
                 "transform-runtime",
-                "transform-object-rest-spread"
+                "transform-object-rest-spread",
+                "babel-plugin-syntax-dynamic-import"
             ]
         },
         "development": {
@@ -22,11 +23,12 @@
                         "chrome": 60
                     },
                     "modules": false,
-                    "debug": true
+                    "debug": false
                 }]
             ],
             "plugins": [
-                "transform-object-rest-spread"
+                "transform-object-rest-spread",
+                "babel-plugin-syntax-dynamic-import"
             ]
         }
     }

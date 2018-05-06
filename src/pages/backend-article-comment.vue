@@ -28,7 +28,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import api from '~api'
+import { showMsg } from '~utils'
+// import api from '~api'
 import checkAdmin from '~mixins/check-admin'
 
 export default {
@@ -54,9 +55,9 @@ export default {
         async recover(id) {
             const {
                 data: { code, message }
-            } = await api.get('frontend/comment/recover', { id })
+            } = await this.$store.$api.get('frontend/comment/recover', { id })
             if (code === 200) {
-                this.$store.dispatch('global/showMsg', {
+                showMsg({
                     type: 'success',
                     content: message
                 })
@@ -66,9 +67,9 @@ export default {
         async deletes(id) {
             const {
                 data: { code, message }
-            } = await api.get('frontend/comment/delete', { id })
+            } = await this.$store.$api.get('frontend/comment/delete', { id })
             if (code === 200) {
-                this.$store.dispatch('global/showMsg', {
+                showMsg({
                     type: 'success',
                     content: message
                 })

@@ -24,8 +24,8 @@ export default {
             }, 100)
         },
         handleBackTop() {
-            var top = this.scrollTop
-            var timer = setInterval(() => {
+            let top = this.scrollTop
+            const timer = setInterval(() => {
                 top -= Math.abs(top * 0.1)
                 if (top <= 1) {
                     top = 0

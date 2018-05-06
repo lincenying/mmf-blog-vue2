@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
-import { createStore } from '../store'
 import config from './config-client'
+import { showMsg } from '~utils'
 
 axios.interceptors.request.use(
     config => {
@@ -33,7 +33,7 @@ function checkCode(res) {
     } else if (res.data.code === -400) {
         window.location.href = '/'
     } else if (res.data.code !== 200) {
-        createStore().dispatch('global/showMsg', res.data.message)
+        showMsg(res.data.message)
     }
     return res
 }

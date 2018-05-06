@@ -1,24 +1,35 @@
-import api from '~api'
-
 const state = {
     lists: [],
     item: {}
 }
 
 const actions = {
-    async ['getCategoryList']({ commit, state }, config) {
+    async ['getCategoryList'](
+        {
+            commit,
+            state,
+            rootState: { $api }
+        },
+        config
+    ) {
         if (state.lists.length) return
         const {
             data: { data, code }
-        } = await api.get('backend/category/list', { ...config, cache: true })
+        } = await $api.get('backend/category/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('receiveCategoryList', data.list)
         }
     },
-    async ['getCategoryItem']({ commit }, config) {
+    async ['getCategoryItem'](
+        {
+            commit,
+            rootState: { $api }
+        },
+        config
+    ) {
         const {
             data: { data, code }
-        } = await api.get('backend/category/item', config)
+        } = await $api.get('backend/category/item', config)
         if (data && code === 200) {
             commit('receiveCategoryItem', {
                 data,

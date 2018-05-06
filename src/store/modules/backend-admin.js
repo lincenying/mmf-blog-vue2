@@ -1,5 +1,3 @@
-import api from '~api'
-
 const state = () => ({
     lists: {
         hasNext: false,
@@ -15,11 +13,18 @@ const state = () => ({
 })
 
 const actions = {
-    async ['getAdminList']({ commit, state }, config) {
+    async ['getAdminList'](
+        {
+            commit,
+            state,
+            rootState: { $api }
+        },
+        config
+    ) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
         const {
             data: { data, code }
-        } = await api.get('backend/admin/list', { ...config, cache: true })
+        } = await $api.get('backend/admin/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('receiveAdminList', {
                 ...data,
@@ -28,10 +33,16 @@ const actions = {
             })
         }
     },
-    async ['getAdminItem']({ commit }, config) {
+    async ['getAdminItem'](
+        {
+            commit,
+            rootState: { $api }
+        },
+        config
+    ) {
         const {
             data: { data, code }
-        } = await api.get('backend/admin/item', config)
+        } = await $api.get('backend/admin/item', config)
         if (data && code === 200) {
             commit('receiveAdminItem', {
                 data,

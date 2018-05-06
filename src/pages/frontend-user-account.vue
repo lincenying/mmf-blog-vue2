@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import api from '~api'
+// import api from '~api'
 import metaMixin from '~mixins'
 import checkUser from '~mixins/check-user'
 import account from '../components/aside-account.vue'
@@ -51,7 +51,7 @@ export default {
         async getUser() {
             const {
                 data: { code, data }
-            } = await api.get('frontend/user/account')
+            } = await this.$store.$api.get('frontend/user/account')
             if (code === 200) {
                 this.form.username = data.username
                 this.form.email = data.email

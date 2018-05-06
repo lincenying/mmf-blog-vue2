@@ -35,7 +35,8 @@
 
 <script>
 import cookies from 'js-cookie'
-import api from '~api'
+import { showMsg } from '~utils'
+// import api from '~api'
 export default {
     name: 'frontend-comment',
     props: ['comments'],
@@ -58,17 +59,17 @@ export default {
         async postComment() {
             const username = cookies.get('user')
             if (!username) {
-                this.$store.dispatch('global/showMsg', '请先登录!')
+                showMsg('请先登录!')
                 this.$store.commit('global/showLoginModal', true)
             } else if (this.form.content === '') {
-                this.$store.dispatch('global/showMsg', '请输入评论内容!')
+                showMsg('请输入评论内容!')
             } else {
                 const {
                     data: { code, data }
-                } = await api.post('frontend/comment/insert', this.form)
+                } = await this.$store.$api.post('frontend/comment/insert', this.form)
                 if (code === 200) {
                     this.form.content = ''
-                    this.$store.dispatch('global/showMsg', {
+                    showMsg({
                         content: '评论发布成功!',
                         type: 'success'
                     })

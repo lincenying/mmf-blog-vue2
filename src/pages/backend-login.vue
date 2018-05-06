@@ -22,7 +22,8 @@
 
 <script>
 import cookies from 'js-cookie'
-import api from '~api'
+import { showMsg } from '~utils'
+// import api from '~api'
 import aInput from '~components/_input.vue'
 export default {
     name: 'backend-login',
@@ -46,12 +47,12 @@ export default {
     methods: {
         async login() {
             if (!this.form.username || !this.form.password) {
-                this.$store.dispatch('global/showMsg', '请输入用户名和密码!')
+                showMsg('请输入用户名和密码!')
                 return
             }
             const {
                 data: { data, code }
-            } = await api.post('backend/admin/login', this.form)
+            } = await this.$store.$api.post('backend/admin/login', this.form)
             if (data && code === 200) {
                 window.location.href = '/backend/article/list'
             }

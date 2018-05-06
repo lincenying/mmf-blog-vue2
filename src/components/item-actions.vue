@@ -9,7 +9,8 @@
 </template>
 <script>
 import cookies from 'js-cookie'
-import api from '~api'
+import { showMsg } from '~utils'
+// import api from '~api'
 export default {
     name: 'item-actions',
     props: ['item'],
@@ -17,7 +18,7 @@ export default {
         async like() {
             const username = cookies.get('user')
             if (!username) {
-                this.$store.dispatch('global/showMsg', '请先登录!')
+                showMsg('请先登录!')
                 this.$store.commit('global/showLoginModal', true)
                 return
             }
@@ -25,15 +26,15 @@ export default {
             if (this.item.like_status) url = 'frontend/unlike'
             const {
                 data: { code, message }
-            } = await api.get(url, { id: this.item._id })
+            } = await this.$store.$api.get(url, { id: this.item._id })
             if (code === 200) {
+                showMsg({
+                    content: message,
+                    type: 'success'
+                })
                 this.$store.commit('frontend/article/modifyLikeStatus', {
                     id: this.item._id,
                     status: !this.item.like_status
-                })
-                this.$store.dispatch('global/showMsg', {
-                    content: message,
-                    type: 'success'
                 })
             }
         },

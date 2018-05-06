@@ -25,9 +25,10 @@
 </template>
 
 <script>
-import api from '~api'
+// import api from '~api'
 import { mapGetters } from 'vuex'
 import checkAdmin from '~mixins/check-admin'
+import { showMsg } from '~utils'
 
 export default {
     name: 'backend-admin-list',
@@ -50,9 +51,9 @@ export default {
         async recover(id) {
             const {
                 data: { code, message }
-            } = await api.get('backend/admin/recover', { id })
+            } = await this.$store.$api.get('backend/admin/recover', { id })
             if (code === 200) {
-                this.$store.dispatch('global/showMsg', {
+                showMsg({
                     type: 'success',
                     content: message
                 })
@@ -62,9 +63,9 @@ export default {
         async deletes(id) {
             const {
                 data: { code, message }
-            } = await api.get('backend/admin/delete', { id })
+            } = await this.$store.$api.get('backend/admin/delete', { id })
             if (code === 200) {
-                this.$store.dispatch('global/showMsg', {
+                showMsg({
                     type: 'success',
                     content: message
                 })

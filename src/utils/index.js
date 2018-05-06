@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import ls from 'store2'
+import toastr from 'toastr'
+
+toastr.options.positionClass = 'toast-top-center'
 
 export const inBrowser = typeof window !== 'undefined'
 
@@ -40,4 +43,20 @@ export const strlen = str => {
         else realLength += 2
     }
     return realLength
+}
+
+export const sleep = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+export const showMsg = message => {
+    let content, type
+    if (typeof message === 'string') {
+        content = message
+        type = 'error'
+    } else {
+        content = message.content
+        type = message.type
+    }
+    toastr[type](content)
 }

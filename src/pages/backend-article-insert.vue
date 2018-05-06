@@ -28,7 +28,8 @@
 <script>
 /* global postEditor */
 import { mapGetters } from 'vuex'
-import api from '~api'
+import { showMsg } from '~utils'
+// import api from '~api'
 import checkAdmin from '~mixins/check-admin'
 import aInput from '../components/_input.vue'
 
@@ -63,15 +64,15 @@ export default {
         async insert() {
             const content = postEditor.getMarkdown()
             if (!this.form.title || !this.form.category || !content) {
-                this.$store.dispatch('global/showMsg', '请将表单填写完整!')
+                showMsg('请将表单填写完整!')
                 return
             }
             this.form.content = content
             const {
                 data: { message, code, data }
-            } = await api.post('backend/article/insert', this.form)
+            } = await this.$store.$api.post('backend/article/insert', this.form)
             if (code === 200) {
-                this.$store.dispatch('global/showMsg', {
+                showMsg({
                     type: 'success',
                     content: message
                 })

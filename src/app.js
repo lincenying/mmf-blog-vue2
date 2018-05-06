@@ -5,14 +5,15 @@
 
 import './polyfill'
 import Vue from 'vue'
+import { sync } from 'vuex-router-sync'
 
 import { createRouter } from './router'
 import { createStore } from './store'
 import App from './app.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
-import { sync } from 'vuex-router-sync'
 import * as filters from './filters'
 import titleMixin from './mixins'
+import api from '~api'
 
 import './assets/css/hljs/googlecode.css'
 import './assets/less/style.less'
@@ -32,27 +33,33 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 const router = createRouter()
 const store = createStore()
+store.$api = store.prototype.$api = api
 sync(store, router)
 Vue.mixin({
     // 当复用的路由组件参数发生变化时，例如/detail/1 => /detail/2
-    // beforeRouteUpdate(to, from, next) {
-    //     // asyncData方法中包含异步数据请求
-    //     const asyncData = this.$options.asyncData
-    //     if (asyncData) {
-    //         loading.start()
-    //         asyncData.call(this, {
-    //             store: this.$store,
-    //             route: to,
-    //             isServer: false,
-    //             isClient: true
-    //         }).then(() => {
-    //             loading.finish()
-    //             next()
-    //         }).catch(next)
-    //     } else {
-    //         next()
-    //     }
-    // },
+    /*
+    beforeRouteUpdate(to, from, next) {
+        // asyncData方法中包含异步数据请求
+        const asyncData = this.$options.asyncData
+        if (asyncData) {
+            loading.start()
+            asyncData
+                .call(this, {
+                    store: this.$store,
+                    route: to,
+                    isServer: false,
+                    isClient: true
+                })
+                .then(() => {
+                    loading.finish()
+                    next()
+                })
+                .catch(next)
+        } else {
+            next()
+        }
+    },
+    */
 
     // 路由切换时，保存页面滚动位置
     beforeRouteEnter(to, from, next) {

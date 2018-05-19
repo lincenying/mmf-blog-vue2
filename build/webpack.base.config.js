@@ -29,8 +29,8 @@ module.exports = {
     output: {
         path: config.build.assetsRoot,
         publicPath: config.dev.assetsPublicPath,
-        filename: '[name].js',
-        chunkFilename: '[name].js'
+        filename: 'static/js/[name].js',
+        chunkFilename: 'static/js/[name].js'
     },
     externals: {
         jquery: 'jQuery'

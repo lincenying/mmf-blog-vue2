@@ -47,6 +47,7 @@ Object.keys(proxyTable).forEach(function(context) {
 var history = require('connect-history-api-fallback')
 app.use(
     history({
+        htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
         rewrites: [
             { from: 'index', to: '/index.html' },
             { from: /\/backend/, to: '/admin.html' },

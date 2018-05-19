@@ -33,7 +33,9 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 const router = createRouter()
 const store = createStore()
-store.$api = store.prototype.$api = api
+store.$api = store.state.$api = api
+window.$$store = store
+// store.$api = store.prototype.$api = api
 sync(store, router)
 Vue.mixin({
     // 当复用的路由组件参数发生变化时，例如/detail/1 => /detail/2

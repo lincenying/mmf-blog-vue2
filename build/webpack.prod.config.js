@@ -54,7 +54,13 @@ module.exports = merge(baseWebpackConfig, {
                 sourceMap: config.build.productionSourceMap,
                 parallel: true
             }),
-            new OptimizeCSSAssetsPlugin({})
+            new OptimizeCSSAssetsPlugin({
+                cssProcessorOptions: {
+                    discardComments: { removeAll: true },
+                    // 避免 cssnano 重新计算 z-index
+                    safe: true
+                }
+            })
         ]
     },
     plugins: [

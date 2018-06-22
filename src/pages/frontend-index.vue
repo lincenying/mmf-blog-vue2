@@ -37,13 +37,13 @@ export default {
             store.dispatch('frontend/article/getArticleList', { ...config, limit: 10, id, path, key, by })
         ])
     },
-    mixins: [metaMixin],
     components: {
         topicsItem,
         topicsItemNone,
         category,
         trending
     },
+    mixins: [metaMixin],
     computed: {
         ...mapGetters({
             topics: 'frontend/article/getArticleList',
@@ -51,15 +51,15 @@ export default {
             trending: 'frontend/article/getTrending'
         })
     },
+    activated() {
+        this.loadMore(1)
+    },
     methods: {
         async loadMore(page = this.topics.page + 1) {
             this.$loading.start()
             await this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
             this.$loading.finish()
         }
-    },
-    activated() {
-        this.loadMore(1)
     },
     metaInfo() {
         var title = 'M.M.F 小屋'

@@ -36,6 +36,9 @@ import aInput from '../components/_input.vue'
 
 export default {
     name: 'backend-article-modify',
+    components: {
+        aInput
+    },
     mixins: [checkAdmin],
     async asyncData({ store, route }, config = { limit: 99 }) {
         config.all = 1
@@ -56,33 +59,15 @@ export default {
             }
         }
     },
-    components: {
-        aInput
-    },
     computed: {
         ...mapGetters({
             category: 'global/category/getCategoryList'
         })
     },
-    methods: {
-        async modify() {
-            const content = modifyEditor.getMarkdown()
-            if (!this.form.title || !this.form.category || !content) {
-                showMsg('请将表单填写完整!')
-                return
-            }
-            this.form.content = content
-            const {
-                data: { message, code, data }
-            } = await this.$store.$api.post('backend/article/modify', this.form)
-            if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
-                this.$store.commit('backend/article/updateArticleItem', data)
-                this.$router.push('/backend/article/list')
-            }
+    watch: {
+        'form.category'(val) {
+            const obj = this.category.find(item => item._id === val)
+            this.form.category_name = obj.cate_name
         }
     },
     async mounted() {
@@ -123,10 +108,25 @@ export default {
             saveHTMLToTextarea: true
         })
     },
-    watch: {
-        'form.category'(val) {
-            const obj = this.category.find(item => item._id === val)
-            this.form.category_name = obj.cate_name
+    methods: {
+        async modify() {
+            const content = modifyEditor.getMarkdown()
+            if (!this.form.title || !this.form.category || !content) {
+                showMsg('请将表单填写完整!')
+                return
+            }
+            this.form.content = content
+            const {
+                data: { message, code, data }
+            } = await this.$store.$api.post('backend/article/modify', this.form)
+            if (code === 200) {
+                showMsg({
+                    type: 'success',
+                    content: message
+                })
+                this.$store.commit('backend/article/updateArticleItem', data)
+                this.$router.push('/backend/article/list')
+            }
         }
     },
     metaInfo() {

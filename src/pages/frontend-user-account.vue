@@ -34,6 +34,10 @@ import aInput from '../components/_input.vue'
 
 export default {
     name: 'frontend-user-account',
+    components: {
+        account,
+        aInput
+    },
     mixins: [metaMixin, checkUser],
     data() {
         return {
@@ -43,9 +47,8 @@ export default {
             }
         }
     },
-    components: {
-        account,
-        aInput
+    mounted() {
+        this.getUser()
     },
     methods: {
         async getUser() {
@@ -57,9 +60,6 @@ export default {
                 this.form.email = data.email
             }
         }
-    },
-    mounted() {
-        this.getUser()
     },
     metaInfo() {
         return {

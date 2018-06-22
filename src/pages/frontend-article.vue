@@ -56,6 +56,12 @@ export default {
             store.dispatch(`frontend/article/getArticleItem`, { id, path })
         ])
     },
+    components: {
+        actions,
+        comment,
+        category,
+        trending
+    },
     mixins: [metaMixin],
     beforeRouteUpdate(to, from, next) {
         if (to.path !== from.path) this.$options.asyncData({ store: this.$store, route: to })
@@ -69,20 +75,14 @@ export default {
             trending: 'frontend/article/getTrending'
         })
     },
-    components: {
-        actions,
-        comment,
-        category,
-        trending
+    mounted() {
+        // this.$options.asyncData({store: this.$store})
     },
     methods: {
         addTarget(content) {
             if (!content) return ''
             return content.replace(/<a(.*?)href="http/g, '<a$1target="_blank" href="http')
         }
-    },
-    mounted() {
-        // this.$options.asyncData({store: this.$store})
     },
     metaInfo() {
         const title = this.article.data.title ? this.article.data.title + ' - M.M.F 小屋' : 'M.M.F 小屋'

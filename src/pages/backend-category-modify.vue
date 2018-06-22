@@ -26,6 +26,9 @@ import aInput from '../components/_input.vue'
 
 export default {
     name: 'backend-category-modify',
+    components: {
+        aInput
+    },
     mixins: [checkAdmin],
     async asyncData({ store, route }) {
         await store.dispatch('global/category/getCategoryItem', {
@@ -42,13 +45,20 @@ export default {
             }
         }
     },
-    components: {
-        aInput
-    },
     computed: {
         ...mapGetters({
             item: 'global/category/getCategoryItem'
         })
+    },
+    watch: {
+        item(val) {
+            this.form.cate_name = val.data.cate_name
+            this.form.cate_order = val.data.cate_order
+        }
+    },
+    mounted() {
+        this.form.cate_name = this.item.data.cate_name
+        this.form.cate_order = this.item.data.cate_order
     },
     methods: {
         async modify() {
@@ -67,16 +77,6 @@ export default {
                 this.$store.commit('global/category/updateCategoryItem', data)
                 this.$router.push('/backend/category/list')
             }
-        }
-    },
-    mounted() {
-        this.form.cate_name = this.item.data.cate_name
-        this.form.cate_order = this.item.data.cate_order
-    },
-    watch: {
-        item(val) {
-            this.form.cate_name = val.data.cate_name
-            this.form.cate_order = val.data.cate_order
         }
     },
     metaInfo() {

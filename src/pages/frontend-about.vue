@@ -62,10 +62,10 @@ export default {
     async asyncData({ store }) {
         await store.dispatch('frontend/article/getTrending')
     },
-    mixins: [metaMixin],
     components: {
         trending
     },
+    mixins: [metaMixin],
     computed: {
         ...mapGetters({
             trending: 'frontend/article/getTrending'

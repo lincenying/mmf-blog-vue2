@@ -33,6 +33,9 @@ export default {
         }
         next()
     },
+    components: {
+        aInput
+    },
     data() {
         return {
             form: {
@@ -40,9 +43,6 @@ export default {
                 password: ''
             }
         }
-    },
-    components: {
-        aInput
     },
     methods: {
         async login() {

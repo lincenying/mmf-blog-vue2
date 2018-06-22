@@ -13,14 +13,14 @@
 import actions from './item-actions.vue'
 export default {
     name: 'topics-item',
+    components: {
+        actions
+    },
     props: ['item'],
     data() {
         return {
             showMore: false
         }
-    },
-    components: {
-        actions
     }
 }
 </script>

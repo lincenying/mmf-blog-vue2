@@ -26,6 +26,10 @@ import backendMenu from './components/backend-menu.vue'
 
 export default {
     name: 'backend',
+    components: {
+        backendMenu,
+        Navigation
+    },
     computed: {
         ...mapGetters({
             global: 'global/getGlobal'
@@ -41,21 +45,6 @@ export default {
             return ['/backend', '/backend/'].includes(this.$route.path)
         }
     },
-    components: {
-        backendMenu,
-        Navigation
-    },
-    methods: {
-        handleBeforeEnter() {
-            this.$store.dispatch('appShell/setPageSwitching', true)
-        },
-        handleAfterEnter() {
-            this.$store.dispatch('appShell/setPageSwitching', false)
-        },
-        handleClickHeaderBack() {
-            this.$router.go(-1)
-        }
-    },
     watch: {
         'global.progress'(val) {
             if (val === 0) {
@@ -67,6 +56,17 @@ export default {
                 NProgress.set(val / 100)
                 NProgress.start()
             }
+        }
+    },
+    methods: {
+        handleBeforeEnter() {
+            this.$store.dispatch('appShell/setPageSwitching', true)
+        },
+        handleAfterEnter() {
+            this.$store.dispatch('appShell/setPageSwitching', false)
+        },
+        handleClickHeaderBack() {
+            this.$router.go(-1)
         }
     }
 }

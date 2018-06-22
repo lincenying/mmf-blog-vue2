@@ -23,7 +23,7 @@
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^8.5.2",
+    "autoprefixer": "^8.6.3",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -34,7 +34,7 @@
     "browserslist": "^3.2.8",
     "connect-history-api-fallback": "^1.5.0",
     "css-loader": "^0.28.11",
-    "eslint-config-lcy-vue": "^2.1.5",
+    "eslint-config-lcy-vue": "^2.2.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
@@ -51,16 +51,16 @@
     "postcss-loader": "^2.1.5",
     "shelljs": "^0.8.2",
     "style-loader": "^0.21.0",
-    "uglifyjs-webpack-plugin": "^1.2.5",
+    "uglifyjs-webpack-plugin": "^1.2.6",
     "url-loader": "^1.0.1",
     "vue-hot-reload-api": "^2.3.0",
     "vue-html-loader": "^1.2.4",
-    "vue-loader": "^15.2.2",
+    "vue-loader": "^15.2.4",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^4.10.2",
+    "webpack": "^4.12.0",
     "webpack-dev-middleware": "3.1.3",
     "webpack-hot-middleware": "^2.22.2",
-    "webpack-merge": "^4.1.2",
+    "webpack-merge": "^4.1.3",
     "webpackbar": "^2.6.1"
   }
 }

@@ -20,12 +20,12 @@
 // import Affix from '~components/affix.vue'
 export default {
     name: 'aside-trending',
+    components: {
+        // Affix
+    },
     props: ['trending'],
     serverCacheKey: () => {
         return `aside::trending`
-    },
-    components: {
-        // Affix
     }
 }
 </script>

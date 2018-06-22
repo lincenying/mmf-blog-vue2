@@ -32,6 +32,10 @@ import aInput from '~components/_input.vue'
 
 export default {
     name: 'backend-admin-modify',
+    components: {
+        aInput,
+        backendMenu
+    },
     mixins: [checkAdmin],
     async asyncData({ store, route }) {
         await store.dispatch('backend/admin/getAdminItem', {
@@ -49,14 +53,20 @@ export default {
             }
         }
     },
-    components: {
-        aInput,
-        backendMenu
-    },
     computed: {
         ...mapGetters({
             item: 'backend/admin/getAdminItem'
         })
+    },
+    watch: {
+        item(val) {
+            this.form.username = val.data.username
+            this.form.email = val.data.email
+        }
+    },
+    mounted() {
+        this.form.username = this.item.data.username
+        this.form.email = this.item.data.email
     },
     methods: {
         async modify() {
@@ -75,16 +85,6 @@ export default {
                 this.$store.commit('backend/admin/updateAdminItem', data)
                 this.$router.push('/backend/admin/list')
             }
-        }
-    },
-    mounted() {
-        this.form.username = this.item.data.username
-        this.form.email = this.item.data.email
-    },
-    watch: {
-        item(val) {
-            this.form.username = val.data.username
-            this.form.email = val.data.email
         }
     },
     metaInfo() {

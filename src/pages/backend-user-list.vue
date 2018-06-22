@@ -44,6 +44,7 @@ export default {
             user: 'backend/user/getUserList'
         })
     },
+    mounted() {},
     methods: {
         loadMore(page = this.user.page + 1) {
             this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
@@ -73,7 +74,6 @@ export default {
             }
         }
     },
-    mounted() {},
     metaInfo() {
         return {
             title: '用户列表 - M.M.F 小屋',

@@ -24,6 +24,9 @@ import aInput from '../components/_input.vue'
 
 export default {
     name: 'backend-category-insert',
+    components: {
+        aInput
+    },
     mixins: [checkAdmin],
     data() {
         return {
@@ -32,9 +35,6 @@ export default {
                 cate_order: ''
             }
         }
-    },
-    components: {
-        aInput
     },
     methods: {
         async insert() {

@@ -36,6 +36,10 @@ import aInput from '~components/_input.vue'
 
 export default {
     name: 'frontend-user-password',
+    components: {
+        aInput,
+        account
+    },
     mixins: [metaMixin, checkUser],
     data() {
         return {
@@ -46,9 +50,8 @@ export default {
             }
         }
     },
-    components: {
-        aInput,
-        account
+    mounted() {
+        this.$store.dispatch('global/gProgress', 100)
     },
     methods: {
         async modify() {
@@ -72,9 +75,6 @@ export default {
                 this.form.re_password = ''
             }
         }
-    },
-    mounted() {
-        this.$store.dispatch('global/gProgress', 100)
     },
     metaInfo() {
         return {

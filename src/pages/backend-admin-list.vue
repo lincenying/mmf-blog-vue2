@@ -44,6 +44,7 @@ export default {
             admin: 'backend/admin/getAdminList'
         })
     },
+    mounted() {},
     methods: {
         loadMore(page = this.admin.page + 1) {
             this.$options.asyncData({ store: this.$store }, { page })
@@ -73,7 +74,6 @@ export default {
             }
         }
     },
-    mounted() {},
     metaInfo() {
         return {
             title: '管理员列表 - M.M.F 小屋',

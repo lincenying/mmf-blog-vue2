@@ -12,6 +12,12 @@ export default {
             scrollTop: 0
         }
     },
+    mounted() {
+        window.addEventListener('scroll', this.scrolling)
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.scrolling)
+    },
     methods: {
         scrolling() {
             if (window.scrollTime) window.clearTimeout(window.scrollTime)
@@ -35,12 +41,6 @@ export default {
                 // document.body.scrollTop = top
             }, 20)
         }
-    },
-    mounted() {
-        window.addEventListener('scroll', this.scrolling)
-    },
-    beforeDestroy() {
-        window.removeEventListener('scroll', this.scrolling)
     }
 }
 </script>

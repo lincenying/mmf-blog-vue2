@@ -45,6 +45,7 @@ export default {
             topics: 'backend/article/getArticleList'
         })
     },
+    mounted() {},
     methods: {
         loadMore(page = this.topics.page + 1) {
             this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
@@ -74,7 +75,6 @@ export default {
             }
         }
     },
-    mounted() {},
     metaInfo() {
         return {
             title: '文章列表 - M.M.F 小屋',

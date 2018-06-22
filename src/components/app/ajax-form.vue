@@ -81,7 +81,7 @@ export default {
             }
             var handleProgress = evt => {
                 if (evt.lengthComputable) {
-                    evt.percent = evt.loaded / evt.total * 100
+                    evt.percent = (evt.loaded / evt.total) * 100
                     this.progress(evt)
                 }
             }

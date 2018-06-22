@@ -35,6 +35,9 @@ import aInput from '../components/_input.vue'
 
 export default {
     name: 'backend-article-insert',
+    components: {
+        aInput
+    },
     mixins: [checkAdmin],
     async asyncData({ store, route }, config = { limit: 99 }) {
         config.all = 1
@@ -52,34 +55,10 @@ export default {
             }
         }
     },
-    components: {
-        aInput
-    },
     computed: {
         ...mapGetters({
             category: 'global/category/getCategoryList'
         })
-    },
-    methods: {
-        async insert() {
-            const content = postEditor.getMarkdown()
-            if (!this.form.title || !this.form.category || !content) {
-                showMsg('请将表单填写完整!')
-                return
-            }
-            this.form.content = content
-            const {
-                data: { message, code, data }
-            } = await this.$store.$api.post('backend/article/insert', this.form)
-            if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
-                this.$store.commit('backend/article/insertArticleItem', data)
-                this.$router.push('/backend/article/list')
-            }
-        }
     },
     mounted() {
         // eslint-disable-next-line
@@ -113,6 +92,27 @@ export default {
             watch: false,
             saveHTMLToTextarea: true
         })
+    },
+    methods: {
+        async insert() {
+            const content = postEditor.getMarkdown()
+            if (!this.form.title || !this.form.category || !content) {
+                showMsg('请将表单填写完整!')
+                return
+            }
+            this.form.content = content
+            const {
+                data: { message, code, data }
+            } = await this.$store.$api.post('backend/article/insert', this.form)
+            if (code === 200) {
+                showMsg({
+                    type: 'success',
+                    content: message
+                })
+                this.$store.commit('backend/article/insertArticleItem', data)
+                this.$router.push('/backend/article/list')
+            }
+        }
     },
     metaInfo() {
         return {

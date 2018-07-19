@@ -14,6 +14,24 @@ const cssSourceMapDev = !isProd && config.dev.cssSourceMap
 const cssSourceMapProd = isProd && config.build.productionSourceMap
 const useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
+const jsLoader = [
+    {
+        loader: 'cache-loader',
+        options: {
+            cacheDirectory: path.join(__dirname, '../node_modules/.cache/babel-loader'),
+            cacheIdentifier: process.env.NODE_ENV + '_babel'
+        }
+    }
+]
+if (isProd) {
+    jsLoader.push({
+        loader: 'thread-loader'
+    })
+}
+jsLoader.push({
+    loader: 'babel-loader'
+})
+
 module.exports = {
     performance: {
         maxEntrypointSize: 300000,
@@ -57,18 +75,31 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    compilerOptions: {
-                        preserveWhitespace: true
+                use: [
+                    {
+                        loader: 'cache-loader',
+                        options: {
+                            cacheDirectory: path.join(__dirname, '../node_modules/.cache/vue-loader'),
+                            cacheIdentifier: process.env.NODE_ENV + '_vue'
+                        }
+                    },
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            compilerOptions: {
+                                preserveWhitespace: true
+                            },
+                            cacheDirectory: path.join(__dirname, '../node_modules/.cache/vue-loader'),
+                            cacheIdentifier: process.env.NODE_ENV + '_vue'
+                        }
                     }
-                }
+                ]
             },
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
+                test: /\.jsx?$/,
                 include: projectRoot,
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                use: jsLoader
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

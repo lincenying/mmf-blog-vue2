@@ -51,6 +51,7 @@ module.exports = merge(baseWebpackConfig, {
                         warnings: false
                     }
                 },
+                cache: true,
                 sourceMap: config.build.productionSourceMap,
                 parallel: true
             }),
@@ -58,7 +59,7 @@ module.exports = merge(baseWebpackConfig, {
                 cssProcessorOptions: {
                     discardComments: { removeAll: true },
                     // 避免 cssnano 重新计算 z-index
-                    safe: true
+                    // safe: true
                 }
             })
         ]

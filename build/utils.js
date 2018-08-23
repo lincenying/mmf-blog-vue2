@@ -57,6 +57,19 @@ exports.cssLoaders = function(options) {
         }
         return [
             {
+                resourceQuery: /\?vue/,
+                use: [
+                    {
+                        loader: 'vue-style-loader',
+                        options: {
+                            sourceMap: false,
+                            shadowMode: false
+                        }
+                    },
+                    ...loaders
+                ]
+            },
+            {
                 use: [
                     {
                         loader: 'vue-style-loader',

@@ -47,9 +47,7 @@ export default {
                 showMsg('请将表单填写完整!')
                 return
             }
-            const {
-                data: { message, code }
-            } = await this.$store.$api.post('frontend/user/login', this.form)
+            const { code, message } = await this.$store.$api.post('frontend/user/login', this.form)
             if (code === 200) {
                 showMsg({
                     type: 'success',

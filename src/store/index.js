@@ -5,6 +5,7 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+
 import { createAppShellState } from './modules/app-shell'
 import backendAdmin from './modules/backend-admin'
 import backendArticle from './modules/backend-article'

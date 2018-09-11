@@ -13,9 +13,7 @@ const actions = {
         config
     ) {
         if (state.lists.length) return
-        const {
-            data: { data, code }
-        } = await $api.get('backend/category/list', { ...config, cache: true })
+        const { code, data } = await $api.get('backend/category/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('receiveCategoryList', data.list)
         }
@@ -27,9 +25,7 @@ const actions = {
         },
         config
     ) {
-        const {
-            data: { data, code }
-        } = await $api.get('backend/category/item', config)
+        const { code, data } = await $api.get('backend/category/item', config)
         if (data && code === 200) {
             commit('receiveCategoryItem', {
                 data,

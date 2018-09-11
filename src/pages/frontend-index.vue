@@ -5,7 +5,11 @@
                 <topics-item-none v-if="!topics.path">加载中, 请稍等...</topics-item-none>
                 <template v-else-if="topics.data.length > 0">
                     <topics-item v-for="item in topics.data" :item="item" :key="item._id"></topics-item>
-                    <div class="load-more-wrap"><a v-if="topics.hasNext" @click="loadMore()" href="javascript:;" class="load-more">更多<i class="icon icon-circle-loading"></i></a></div>
+                    <div class="load-more-wrap">
+                        <a v-if="topics.hasNext" @click="loadMore()" href="javascript:;" class="load-more">更多
+                            <i class="icon icon-circle-loading"></i>
+                        </a>
+                    </div>
                 </template>
                 <topics-item-none v-else>当前分类还没有文章...</topics-item-none>
             </div>

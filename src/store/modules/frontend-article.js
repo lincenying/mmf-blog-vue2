@@ -23,9 +23,7 @@ const actions = {
         config
     ) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
-        const {
-            data: { data, code }
-        } = await $api.get('frontend/article/list', { ...config, cache: true })
+        const { code, data } = await $api.get('frontend/article/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('receiveArticleList', {
                 ...config,
@@ -42,9 +40,7 @@ const actions = {
         config
     ) {
         if (config.path === state.item.path) return
-        const {
-            data: { data, code }
-        } = await $api.get('frontend/article/item', { ...config, markdown: 1, cache: true })
+        const { code, data } = await $api.get('frontend/article/item', { ...config, markdown: 1, cache: true })
         if (data && code === 200) {
             commit('receiveArticleItem', {
                 data,
@@ -54,9 +50,7 @@ const actions = {
     },
     async ['getTrending']({ commit, state, rootState: { $api } }) {
         if (state.trending.length) return
-        const {
-            data: { data, code }
-        } = await $api.get('frontend/trending', { cache: true })
+        const { code, data } = await $api.get('frontend/trending', { cache: true })
         if (data && code === 200) {
             commit('receiveTrending', data)
         }

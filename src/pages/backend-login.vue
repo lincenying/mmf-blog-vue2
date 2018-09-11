@@ -50,9 +50,7 @@ export default {
                 showMsg('请输入用户名和密码!')
                 return
             }
-            const {
-                data: { data, code }
-            } = await this.$store.$api.post('backend/admin/login', this.form)
+            const { code, data } = await this.$store.$api.post('backend/admin/login', this.form)
             if (data && code === 200) {
                 window.location.href = '/backend/article/list'
             }

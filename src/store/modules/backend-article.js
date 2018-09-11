@@ -18,9 +18,7 @@ const actions = {
         config
     ) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
-        const {
-            data: { data, code }
-        } = await $api.get('backend/article/list', config)
+        const { code, data } = await $api.get('backend/article/list', config)
         if (data && code === 200) {
             commit('receiveArticleList', {
                 ...data,
@@ -34,9 +32,7 @@ const actions = {
         },
         config
     ) {
-        const {
-            data: { data, code }
-        } = await $api.get('backend/article/item', config)
+        const { code, data } = await $api.get('backend/article/item', config)
         if (data && code === 200) {
             return data
         }
@@ -48,9 +44,7 @@ const actions = {
         },
         config
     ) {
-        const {
-            data: { code }
-        } = await $api.get('backend/article/delete', config)
+        const { code } = await $api.get('backend/article/delete', config)
         if (code === 200) {
             commit('deleteArticle', config.id)
         }
@@ -62,9 +56,7 @@ const actions = {
         },
         config
     ) {
-        const {
-            data: { code }
-        } = await $api.get('backend/article/recover', config)
+        const { code } = await $api.get('backend/article/recover', config)
         if (code === 200) {
             commit('recoverArticle', config.id)
         }

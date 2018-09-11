@@ -77,7 +77,7 @@ export default {
         this.form.category = data.category
         this.form.content = data.content
         // eslint-disable-next-line
-        window.modifyEditor = editormd("modify-content", {
+        window.modifyEditor = editormd('modify-content', {
             width: '100%',
             height: 500,
             markdown: data.content,
@@ -116,9 +116,7 @@ export default {
                 return
             }
             this.form.content = content
-            const {
-                data: { message, code, data }
-            } = await this.$store.$api.post('backend/article/modify', this.form)
+            const { code, data, message } = await this.$store.$api.post('backend/article/modify', this.form)
             if (code === 200) {
                 showMsg({
                     type: 'success',

@@ -67,9 +67,7 @@ export default {
                 showMsg('两次输入的密码不一致!')
                 return
             }
-            const {
-                data: { message, code }
-            } = await this.$store.$api.post('frontend/user/insert', this.form)
+            const { code, message } = await this.$store.$api.post('frontend/user/insert', this.form)
             if (code === 200) {
                 showMsg({
                     type: 'success',

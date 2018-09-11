@@ -24,9 +24,7 @@ export default {
             }
             let url = 'frontend/like'
             if (this.item.like_status) url = 'frontend/unlike'
-            const {
-                data: { code, message }
-            } = await this.$store.$api.get(url, { id: this.item._id })
+            const { code, message } = await this.$store.$api.get(url, { id: this.item._id })
             if (code === 200) {
                 showMsg({
                     content: message,

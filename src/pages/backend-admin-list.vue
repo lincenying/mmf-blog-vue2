@@ -50,9 +50,7 @@ export default {
             this.$options.asyncData({ store: this.$store }, { page })
         },
         async recover(id) {
-            const {
-                data: { code, message }
-            } = await this.$store.$api.get('backend/admin/recover', { id })
+            const { code, message } = await this.$store.$api.get('backend/admin/recover', { id })
             if (code === 200) {
                 showMsg({
                     type: 'success',
@@ -62,9 +60,7 @@ export default {
             }
         },
         async deletes(id) {
-            const {
-                data: { code, message }
-            } = await this.$store.$api.get('backend/admin/delete', { id })
+            const { code, message } = await this.$store.$api.get('backend/admin/delete', { id })
             if (code === 200) {
                 showMsg({
                     type: 'success',

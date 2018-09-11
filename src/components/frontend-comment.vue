@@ -64,9 +64,7 @@ export default {
             } else if (this.form.content === '') {
                 showMsg('请输入评论内容!')
             } else {
-                const {
-                    data: { code, data }
-                } = await this.$store.$api.post('frontend/comment/insert', this.form)
+                const { code, data } = await this.$store.$api.post('frontend/comment/insert', this.form)
                 if (code === 200) {
                     this.form.content = ''
                     showMsg({

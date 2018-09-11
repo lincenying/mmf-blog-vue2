@@ -9,16 +9,19 @@ import { sync } from 'vuex-router-sync'
 
 import { createRouter } from './router'
 import { createStore } from './store'
-import App from './app.vue'
-import ProgressBar from '@/components/ProgressBar.vue'
 import * as filters from './filters'
 import titleMixin from './mixins'
 import api from '~api'
+import VueBus from './event-bus'
+
+import App from './app.vue'
+import ProgressBar from '@/components/ProgressBar.vue'
 
 import './assets/css/hljs/googlecode.css'
 import './assets/less/style.less'
 import 'toastr/build/toastr.css'
 
+Vue.use(VueBus)
 Vue.mixin(titleMixin)
 
 const loading = (Vue.prototype.$loading = new Vue(ProgressBar).$mount())

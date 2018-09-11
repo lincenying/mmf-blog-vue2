@@ -22,9 +22,7 @@ const actions = {
         config
     ) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
-        const {
-            data: { data, code }
-        } = await $api.get('backend/admin/list', { ...config, cache: true })
+        const { code, data } = await $api.get('backend/admin/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('receiveAdminList', {
                 ...data,
@@ -40,9 +38,7 @@ const actions = {
         },
         config
     ) {
-        const {
-            data: { data, code }
-        } = await $api.get('backend/admin/item', config)
+        const { code, data } = await $api.get('backend/admin/item', config)
         if (data && code === 200) {
             commit('receiveAdminItem', {
                 data,

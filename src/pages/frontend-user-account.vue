@@ -52,9 +52,7 @@ export default {
     },
     methods: {
         async getUser() {
-            const {
-                data: { code, data }
-            } = await this.$store.$api.get('frontend/user/account')
+            const { code, data } = await this.$store.$api.get('frontend/user/account')
             if (code === 200) {
                 this.form.username = data.username
                 this.form.email = data.email

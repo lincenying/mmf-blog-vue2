@@ -43,7 +43,6 @@ const guardRoute = (to, from, next) => {
         next()
     }
 }
-
 export function createRouter() {
     const router = new VueRouter({
         mode: 'history',
@@ -51,6 +50,7 @@ export function createRouter() {
         scrollBehavior,
         routes: [
             { name: 'login', path: '/backend', component: login },
+
             {
                 name: 'admin_list',
                 path: '/backend/admin/list',
@@ -65,6 +65,7 @@ export function createRouter() {
                 meta: { scrollToTop: true },
                 beforeEnter: guardRoute
             },
+
             {
                 name: 'article_list',
                 path: '/backend/article/list',
@@ -93,6 +94,7 @@ export function createRouter() {
                 meta: { scrollToTop: true },
                 beforeEnter: guardRoute
             },
+
             {
                 name: 'category_list',
                 path: '/backend/category/list',
@@ -114,6 +116,7 @@ export function createRouter() {
                 meta: { scrollToTop: true },
                 beforeEnter: guardRoute
             },
+
             {
                 name: 'user_list',
                 path: '/backend/user/list',
@@ -128,6 +131,7 @@ export function createRouter() {
                 meta: { scrollToTop: true },
                 beforeEnter: guardRoute
             },
+
             { path: '*', redirect: { name: 'login' } }
         ]
     })

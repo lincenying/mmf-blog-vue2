@@ -17,9 +17,7 @@ const actions = {
         config
     ) {
         if (config.path === state.lists.path && config.page === 1) return
-        const {
-            data: { data, code }
-        } = await $api.get('frontend/comment/list', { ...config, cache: true })
+        const { code, data } = await $api.get('frontend/comment/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('recevieCommentList', {
                 ...config,

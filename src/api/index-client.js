@@ -35,7 +35,7 @@ function checkCode(res) {
     } else if (res.data.code !== 200) {
         showMsg(res.data.message)
     }
-    return res
+    return res && res.data
 }
 
 export default {

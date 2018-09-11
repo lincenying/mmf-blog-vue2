@@ -60,3 +60,11 @@ export const showMsg = message => {
     }
     toastr[type](content)
 }
+
+export const oc = (props, property, def) => {
+    if (props === null || props === undefined) return def
+    if (!property || typeof property !== 'string') return props
+    const arrProperty = property.split('.')
+    const $return = arrProperty.reduce((prev, curr) => prev !== null && prev !== undefined && prev[curr], props)
+    return $return !== null && $return !== undefined ? $return : def
+}

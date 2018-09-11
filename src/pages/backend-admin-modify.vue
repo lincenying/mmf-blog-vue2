@@ -74,9 +74,7 @@ export default {
                 showMsg('请将表单填写完整!')
                 return
             }
-            const {
-                data: { message, code, data }
-            } = await this.$store.$api.post('backend/admin/modify', this.form)
+            const { code, data, message } = await this.$store.$api.post('backend/admin/modify', this.form)
             if (code === 200) {
                 showMsg({
                     type: 'success',

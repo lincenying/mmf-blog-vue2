@@ -2,7 +2,18 @@
     <div class="main wrap clearfix">
         <div class="main-left">
             <div class="home-feeds cards-wrap">
-                <topics-item-none v-if="!topics.path">加载中, 请稍等...</topics-item-none>
+                <!-- <topics-item-none v-if="!topics.path">加载中, 请稍等...</topics-item-none> -->
+                <div v-if="!topics.path" class="card card-content-loader">
+                    <content-loader :height="160" :width="660" :speed="2" primaryColor="#f3f3f3" secondaryColor="#ecebeb">
+                        <rect x="70" y="15" rx="4" ry="4" width="117" height="6.4" />
+                        <rect x="70" y="35" rx="3" ry="3" width="85" height="6.4" />
+                        <rect x="0" y="80" rx="3" ry="3" width="550" height="6.4" />
+                        <rect x="0" y="100" rx="3" ry="3" width="620" height="6.4" />
+                        <rect x="0" y="120" rx="3" ry="3" width="401" height="6.4" />
+                        <rect x="0" y="140" rx="3" ry="3" width="501" height="6.4" />
+                        <circle cx="30" cy="30" r="30" />
+                    </content-loader>
+                </div>
                 <template v-else-if="topics.data.length > 0">
                     <topics-item v-for="item in topics.data" :item="item" :key="item._id"></topics-item>
                     <div class="load-more-wrap">
@@ -22,11 +33,13 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import { ContentLoader } from 'vue-content-loader'
+import metaMixin from '~mixins'
+
 import topicsItem from '../components/topics-item.vue'
 import topicsItemNone from '../components/topics-item-none.vue'
 import category from '../components/aside-category.vue'
 import trending from '../components/aside-trending.vue'
-import metaMixin from '~mixins'
 
 export default {
     name: 'frontend-index',
@@ -42,6 +55,7 @@ export default {
         ])
     },
     components: {
+        ContentLoader,
         topicsItem,
         topicsItemNone,
         category,

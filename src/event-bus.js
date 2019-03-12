@@ -3,8 +3,8 @@
  * @author lincenying(lincenying@qq.com)
  */
 
-function VueBus(Vue) {
-    var bus = new Vue({
+const install = Vue => {
+    const bus = new Vue({
         data: {
             default: {}
         }
@@ -41,4 +41,6 @@ function VueBus(Vue) {
         }
     })
 }
-export default VueBus
+export default {
+    install
+}

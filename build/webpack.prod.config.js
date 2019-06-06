@@ -55,7 +55,7 @@ module.exports = merge(baseWebpackConfig, {
             new UglifyJsPlugin({
                 uglifyOptions: {
                     compress: {
-                        warnings: false
+                        // warnings: false
                     }
                 },
                 cache: true,

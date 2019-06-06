@@ -22,7 +22,7 @@ exports.cssLoaders = function(options) {
     const cssLoader = {
         loader: 'css-loader',
         options: {
-            minimize: !isDev,
+            // minimize: !isDev,
             sourceMap: options.sourceMap
         }
     }

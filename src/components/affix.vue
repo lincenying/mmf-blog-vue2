@@ -1,8 +1,6 @@
 <template>
     <div>
-        <div :class="classes" :style="styles">
-            <slot></slot>
-        </div>
+        <div :class="classes" :style="styles"><slot></slot></div>
     </div>
 </template>
 
@@ -92,11 +90,7 @@ export default {
                 this.$emit('on-change', false)
             }
             // Fixed Bottom
-            if (
-                elOffset.top + this.offsetBottom + elHeight > scrollTop + windowHeight &&
-                this.offsetType === 'bottom' &&
-                !affix
-            ) {
+            if (elOffset.top + this.offsetBottom + elHeight > scrollTop + windowHeight && this.offsetType === 'bottom' && !affix) {
                 this.affix = true
                 this.styles = {
                     bottom: `${this.offsetBottom}px`,
@@ -104,11 +98,7 @@ export default {
                     width: `${this.$el.offsetWidth}px`
                 }
                 this.$emit('on-change', true)
-            } else if (
-                elOffset.top + this.offsetBottom + elHeight < scrollTop + windowHeight &&
-                this.offsetType === 'bottom' &&
-                affix
-            ) {
+            } else if (elOffset.top + this.offsetBottom + elHeight < scrollTop + windowHeight && this.offsetType === 'bottom' && affix) {
                 this.affix = false
                 this.styles = null
                 this.$emit('on-change', false)

@@ -5,30 +5,30 @@
                 <div class="settings-main card">
                     <div class="settings-main-content">
                         <a-input title="昵称">
-                            <input type="text" v-model="form.username" placeholder="昵称" class="base-input" name="username">
+                            <input type="text" v-model="form.username" placeholder="昵称" class="base-input" name="username" />
                             <span class="input-info error">请输入昵称</span>
                         </a-input>
                         <a-input title="邮箱">
-                            <input type="text" v-model="form.email" placeholder="邮箱" class="base-input" name="email">
+                            <input type="text" v-model="form.email" placeholder="邮箱" class="base-input" name="email" />
                             <span class="input-info error">请输入邮箱</span>
                         </a-input>
                     </div>
-                    <!-- <div class="settings-footer clearfix">
-                        <a href="javascript:;" class="btn btn-blue">保存设置</a>
-                    </div> -->
+                    <!--
+                        <div class="settings-footer clearfix">
+                            <a href="javascript:;" class="btn btn-blue">保存设置</a>
+                        </div>
+                    -->
                 </div>
             </div>
         </div>
-        <div class="main-right">
-            <account></account>
-        </div>
+        <div class="main-right"><account></account></div>
     </div>
 </template>
 
 <script>
 // import api from '~api'
-import metaMixin from '~mixins'
-import checkUser from '~mixins/check-user'
+import metaMixin from '@/mixins'
+import checkUser from '@/mixins/check-user'
 import account from '../components/aside-account.vue'
 import aInput from '../components/_input.vue'
 

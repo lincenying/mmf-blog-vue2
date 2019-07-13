@@ -2,15 +2,15 @@
     <div class="settings-main card">
         <div class="settings-main-content">
             <a-input title="昵称">
-                <input type="text" v-model="form.username" placeholder="昵称" class="base-input" name="username">
+                <input type="text" v-model="form.username" placeholder="昵称" class="base-input" name="username" />
                 <span class="input-info error">请输入昵称</span>
             </a-input>
             <a-input title="邮箱">
-                <input type="text" v-model="form.email" placeholder="邮箱" class="base-input" name="email">
+                <input type="text" v-model="form.email" placeholder="邮箱" class="base-input" name="email" />
                 <span class="input-info error">请输入邮箱</span>
             </a-input>
             <a-input title="密码">
-                <input type="password" v-model="form.password" placeholder="密码" class="base-input" name="password">
+                <input type="password" v-model="form.password" placeholder="密码" class="base-input" name="password" />
                 <span class="input-info error">请输入密码</span>
             </a-input>
         </div>
@@ -23,10 +23,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { showMsg } from '~utils'
+import { showMsg } from '@/utils'
 // import api from '~api'
-import checkAdmin from '~mixins/check-admin'
-import aInput from '~components/_input.vue'
+import checkAdmin from '@/mixins/check-admin'
+import aInput from '@/components/_input.vue'
 
 export default {
     name: 'backend-user-modify',
@@ -34,12 +34,6 @@ export default {
         aInput
     },
     mixins: [checkAdmin],
-    async asyncData({ store, route }) {
-        await store.dispatch('backend/user/getUserItem', {
-            id: route.params.id,
-            path: route.path
-        })
-    },
     data() {
         return {
             form: {
@@ -60,6 +54,12 @@ export default {
             this.form.username = val.data.username
             this.form.email = val.data.email
         }
+    },
+    async asyncData({ store, route }) {
+        await store.dispatch('backend/user/getUserItem', {
+            id: route.params.id,
+            path: route.path
+        })
     },
     mounted() {
         this.form.username = this.item.data.username

@@ -1,7 +1,5 @@
 <template>
-    <form :action="action" :method="method" :enctype="enctype" @submit.prevent="handleAjaxFormSubmit">
-        <slot></slot>
-    </form>
+    <form :action="action" :method="method" :enctype="enctype" @submit.prevent="handleAjaxFormSubmit"><slot></slot></form>
 </template>
 <script>
 export default {

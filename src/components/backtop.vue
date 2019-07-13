@@ -1,7 +1,5 @@
 <template>
-    <div v-show="scrollTop > 500" class="back-top">
-        <a @click="handleBackTop" href="javascript:;"></a>
-    </div>
+    <div v-show="scrollTop > 500" class="back-top"><a @click="handleBackTop" href="javascript:;"></a></div>
 </template>
 
 <script>
@@ -22,11 +20,7 @@ export default {
         scrolling() {
             if (window.scrollTime) window.clearTimeout(window.scrollTime)
             window.scrollTime = window.setTimeout(() => {
-                this.scrollTop = Math.max(
-                    window.pageYOffset,
-                    document.documentElement.scrollTop,
-                    document.body.scrollTop
-                )
+                this.scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
             }, 100)
         },
         handleBackTop() {

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import config from './config-client'
-import { showMsg } from '~utils'
+import { showMsg } from '@/utils'
 
 axios.interceptors.request.use(
     config => {

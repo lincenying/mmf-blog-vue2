@@ -15,7 +15,9 @@
                     <router-link :to="'/backend/article/modify/' + item._id" class="badge badge-success">编辑</router-link>
                     <a v-if="item.is_delete" @click="recover(item._id)" href="javascript:;">恢复</a>
                     <a v-else @click="deletes(item._id)" href="javascript:;">删除</a>
-                    <router-link v-if="item.comment_count > 0" :to="'/backend/article/comment/' + item._id" class="badge badge-success">评论</router-link>
+                    <router-link v-if="item.comment_count > 0" :to="'/backend/article/comment/' + item._id" class="badge badge-success"
+                        >评论</router-link
+                    >
                 </div>
             </div>
         </div>
@@ -27,22 +29,22 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { showMsg } from '~utils'
+import { showMsg } from '@/utils'
 // import api from '~api'
-import checkAdmin from '~mixins/check-admin'
+import checkAdmin from '@/mixins/check-admin'
 
 export default {
     name: 'backend-article-list',
     mixins: [checkAdmin],
+    computed: {
+        ...mapGetters({
+            topics: 'backend/article/getArticleList'
+        })
+    },
     async asyncData({ store, route }, config = { page: 1 }) {
         await store.dispatch('backend/article/getArticleList', {
             ...config,
             path: route.path
-        })
-    },
-    computed: {
-        ...mapGetters({
-            topics: 'backend/article/getArticleList'
         })
     },
     mounted() {},

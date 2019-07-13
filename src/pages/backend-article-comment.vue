@@ -4,11 +4,7 @@
             <div class="comment-items-wrap">
                 <div v-for="item in comments.data" :key="item._id" class="comment-item">
                     <a href="javascript:;" class="comment-author-avatar-link">
-                        <img
-                            src="https://ae01.alicdn.com/kf/HTB1VzjybLWG3KVjSZPcq6zkbXXaN.jpg"
-                            alt=""
-                            class="avatar-img"
-                        />
+                        <img src="https://ae01.alicdn.com/kf/HTB1VzjybLWG3KVjSZPcq6zkbXXaN.jpg" alt="" class="avatar-img" />
                     </a>
                     <div class="comment-content-wrap">
                         <span class="comment-author-wrap">
@@ -17,20 +13,8 @@
                         <div class="comment-content">{{ item.content }}</div>
                         <div class="comment-footer">
                             <span class="comment-time">{{ item.timestamp | timeAgo }}</span>
-                            <a
-                                v-if="item.is_delete"
-                                @click="recover(item._id)"
-                                href="javascript:;"
-                                class="comment-action-item comment-reply"
-                                >恢复</a
-                            >
-                            <a
-                                v-else
-                                @click="deletes(item._id)"
-                                href="javascript:;"
-                                class="comment-action-item comment-reply"
-                                >删除</a
-                            >
+                            <a v-if="item.is_delete" @click="recover(item._id)" href="javascript:;" class="comment-action-item comment-reply">恢复</a>
+                            <a v-else @click="deletes(item._id)" href="javascript:;" class="comment-action-item comment-reply">删除</a>
                         </div>
                     </div>
                 </div>
@@ -44,9 +28,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { showMsg } from '~utils'
+import { showMsg } from '@/utils'
 // import api from '~api'
-import checkAdmin from '~mixins/check-admin'
+import checkAdmin from '@/mixins/check-admin'
 
 export default {
     name: 'backend-article-comment',

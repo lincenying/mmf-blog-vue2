@@ -19,21 +19,21 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import checkAdmin from '~mixins/check-admin'
+import checkAdmin from '@/mixins/check-admin'
 
 export default {
     name: 'backend-category-list',
     mixins: [checkAdmin],
+    computed: {
+        ...mapGetters({
+            category: 'global/category/getCategoryList'
+        })
+    },
     async asyncData({ store, route }, config = { limit: 99 }) {
         config.all = 1
         await store.dispatch('global/category/getCategoryList', {
             ...config,
             path: route.path
-        })
-    },
-    computed: {
-        ...mapGetters({
-            category: 'global/category/getCategoryList'
         })
     },
     mounted() {},

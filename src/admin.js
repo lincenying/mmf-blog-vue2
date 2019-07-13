@@ -8,7 +8,7 @@ import * as filters from './filters'
 import api from '~api'
 
 import App from './admin.vue'
-import ProgressBar from '@/components/ProgressBar.vue'
+import ProgressBar from '@/components/progress-bar.vue'
 
 import './assets/css/hljs/googlecode.css'
 import './assets/less/style.less'

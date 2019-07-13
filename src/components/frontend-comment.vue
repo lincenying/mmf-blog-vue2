@@ -4,26 +4,14 @@
             <div class="comment-post-wrap">
                 <img src="https://ae01.alicdn.com/kf/HTB1VzjybLWG3KVjSZPcq6zkbXXaN.jpg" alt="" class="avatar-img" />
                 <div class="comment-post-input-wrap base-textarea-wrap">
-                    <textarea
-                        v-model="form.content"
-                        id="content"
-                        class="textarea-input base-input"
-                        cols="30"
-                        rows="4"
-                    ></textarea>
+                    <textarea v-model="form.content" id="content" class="textarea-input base-input" cols="30" rows="4"></textarea>
                 </div>
-                <div class="comment-post-actions clearfix">
-                    <a @click="postComment" href="javascript:;" class="btn btn-blue">发表评论</a>
-                </div>
+                <div class="comment-post-actions clearfix"><a @click="postComment" href="javascript:;" class="btn btn-blue">发表评论</a></div>
             </div>
             <div class="comment-items-wrap">
                 <div v-for="item in comments.data" :key="item._id" class="comment-item">
                     <a href="javascript:;" class="comment-author-avatar-link">
-                        <img
-                            src="https://ae01.alicdn.com/kf/HTB1VzjybLWG3KVjSZPcq6zkbXXaN.jpg"
-                            alt=""
-                            class="avatar-img"
-                        />
+                        <img src="https://ae01.alicdn.com/kf/HTB1VzjybLWG3KVjSZPcq6zkbXXaN.jpg" alt="" class="avatar-img" />
                     </a>
                     <div class="comment-content-wrap">
                         <span class="comment-author-wrap">
@@ -32,9 +20,7 @@
                         <div class="comment-content" v-text="item.content"></div>
                         <div class="comment-footer">
                             <span class="comment-time" v-text="item.creat_date"></span>
-                            <a @click="reply(item)" href="javascript:;" class="comment-action-item comment-reply"
-                                >回复</a
-                            >
+                            <a @click="reply(item)" href="javascript:;" class="comment-action-item comment-reply">回复</a>
                         </div>
                     </div>
                 </div>
@@ -48,7 +34,7 @@
 
 <script>
 import cookies from 'js-cookie'
-import { showMsg } from '~utils'
+import { showMsg } from '@/utils'
 // import api from '~api'
 export default {
     name: 'frontend-comment',

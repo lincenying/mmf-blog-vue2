@@ -26,22 +26,22 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { showMsg } from '~utils'
+import { showMsg } from '@/utils'
 // import api from '~api'
-import checkAdmin from '~mixins/check-admin'
+import checkAdmin from '@/mixins/check-admin'
 
 export default {
     name: 'backend-user-list',
     mixins: [checkAdmin],
+    computed: {
+        ...mapGetters({
+            user: 'backend/user/getUserList'
+        })
+    },
     async asyncData({ store, route }, config = { page: 1 }) {
         await store.dispatch('backend/user/getUserList', {
             ...config,
             path: route.path
-        })
-    },
-    computed: {
-        ...mapGetters({
-            user: 'backend/user/getUserList'
         })
     },
     mounted() {},

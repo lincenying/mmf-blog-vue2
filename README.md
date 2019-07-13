@@ -12,8 +12,6 @@ react(spa): [https://github.com/lincenying/mmf-blog-react-v2](https://github.com
 
 vue2(spa): [https://github.com/lincenying/mmf-blog-vue2](https://github.com/lincenying/mmf-blog-vue2)
 
-vue2(ssr): [https://github.com/lincenying/mmf-blog-vue2-ssr](https://github.com/lincenying/mmf-blog-vue2-ssr)
-
 vue2(pwa ssr): [https://github.com/lincenying/mmf-blog-vue2-pwa-ssr](https://github.com/lincenying/mmf-blog-vue2-pwa-ssr)
 
 ---
@@ -30,10 +28,10 @@ yarn  #or  npm install
 # Note: do not install with CNPM dependency
 
 # Product
-npm run build
+yarn build
 
 # Develop
-npm run dev
+yarn serve
 ```
 
 Home Site
@@ -41,20 +39,6 @@ http://localhost:8081
 
 Login
 http://localhost:8081/backend
-
-# notice:
-Because ` babelrc ` configuration
-
-```javascript
-"presets": [
-    ["env", {
-        "targets": {
-            "chrome": 52
-        }
-    }]
-]
-```
-So, in the development environment, please use chrome52 + open, if you need other low browser version, please modify the root directory of the `.Babelrc ` file
 
 # LICENSE
 

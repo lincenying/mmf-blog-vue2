@@ -22,7 +22,6 @@ import Navigation from './components/navigation.vue'
 import signUp from './components/signup.vue'
 import signIn from './components/signin.vue'
 import backTop from './components/backtop.vue'
-import backendMenu from './components/backend-menu.vue'
 
 export default {
     name: 'app',
@@ -30,8 +29,7 @@ export default {
         Navigation,
         signUp,
         signIn,
-        backTop,
-        backendMenu
+        backTop
     },
     data() {
         return {}

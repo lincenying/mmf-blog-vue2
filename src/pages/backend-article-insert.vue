@@ -2,7 +2,7 @@
     <div class="settings-main card">
         <div class="settings-main-content">
             <a-input title="标题">
-                <input type="text" v-model="form.title" placeholder="标题" class="base-input" name="title">
+                <input type="text" v-model="form.title" placeholder="标题" class="base-input" name="title" />
                 <span class="input-info error">请输入标题</span>
             </a-input>
             <a-input title="分类" :classes="'select-item-wrap'">
@@ -19,18 +19,16 @@
                 </div>
             </div>
         </div>
-        <div class="settings-footer clearfix">
-            <a @click="insert" href="javascript:;" class="btn btn-yellow">添加文章</a>
-        </div>
+        <div class="settings-footer clearfix"><a @click="insert" href="javascript:;" class="btn btn-yellow">添加文章</a></div>
     </div>
 </template>
 
 <script>
 /* global postEditor */
 import { mapGetters } from 'vuex'
-import { showMsg } from '~utils'
+import { showMsg } from '@/utils'
 // import api from '~api'
-import checkAdmin from '~mixins/check-admin'
+import checkAdmin from '@/mixins/check-admin'
 import aInput from '../components/_input.vue'
 
 export default {
@@ -39,13 +37,6 @@ export default {
         aInput
     },
     mixins: [checkAdmin],
-    async asyncData({ store, route }, config = { limit: 99 }) {
-        config.all = 1
-        await store.dispatch('global/category/getCategoryList', {
-            ...config,
-            path: route.path
-        })
-    },
     data() {
         return {
             form: {
@@ -60,6 +51,13 @@ export default {
             category: 'global/category/getCategoryList'
         })
     },
+    async asyncData({ store, route }, config = { limit: 99 }) {
+        config.all = 1
+        await store.dispatch('global/category/getCategoryList', {
+            ...config,
+            path: route.path
+        })
+    },
     mounted() {
         // eslint-disable-next-line
         window.postEditor = editormd('post-content', {
@@ -67,7 +65,7 @@ export default {
             height: 500,
             markdown: '',
             placeholder: '请输入内容...',
-            path: '/static/editor.md/lib/',
+            path: 'https://cdn.jsdelivr.net/npm/editor.md@1.5.0/lib/',
             toolbarIcons() {
                 return [
                     'bold',

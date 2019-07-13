@@ -1,5 +1,5 @@
 import cookies from 'js-cookie'
-import { inBrowser } from '~utils'
+import { inBrowser } from '@/utils'
 
 export default {
     beforeRouteEnter(to, from, next) {

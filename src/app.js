@@ -4,6 +4,7 @@
  */
 
 import './polyfill'
+import './registerServiceWorker'
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 

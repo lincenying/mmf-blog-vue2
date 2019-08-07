@@ -56,11 +56,15 @@ export default {
             this.$store.commit('global/showRegisterModal', false)
         },
         async register() {
+            const reg = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)$/i
             if (!this.form.username || !this.form.password || !this.form.email) {
                 showMsg('请将表单填写完整!')
                 return
             } else if (strlen(this.form.username) < 4) {
                 showMsg('用户长度至少 2 个中文或 4 个英文!')
+                return
+            } else if (!reg.test(this.form.email)) {
+                showMsg('邮箱格式错误!')
                 return
             } else if (strlen(this.form.password) < 8) {
                 showMsg('密码长度至少 8 位!')

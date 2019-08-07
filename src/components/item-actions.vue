@@ -16,16 +16,20 @@
     </div>
 </template>
 <script>
-import cookies from 'js-cookie'
 import { showMsg } from '@/utils'
 // import api from '~api'
+
 export default {
     name: 'item-actions',
     props: ['item'],
+    computed: {
+        user() {
+            return this.$oc(this.$store.state, 'global.cookies.user')
+        }
+    },
     methods: {
         async like() {
-            const username = cookies.get('user')
-            if (!username) {
+            if (!this.user) {
                 showMsg('请先登录!')
                 this.$store.commit('global/showLoginModal', true)
                 return

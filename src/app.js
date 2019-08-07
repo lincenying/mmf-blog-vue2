@@ -7,6 +7,7 @@ import './polyfill'
 import './registerServiceWorker'
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
+import cookies from 'js-cookie'
 
 import { createRouter } from './router'
 import { createStore } from './store'
@@ -14,6 +15,7 @@ import * as filters from './filters'
 import titleMixin from './mixins'
 import api from '~api'
 import VueBus from './event-bus'
+import { oc } from './utils'
 
 import App from './app.vue'
 import ProgressBar from '@/components/progress-bar.vue'
@@ -32,14 +34,20 @@ Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])
 })
 
+Vue.prototype.$oc = oc
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 const router = createRouter()
 const store = createStore()
 store.$api = store.state.$api = api
+store.commit('global/setCookies', {
+    user: cookies.get('user'),
+    userid: cookies.get('userid'),
+    username: cookies.get('username'),
+    useremail: cookies.get('useremail')
+})
 window.$$store = store
-// store.$api = store.prototype.$api = api
 sync(store, router)
 Vue.mixin({
     // 当复用的路由组件参数发生变化时，例如/detail/1 => /detail/2

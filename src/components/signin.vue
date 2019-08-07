@@ -25,6 +25,7 @@
 <script>
 import { showMsg } from '@/utils'
 // import api from '~api'
+
 export default {
     name: 'sign-in',
     props: ['show'],
@@ -55,7 +56,7 @@ export default {
                     type: 'success',
                     content: message
                 })
-                this.$router.go(0)
+                window.location.reload()
             }
         }
     }

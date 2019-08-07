@@ -1,3 +1,5 @@
+import md5 from 'md5'
+
 function pluralize(time, label) {
     return time + label
 }
@@ -33,4 +35,10 @@ export function timeYmd(timestamp) {
     var month = tmp.getMonth() + 1
     var date = tmp.getDate()
     return year + '-' + (month < 10 ? '0' + month : month) + '-' + (date < 10 ? '0' + date : date)
+}
+
+export function avatar(email, width) {
+    email = email || '123456'
+    width = width || 128
+    return `https://cdn.v2ex.com/gravatar/${md5(email)}?s=${width}&d=identicon&r=g`
 }

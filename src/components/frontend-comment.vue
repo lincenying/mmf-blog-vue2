@@ -2,7 +2,7 @@
     <div class="card">
         <div class="comments">
             <div class="comment-post-wrap">
-                <img src="https://ae01.alicdn.com/kf/HTB1VzjybLWG3KVjSZPcq6zkbXXaN.jpg" alt="" class="avatar-img" />
+                <img :src="userEmail | avatar" alt="" class="avatar-img" />
                 <div class="comment-post-input-wrap base-textarea-wrap">
                     <textarea v-model="form.content" id="content" class="textarea-input base-input" cols="30" rows="4"></textarea>
                 </div>
@@ -11,7 +11,7 @@
             <div class="comment-items-wrap">
                 <div v-for="item in comments.data" :key="item._id" class="comment-item">
                     <a href="javascript:;" class="comment-author-avatar-link">
-                        <img src="https://ae01.alicdn.com/kf/HTB1VzjybLWG3KVjSZPcq6zkbXXaN.jpg" alt="" class="avatar-img" />
+                        <img :src="item.email | avatar" alt="" class="avatar-img" />
                     </a>
                     <div class="comment-content-wrap">
                         <span class="comment-author-wrap">
@@ -33,9 +33,9 @@
 </template>
 
 <script>
-import cookies from 'js-cookie'
 import { showMsg } from '@/utils'
 // import api from '~api'
+
 export default {
     name: 'frontend-comment',
     props: ['comments'],
@@ -47,6 +47,14 @@ export default {
             }
         }
     },
+    computed: {
+        user() {
+            return this.$oc(this.$store.state, 'global.cookies.user')
+        },
+        userEmail() {
+            return this.$oc(this.$store.state, 'global.cookies.useremail')
+        }
+    },
     methods: {
         loadcomment() {
             this.$store.dispatch(`global/comment/getCommentList`, {
@@ -56,8 +64,7 @@ export default {
             })
         },
         async postComment() {
-            const username = cookies.get('user')
-            if (!username) {
+            if (!this.user) {
                 showMsg('请先登录!')
                 this.$store.commit('global/showLoginModal', true)
             } else if (this.form.content === '') {

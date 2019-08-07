@@ -13,6 +13,9 @@ const mutations = {
     },
     ['showRegisterModal'](state, payload) {
         state.showRegisterModal = payload
+    },
+    ['setCookies'](state, cookies) {
+        state.cookies = cookies
     }
 }
 

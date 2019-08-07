@@ -41,6 +41,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
+    "husky": "^3.0.2",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "lint-staged": "^9.2.1",

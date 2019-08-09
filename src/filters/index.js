@@ -40,5 +40,6 @@ export function timeYmd(timestamp) {
 export function avatar(email, width) {
     email = email || '123456'
     width = width || 128
+    email = decodeURIComponent(email)
     return `https://cdn.v2ex.com/gravatar/${md5(email)}?s=${width}&d=identicon&r=g`
 }

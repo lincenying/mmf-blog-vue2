@@ -1,12 +1,12 @@
 <template>
     <div id="app" :class="backend ? 'backend' : 'frontend'">
         <Navigation :backend="backend"></Navigation>
-        <transition :name="pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
+        <transition :name="appShell.pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
             <keep-alive>
                 <router-view :key="$route.fullPath" v-if="!$route.meta.notKeepAlive" class="app-view"></router-view>
             </keep-alive>
         </transition>
-        <transition :name="pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
+        <transition :name="appShell.pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
             <router-view :key="$route.fullPath" v-if="$route.meta.notKeepAlive" class="app-view"></router-view>
         </transition>
         <sign-up :show="global.showRegisterModal"></sign-up>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 import Navigation from './components/navigation.vue'
 import signUp from './components/signup.vue'
@@ -36,9 +36,9 @@ export default {
     },
     computed: {
         ...mapGetters({
-            global: 'global/getGlobal'
+            global: 'global/get',
+            appShell: 'appShell/get'
         }),
-        ...mapState('appShell', ['pageTransitionName']),
         key() {
             return this.$route.path.replace(/\//g, '_')
         },

@@ -88,10 +88,17 @@ export function createAppShellState() {
         }
     }
 
+    const getters = {
+        ['get'](state) {
+            return state
+        }
+    }
+
     return {
         namespaced: true,
         actions,
         mutations,
-        state
+        state,
+        getters
     }
 }

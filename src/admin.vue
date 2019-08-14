@@ -4,12 +4,12 @@
         <div class="main wrap clearfix">
             <div class="main-left">
                 <div class="home-feeds cards-wrap">
-                    <transition :name="pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
+                    <transition :name="appShell.pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
                         <keep-alive>
                             <router-view :key="$route.fullPath" v-if="!$route.meta.notKeepAlive" class="app-view"></router-view>
                         </keep-alive>
                     </transition>
-                    <transition :name="pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
+                    <transition :name="appShell.pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
                         <router-view :key="$route.fullPath" v-if="$route.meta.notKeepAlive" class="app-view"></router-view>
                     </transition>
                 </div>
@@ -19,7 +19,7 @@
     </div>
 </template>
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import NProgress from 'nprogress'
 import Navigation from './components/navigation.vue'
 import backendMenu from './components/backend-menu.vue'
@@ -32,9 +32,9 @@ export default {
     },
     computed: {
         ...mapGetters({
-            global: 'global/getGlobal'
+            global: 'global/get',
+            appShell: 'appShell/get'
         }),
-        ...mapState('appShell', ['pageTransitionName']),
         key() {
             return this.$route.path.replace(/\//g, '_')
         },

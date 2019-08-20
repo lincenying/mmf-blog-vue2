@@ -1,4 +1,5 @@
 const path = require('path')
+const SWPrecachePlugin = require('sw-precache-webpack-plugin')
 
 module.exports = {
     pages: {
@@ -20,7 +21,40 @@ module.exports = {
         }
     },
     configureWebpack: {
-        devtool: 'source-map'
+        devtool: 'source-map',
+        plugins: [
+            new SWPrecachePlugin({
+                cacheId: 'mmf-blog-vue2-pwa-ssr',
+                filename: 'service-worker.js',
+                minify: true,
+                dontCacheBustUrlsMatching: /./,
+                staticFileGlobsIgnorePatterns: [/\.html/, /\.map$/, /\.json$/],
+                runtimeCaching: [
+                    {
+                        urlPattern: /api/,
+                        handler: 'networkFirst',
+                        options: {
+                            networkTimeoutSeconds: 1,
+                            cacheName: 'api-cache',
+                            cacheableResponse: {
+                                statuses: [0, 200]
+                            }
+                        }
+                    },
+                    {
+                        urlPattern: /^https:\/\/cdn\.jsdelivr\.net/,
+                        handler: 'networkFirst',
+                        options: {
+                            networkTimeoutSeconds: 1,
+                            cacheName: 'cdn-cache',
+                            cacheableResponse: {
+                                statuses: [0, 200]
+                            }
+                        }
+                    }
+                ]
+            })
+        ]
     },
     chainWebpack: config => {
         config.module
@@ -51,39 +85,10 @@ module.exports = {
             appleTouchIcon: 'static/img/icons/apple-touch-icon-152x152.png',
             maskIcon: 'static/img/icons/safari-pinned-tab.svg',
             msTileImage: 'static/img/icons/msapplication-icon-144x144.png'
-        },
-        workboxOptions: {
-            skipWaiting: true,
-            importWorkboxFrom: 'disabled',
-            importScripts: 'https://cdn.jsdelivr.net/npm/workbox-cdn@3.6.3/workbox/workbox-sw.js',
-            exclude: [/\.html/],
-            runtimeCaching: [
-                {
-                    urlPattern: /api/,
-                    handler: 'networkFirst',
-                    options: {
-                        networkTimeoutSeconds: 1,
-                        cacheName: 'api-cache',
-                        cacheableResponse: {
-                            statuses: [0, 200]
-                        }
-                    }
-                },
-                {
-                    urlPattern: /^https:\/\/cdn\.jsdelivr\.net/,
-                    handler: 'networkFirst',
-                    options: {
-                        networkTimeoutSeconds: 1,
-                        cacheName: 'cdn-cache',
-                        cacheableResponse: {
-                            statuses: [0, 200]
-                        }
-                    }
-                }
-            ]
         }
     },
     devServer: {
+        port: 8081,
         host: '0.0.0.0',
         hot: true,
         disableHostCheck: true,

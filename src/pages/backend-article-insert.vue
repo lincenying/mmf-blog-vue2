@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="settings-footer clearfix"><a @click="insert" href="javascript:;" class="btn btn-yellow">添加文章</a></div>
+        <div class="settings-footer"><a @click="insert" href="javascript:;" class="btn btn-yellow">添加文章</a></div>
     </div>
 </template>
 

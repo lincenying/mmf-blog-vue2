@@ -10,9 +10,9 @@
                 <span class="input-info error">请输入分类排序</span>
             </a-input>
         </div>
-        <div class="settings-footer clearfix">
-            <router-link to="/backend/category/list" class="btn btn-blue">返回</router-link>
+        <div class="settings-footer">
             <a @click="modify" href="javascript:;" class="btn btn-yellow">编辑分类</a>
+            <router-link to="/backend/category/list" class="btn btn-blue">返回</router-link>
         </div>
     </div>
 </template>

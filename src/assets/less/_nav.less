@@ -1,11 +1,11 @@
 .global-warning {
+    display: none;
+    height: 40px;
     background: #293c3d;
     color: white;
-    height: 40px;
     line-height: 40px;
     font-size: 14px;
     text-align: center;
-    display: none;
     &.active {
         display: block;
     }
@@ -14,6 +14,7 @@
     }
 }
 
+// navigation.vue
 .global-nav {
     position: fixed;
     top: 0;
@@ -28,8 +29,14 @@
         justify-content: space-between;
     }
 
-    .left-part, .right-part {
+    .left-part {
         display: flex;
+    }
+    .right-part {
+        display: flex;
+        @media (max-width: 750px) {
+            display: none;
+        }
     }
 
     .logo-link {
@@ -42,33 +49,52 @@
     .main-nav {
         display: flex;
         margin-left: 48px;
+        @media (max-width: 1000px) {
+            margin-left: 25px;
+        }
         .icon {
             vertical-align: -4px;
             margin-right: 12px;
+            @media (max-width: 1000px) {
+                margin-right: 0;
+            }
         }
     }
     .nav-link {
+        position: relative;
+        padding: 0 24px;
         font-size: 18px;
         color: white;
         line-height: 60px;
-        padding: 0 24px;
-        position: relative;
         &.current:after {
             content: '';
             position: absolute;
-            height: 3px;
             left: 24px;
             right: 24px;
             bottom: 0;
+            height: 3px;
             border-radius: 3px;
             background: #eded63;
+        }
+        @media (max-width: 1000px) {
+            font-size: 17px;
+            .text {
+                display: none;
+            }
+            &.current:after {
+                left: 10px;
+                right: 10px;
+            }
+        }
+        @media (max-width: 375px) {
+            padding: 0 15px;
         }
     }
 
     .btn {
+        margin-top: 10px;
         font-weight: bold;
         font-size: 16px;
-        margin-top: 10px;
     }
 
     .nav-signup {
@@ -78,16 +104,16 @@
     .nav-me {
         margin-left: 10px;
         .nav-avatar-img {
-            margin-top: 10px;
             width: 40px;
             height: 40px;
+            margin-top: 10px;
             border-radius: 20px;
         }
     }
     .nav-search {
-        font-size: 0;
-        margin-left: 16px;
         position: relative;
+        margin-left: 16px;
+        font-size: 0;
         .icon-search-white {
             position: absolute;
             top: 22px;
@@ -96,16 +122,15 @@
 
         .nav-search-input {
             width: 180px;
+            height: 40px;
+            margin-top: 10px;
+            padding: 0 14px 0 40px;
             background: rgba(255, 255, 255, 0.25);
             border: none;
-            font-size: 16px;
             border-radius: 4px;
-            margin-top: 10px;
-            line-height: 16px;
+            font-size: 16px;
             color: white;
             line-height: 18px;
-            height: 40px;
-            padding: 0 14px 0 40px;
         }
 
         .nav-search-input::-webkit-input-placeholder {

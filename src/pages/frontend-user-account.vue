@@ -1,5 +1,5 @@
 <template>
-    <div class="main wrap clearfix">
+    <div class="main wrap">
         <div class="main-left">
             <div class="home-feeds cards-wrap">
                 <div class="settings-main card">
@@ -13,7 +13,7 @@
                             <span class="input-info error">请输入邮箱</span>
                         </a-input>
                     </div>
-                    <div class="settings-footer clearfix">
+                    <div class="settings-footer">
                         <a @click="handleSubmit" href="javascript:;" class="btn btn-yellow">保存设置</a>
                     </div>
                 </div>

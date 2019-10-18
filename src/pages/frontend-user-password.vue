@@ -1,5 +1,5 @@
 <template>
-    <div class="main wrap clearfix">
+    <div class="main wrap">
         <div class="main-left">
             <div class="home-feeds cards-wrap">
                 <div class="settings-main card">
@@ -14,7 +14,7 @@
                             <input type="password" v-model="form.re_password" placeholder="确认密码" class="base-input" name="re_password" />
                         </a-input>
                     </div>
-                    <div class="settings-footer clearfix"><a @click="modify" href="javascript:;" class="btn btn-yellow">保存设置</a></div>
+                    <div class="settings-footer"><a @click="modify" href="javascript:;" class="btn btn-yellow">保存设置</a></div>
                 </div>
             </div>
         </div>

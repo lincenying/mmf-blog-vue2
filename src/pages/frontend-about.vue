@@ -1,5 +1,5 @@
 <template>
-    <div class="main wrap clearfix">
+    <div class="main wrap">
         <div class="main-left">
             <div class="card card-answer">
                 <div class="answer-content">

@@ -1,5 +1,5 @@
 <template>
-    <div class="main wrap clearfix">
+    <div class="main wrap">
         <div class="main-left">
             <div class="home-feeds cards-wrap">
                 <!-- <topics-item-none v-if="!topics.path">加载中, 请稍等...</topics-item-none> -->

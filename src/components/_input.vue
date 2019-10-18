@@ -11,6 +11,7 @@
 
 <script>
 export default {
+    name: 'a-input',
     props: ['title', 'classes']
 }
 </script>

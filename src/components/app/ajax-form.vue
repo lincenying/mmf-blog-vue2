@@ -3,6 +3,7 @@
 </template>
 <script>
 export default {
+    name: 'ajax-form',
     props: {
         action: {
             type: String,

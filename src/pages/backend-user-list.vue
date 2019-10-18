@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="user.hasNext" class="settings-footer clearfix">
+        <div v-if="user.hasNext" class="settings-footer">
             <a @click="loadMore()" class="admin-load-more" href="javascript:;">加载更多</a>
         </div>
     </div>

@@ -10,7 +10,7 @@
                 <span class="input-info error">请输入分类排序</span>
             </a-input>
         </div>
-        <div class="settings-footer clearfix"><a @click="insert" href="javascript:;" class="btn btn-yellow">添加分类</a></div>
+        <div class="settings-footer"><a @click="insert" href="javascript:;" class="btn btn-yellow">添加分类</a></div>
     </div>
 </template>
 

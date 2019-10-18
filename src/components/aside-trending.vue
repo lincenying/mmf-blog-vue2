@@ -1,8 +1,6 @@
 <template>
     <!--
-        <Affix :offset-top="10" class="card-affix">
-
-        </Affix>
+        <Affix :offset-top="10" class="card-affix"></Affix>
     -->
     <div class="card card-trending">
         <h2 class="card-title">热门文章</h2>

@@ -6,7 +6,7 @@
                 <div class="comment-post-input-wrap base-textarea-wrap">
                     <textarea v-model="form.content" id="content" class="textarea-input base-input" cols="30" rows="4"></textarea>
                 </div>
-                <div class="comment-post-actions clearfix"><a @click="postComment" href="javascript:;" class="btn btn-blue">发表评论</a></div>
+                <div class="comment-post-actions"><a @click="postComment" href="javascript:;" class="btn btn-blue">发表评论</a></div>
             </div>
             <div class="comment-items-wrap">
                 <div v-for="item in comments.data" :key="item._id" class="comment-item">

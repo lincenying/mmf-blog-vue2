@@ -1,3 +1,5 @@
+// signin.vue && signup.vue
+
 .modal-wrap {
     position: fixed;
     top: 0;
@@ -31,102 +33,101 @@
         vertical-align: middle;
         margin-left: -1px;
     }
-}
-
-.modal {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 16px;
-    text-align: left;
-    visibility: hidden;
-    opacity: 0;
-    background: white;
-    margin: auto;
-    width: 360px;
-    border-radius: 12px;
-    padding: 25px;
-    box-sizing: border-box;
-    position: relative;
-    .modal-prev {
-        width: 78px;
-        height: 78px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: .25;
-        &:hover {
-            opacity: 1;
-        }
-        .icon {
+    .modal {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 16px;
+        text-align: left;
+        visibility: hidden;
+        opacity: 0;
+        background: white;
+        margin: auto;
+        width: 360px;
+        border-radius: 12px;
+        padding: 25px;
+        box-sizing: border-box;
+        position: relative;
+        .modal-prev {
+            width: 78px;
+            height: 78px;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -10px;
-            margin-left: -10px;
-        }
-    }
-    .modal-close {
-        width: 78px;
-        height: 78px;
-        position: absolute;
-        right: 0;
-        top: 0;
-        opacity: .25;
-        &:hover {
-            opacity: 1;
-        }
-        .icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -8px;
-            margin-left: -8px;
-        }
-    }
-    .modal-title {
-        text-align: center;
-        font-size: 20px;
-        text-align: center;
-        font-weight: normal;
-        letter-spacing: .2em;
-        text-indent: .2em;
-    }
-    .signup-form {
-        width: 280px;
-        margin: 20px auto 10px;
-        text-align: center;
-        .input-wrap {
-            position: relative;
-            &+.input-wrap {
-                margin-top: 18px;
+            left: 0;
+            top: 0;
+            opacity: 0.25;
+            &:hover {
+                opacity: 1;
+            }
+            .icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -10px;
+                margin-left: -10px;
             }
         }
-        .input-info {
-            color: #bac1c2;
-            font-size: 12px;
-            margin-top: 10px;
-            margin-left: 14px;
-            text-align: left;
-            &.centered {
-                text-align: center;
-                margin-left: 0;
+        .modal-close {
+            width: 78px;
+            height: 78px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            opacity: 0.25;
+            &:hover {
+                opacity: 1;
+            }
+            .icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -8px;
+                margin-left: -8px;
             }
         }
-        .error-info {
-            color: #ed4656;
+        .modal-title {
+            text-align: center;
+            font-size: 20px;
+            text-align: center;
+            font-weight: normal;
+            letter-spacing: 0.2em;
+            text-indent: 0.2em;
         }
-        .base-input {
-            width: 100%;
-        }
-        .textarea-input {
-            padding: 10px 14px;
-            height: 88px;
-            resize: none;
-        }
-        .signup-btn {
-            width: 100%;
-            padding: 0;
-            margin-top: 20px;
+        .signup-form {
+            width: 280px;
+            margin: 20px auto 10px;
+            text-align: center;
+            .input-wrap {
+                position: relative;
+                & + .input-wrap {
+                    margin-top: 18px;
+                }
+            }
+            .input-info {
+                color: #bac1c2;
+                font-size: 12px;
+                margin-top: 10px;
+                margin-left: 14px;
+                text-align: left;
+                &.centered {
+                    text-align: center;
+                    margin-left: 0;
+                }
+            }
+            .error-info {
+                color: #ed4656;
+            }
+            .base-input {
+                width: 100%;
+            }
+            .textarea-input {
+                padding: 10px 14px;
+                height: 88px;
+                resize: none;
+            }
+            .signup-btn {
+                width: 100%;
+                padding: 0;
+                margin-top: 20px;
+            }
         }
     }
 }

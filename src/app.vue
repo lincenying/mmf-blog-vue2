@@ -2,12 +2,9 @@
     <div id="app" :class="backend ? 'backend' : 'frontend'">
         <Navigation :backend="backend"></Navigation>
         <transition :name="appShell.pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
-            <keep-alive>
-                <router-view :key="$route.fullPath" v-if="!$route.meta.notKeepAlive" class="app-view"></router-view>
+            <keep-alive :include="cacheComponents">
+                <router-view :key="$route.fullPath" class="app-view"></router-view>
             </keep-alive>
-        </transition>
-        <transition :name="appShell.pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
-            <router-view :key="$route.fullPath" v-if="$route.meta.notKeepAlive" class="app-view"></router-view>
         </transition>
         <sign-up :show="global.showRegisterModal"></sign-up>
         <sign-in :show="global.showLoginModal"></sign-in>
@@ -32,7 +29,9 @@ export default {
         backTop
     },
     data() {
-        return {}
+        return {
+            cacheComponents: 'frontend-index,frontend-about'
+        }
     },
     computed: {
         ...mapGetters({

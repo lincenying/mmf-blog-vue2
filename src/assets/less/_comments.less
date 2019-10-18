@@ -1,89 +1,75 @@
+// frontend-comment.vue && backend-article-comment.vue
+
 .comments {
     margin-left: 25px;
     padding-top: 20px;
     padding-right: 25px;
     border-top: 1px solid #f2f3f4;
     .comment-item {
+        display: flex;
         padding: 18px 0;
         &:hover .comment-actions-hidden {
             opacity: 1;
-            visibility: visible
+            visibility: visible;
         }
-        .comment-author-wrap {
-            line-height: 1;
-            display: block;
-            margin-top: 1px;
-            color: #888
-        }
-
-        .comment-content {
-            margin-top: 5px
-        }
-
-        .comment-footer {
-            font-size: 14px;
-            color: #888;
-            margin-top: 6px;
-            line-height: 1;
-            .comment-time {
-                padding-right: 5px;
+        .comment-content-wrap {
+            flex: 1 1 auto;
+            margin-left: 15px;
+            .comment-author-wrap {
+                line-height: 1;
+                display: block;
+                margin-top: 1px;
+                color: #888;
+            }
+            .comment-content {
+                margin-top: 5px;
+            }
+            .comment-footer {
+                font-size: 14px;
+                color: #888;
+                margin-top: 6px;
+                line-height: 1;
+                .comment-time {
+                    padding-right: 5px;
+                }
+                .comment-action-item {
+                    color: #888;
+                    &:hover {
+                        color: #444;
+                    }
+                }
             }
         }
-
-        .comment-actions-hidden {
-            opacity: 0;
-            visibility: hidden;
-            -webkit-transition: all .25s ease-in-out;
-            transition: all .25s ease-in-out
-        }
-
-        .comment-action-item {
-            color: #888
-        }
-
-        .comment-action-item:hover {
-            color: #444
-        }
     }
-    .comment-post-actions {
-        text-align: right;
-    }
-    .comment-content-wrap, .comment-post-input-wrap {
-        margin-left: 55px
-    }
+    // 发布框
     .comment-post-wrap {
-        padding-bottom: 20px
-    }
-    .comment-post-input-wrap {
-        textarea {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+        .comment-post-input-wrap {
+            flex: 1 1 auto;
+            margin-left: 15px;
+            textarea {
+                display: block;
+                width: 100%;
+                padding: 10px 14px;
+                height: 88px;
+                resize: none;
+            }
+        }
+        .comment-post-actions {
+            flex: none;
             width: 100%;
-            padding: 10px 14px;
-            height: 88px;
-            resize: none;
+            padding-top: 10px;
+            text-align: right;
         }
     }
-    .comment-post-input {
-        width: 100%
-    }
-    .comment-author-avatar-link {
-        float: left
-    }
+
     .avatar-img {
+        flex: none;
         width: 40px;
         height: 40px;
         border-radius: 20px;
-        float: left
-    }
-    .comment-likes-count, .post-comment-btn {
-        float: right
-    }
-    .cancel-comment {
-        float: right;
-        color: #b6b6b6;
-        line-height: 40px;
-        margin-right: 20px;
-        -webkit-transition: all .25s ease-in-out;
-        transition: all .25s ease-in-out
     }
 
     .load-more-wrap {

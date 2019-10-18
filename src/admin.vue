@@ -1,16 +1,13 @@
 <template>
     <div id="app" :class="backend ? 'backend' : 'frontend'">
         <Navigation :backend="backend"></Navigation>
-        <div class="main wrap clearfix">
+        <div class="main wrap">
             <div class="main-left">
                 <div class="home-feeds cards-wrap">
                     <transition :name="appShell.pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
-                        <keep-alive>
-                            <router-view :key="$route.fullPath" v-if="!$route.meta.notKeepAlive" class="app-view"></router-view>
+                        <keep-alive :include="cacheComponents">
+                            <router-view :key="$route.fullPath" class="app-view"></router-view>
                         </keep-alive>
-                    </transition>
-                    <transition :name="appShell.pageTransitionName" @before-enter="handleBeforeEnter" @after-enter="handleAfterEnter">
-                        <router-view :key="$route.fullPath" v-if="$route.meta.notKeepAlive" class="app-view"></router-view>
                     </transition>
                 </div>
             </div>
@@ -29,6 +26,11 @@ export default {
     components: {
         backendMenu,
         Navigation
+    },
+    data() {
+        return {
+            cacheComponents: 'backend-admin-list, backend-article-comment, backend-article-list, backend-user-list'
+        }
     },
     computed: {
         ...mapGetters({

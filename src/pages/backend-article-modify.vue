@@ -19,9 +19,9 @@
                 </div>
             </div>
         </div>
-        <div class="settings-footer clearfix">
-            <router-link to="/backend/article/list" class="btn btn-blue">返回</router-link>
+        <div class="settings-footer">
             <a @click="modify" href="javascript:;" class="btn btn-yellow">编辑文章</a>
+            <router-link to="/backend/article/list" class="btn btn-blue">返回</router-link>
         </div>
     </div>
 </template>

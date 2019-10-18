@@ -1,32 +1,32 @@
+// publish/index.html ========>>>>>>>>
 .app-refresh {
-    background: #000;
-    height: 0;
-    line-height: 52px;
-    overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10001;
+    height: 0;
     padding: 0 18px;
+    background: #000;
+    line-height: 52px;
+    overflow: hidden;
     transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
+    .app-refresh-wrap {
+        display: flex;
+        color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    .app-refresh-wrap label {
+        flex: 1;
+    }
+    .app-refresh-show {
+        height: 52px;
+    }
 }
-.app-refresh-wrap {
-    display: flex;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-}
-.app-refresh-wrap label {
-    flex: 1;
-}
-.app-refresh-show {
-    height: 52px;
-}
-/* app.vue */
+// publish/index.html <<<<<<<<========
+
+// app.vue ========>>>>>>>>
 .slide-left-enter-active,
 .slide-left-leave-active,
 .slide-right-enter-active,
@@ -66,37 +66,25 @@
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: all 0.3s ease;
+    transition: opacity 0.3s;
 }
-.fade-enter {
-    opacity: 1;
-    transform: translate3d(0, 100px, 0);
-}
-.fade-leave-active {
+.fade-enter,
+.fade-leave-to {
     opacity: 0;
-    transform: translate3d(100px, 0, 0);
 }
-.beian {
-    float: right;
-}
-.beian i {
-    width: 14px;
-    height: 14px;
-    background: url('https://ae01.alicdn.com/kf/HTB1RRHHbGSs3KVjSZPiq6AsiVXaV.jpg');
-    background-size: cover;
-    display: inline-block;
-    vertical-align: top;
-}
+// app.vue <<<<<<<<========
 
-/* about.vue */
+// about.vue ========>>>>>>>>
 .flex-item {
     display: flex;
     margin-bottom: 10px;
+    .flex-label {
+        width: 70px;
+    }
 }
-.flex-item .flex-label {
-    width: 70px;
-}
+// about.vue <<<<<<<<========
 
+// app.vue ---> backtop.vue ========>>>>>>>>
 .back-top {
     transition: all 0.3s ease;
     position: fixed;
@@ -116,15 +104,84 @@
         }
     }
 }
+// app.vue ---> backtop.vue <<<<<<<<========
 
-.card + .card-affix {
-    margin-top: 10px;
-}
-
-.ivu-affix {
-    position: fixed;
-}
-
+// toastr 距离顶部距离 ========>>>>>>>>
 .toast-top-center {
     top: 10px !important;
 }
+// toastr 距离顶部距离 <<<<<<<<========
+
+// loading-spinner.vue ========>>>>>>>>
+.spinner {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    z-index: 10099;
+    left: 50%;
+    top: 50%;
+    margin: -125px 0 0 -45px;
+    text-align: center;
+    animation: rotate 2s infinite linear;
+    .dot1,
+    .dot2 {
+        width: 60%;
+        height: 60%;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        background-color: #67cf22;
+        border-radius: 100%;
+        animation: bounce 2s infinite ease-in-out;
+    }
+    .dot2 {
+        top: auto;
+        bottom: 0;
+        animation-delay: -1s;
+    }
+}
+
+@-webkit-keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes bounce {
+    0%,
+    100% {
+        -webkit-transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+    }
+}
+@keyframes bounce {
+    0%,
+    100% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+    }
+}
+// loading-spinner.vue <<<<<<<<========
+
+// progress-bar.vue ========>>>>>>>>
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    /* transition width .2s, opacity .4s; */
+    opacity: 1;
+    background-color: #efc14e;
+    z-index: 999999;
+}
+// progress-bar.vue <<<<<<<<========

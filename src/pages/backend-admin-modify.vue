@@ -14,9 +14,9 @@
                 <span class="input-info error">请输入密码</span>
             </a-input>
         </div>
-        <div class="settings-footer clearfix">
-            <router-link to="/backend/admin/list" class="btn btn-blue">返回</router-link>
+        <div class="settings-footer">
             <a @click="modify" href="javascript:;" class="btn btn-yellow">编辑管理员</a>
+            <router-link to="/backend/admin/list" class="btn btn-blue">返回</router-link>
         </div>
     </div>
 </template>

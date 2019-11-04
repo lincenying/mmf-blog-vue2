@@ -24,7 +24,7 @@ module.exports = {
         devtool: 'source-map',
         plugins: [
             new SWPrecachePlugin({
-                cacheId: 'mmf-blog-vue2-pwa-ssr',
+                cacheId: 'mmf-blog-vue2',
                 filename: 'service-worker.js',
                 minify: true,
                 dontCacheBustUrlsMatching: /./,

@@ -20,16 +20,6 @@ a {
 
 .backend {
     padding-top: 0;
-    .global-nav {
-        position: static;
-        top: auto;
-        z-index: auto;
-    }
-    .main {
-        .main-left {
-            flex: 1 1 auto;
-        }
-    }
 }
 
 .wrap {
@@ -65,6 +55,9 @@ a {
     .main-left {
         flex: none;
         width: 660px;
+        .backend & {
+            flex: 1 1 auto;
+        }
         @media (max-width: 1000px) {
             .card:last-child {
                 margin-bottom: 10px;

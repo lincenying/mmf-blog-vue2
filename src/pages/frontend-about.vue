@@ -64,13 +64,13 @@ export default {
         trending
     },
     mixins: [metaMixin],
+    async asyncData({ store }) {
+        await store.dispatch('frontend/article/getTrending')
+    },
     computed: {
         ...mapGetters({
             trending: 'frontend/article/getTrending'
         })
-    },
-    async asyncData({ store }) {
-        await store.dispatch('frontend/article/getTrending')
     },
     mounted() {},
     metaInfo() {

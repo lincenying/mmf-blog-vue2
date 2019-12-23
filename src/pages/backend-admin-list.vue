@@ -33,15 +33,15 @@ import { showMsg } from '@/utils'
 export default {
     name: 'backend-admin-list',
     mixins: [checkAdmin],
-    computed: {
-        ...mapGetters({
-            admin: 'backend/admin/getAdminList'
-        })
-    },
     async asyncData({ store, route }, config = { page: 1 }) {
         await store.dispatch('backend/admin/getAdminList', {
             ...config,
             path: route.path
+        })
+    },
+    computed: {
+        ...mapGetters({
+            admin: 'backend/admin/getAdminList'
         })
     },
     mounted() {},

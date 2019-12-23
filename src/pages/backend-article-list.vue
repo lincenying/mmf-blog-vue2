@@ -36,15 +36,15 @@ import checkAdmin from '@/mixins/check-admin'
 export default {
     name: 'backend-article-list',
     mixins: [checkAdmin],
-    computed: {
-        ...mapGetters({
-            topics: 'backend/article/getArticleList'
-        })
-    },
     async asyncData({ store, route }, config = { page: 1 }) {
         await store.dispatch('backend/article/getArticleList', {
             ...config,
             path: route.path
+        })
+    },
+    computed: {
+        ...mapGetters({
+            topics: 'backend/article/getArticleList'
         })
     },
     mounted() {},

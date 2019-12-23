@@ -33,15 +33,15 @@ import checkAdmin from '@/mixins/check-admin'
 export default {
     name: 'backend-user-list',
     mixins: [checkAdmin],
-    computed: {
-        ...mapGetters({
-            user: 'backend/user/getUserList'
-        })
-    },
     async asyncData({ store, route }, config = { page: 1 }) {
         await store.dispatch('backend/user/getUserList', {
             ...config,
             path: route.path
+        })
+    },
+    computed: {
+        ...mapGetters({
+            user: 'backend/user/getUserList'
         })
     },
     mounted() {},

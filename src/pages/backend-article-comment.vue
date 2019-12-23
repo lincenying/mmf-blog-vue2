@@ -35,17 +35,17 @@ import checkAdmin from '@/mixins/check-admin'
 export default {
     name: 'backend-article-comment',
     mixins: [checkAdmin],
-    computed: {
-        ...mapGetters({
-            comments: 'global/comment/getCommentList'
-        })
-    },
     async asyncData({ store, route }, config = { page: 1 }) {
         config.all = 1
         config.id = route.params.id
         await store.dispatch('global/comment/getCommentList', {
             ...config,
             path: route.path
+        })
+    },
+    computed: {
+        ...mapGetters({
+            comments: 'global/comment/getCommentList'
         })
     },
     mounted() {},

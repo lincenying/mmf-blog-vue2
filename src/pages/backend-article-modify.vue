@@ -40,6 +40,13 @@ export default {
         aInput
     },
     mixins: [checkAdmin],
+    async asyncData({ store, route }, config = { limit: 99 }) {
+        config.all = 1
+        await store.dispatch('global/category/getCategoryList', {
+            ...config,
+            path: route.path
+        })
+    },
     data() {
         return {
             form: {
@@ -62,13 +69,6 @@ export default {
             const obj = this.category.find(item => item._id === val)
             this.form.category_name = obj.cate_name
         }
-    },
-    async asyncData({ store, route }, config = { limit: 99 }) {
-        config.all = 1
-        await store.dispatch('global/category/getCategoryList', {
-            ...config,
-            path: route.path
-        })
     },
     async mounted() {
         const data = await this.$store.dispatch('backend/article/getArticleItem', { id: this.$route.params.id })

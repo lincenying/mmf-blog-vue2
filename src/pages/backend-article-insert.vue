@@ -37,6 +37,13 @@ export default {
         aInput
     },
     mixins: [checkAdmin],
+    async asyncData({ store, route }, config = { limit: 99 }) {
+        config.all = 1
+        await store.dispatch('global/category/getCategoryList', {
+            ...config,
+            path: route.path
+        })
+    },
     data() {
         return {
             form: {
@@ -49,13 +56,6 @@ export default {
     computed: {
         ...mapGetters({
             category: 'global/category/getCategoryList'
-        })
-    },
-    async asyncData({ store, route }, config = { limit: 99 }) {
-        config.all = 1
-        await store.dispatch('global/category/getCategoryList', {
-            ...config,
-            path: route.path
         })
     },
     mounted() {

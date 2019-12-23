@@ -53,11 +53,11 @@ export default {
             return Math.floor(this.percent)
         },
         increase(num) {
-            this.percent = this.percent + Math.floor(num)
+            this.percent += Math.floor(num)
             return this
         },
         decrease(num) {
-            this.percent = this.percent - Math.floor(num)
+            this.percent -= Math.floor(num)
             return this
         },
         finish() {

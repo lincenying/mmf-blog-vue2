@@ -45,13 +45,6 @@ export default {
         trending
     },
     mixins: [metaMixin],
-    computed: {
-        ...mapGetters({
-            topics: 'frontend/article/getArticleList',
-            category: 'global/category/getCategoryList',
-            trending: 'frontend/article/getTrending'
-        })
-    },
     async asyncData({ store, route }, config = { page: 1 }) {
         const {
             params: { id, key, by },
@@ -62,6 +55,13 @@ export default {
             store.dispatch('frontend/article/getTrending'),
             store.dispatch('frontend/article/getArticleList', { ...config, limit: 10, id, path, key, by })
         ])
+    },
+    computed: {
+        ...mapGetters({
+            topics: 'frontend/article/getArticleList',
+            category: 'global/category/getCategoryList',
+            trending: 'frontend/article/getTrending'
+        })
     },
     activated() {
         this.loadMore(1)

@@ -30,6 +30,12 @@ export default {
         aInput
     },
     mixins: [checkAdmin],
+    async asyncData({ store, route }) {
+        await store.dispatch('global/category/getCategoryItem', {
+            path: route.path,
+            id: route.params.id
+        })
+    },
     data() {
         return {
             form: {
@@ -49,12 +55,6 @@ export default {
             this.form.cate_name = val.data.cate_name
             this.form.cate_order = val.data.cate_order
         }
-    },
-    async asyncData({ store, route }) {
-        await store.dispatch('global/category/getCategoryItem', {
-            path: route.path,
-            id: route.params.id
-        })
     },
     mounted() {
         this.form.cate_name = this.item.data.cate_name

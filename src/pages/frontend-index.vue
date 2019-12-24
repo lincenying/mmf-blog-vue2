@@ -22,7 +22,11 @@
                 <topics-item-none v-else>当前分类还没有文章...</topics-item-none>
             </div>
         </div>
-        <div class="main-right"><category :category="category"></category> <trending :trending="trending"></trending></div>
+        <div class="main-right">
+            <category :category="category"></category>
+            <trending :trending="trending"></trending>
+            <other></other>
+        </div>
     </div>
 </template>
 <script>
@@ -34,6 +38,7 @@ import topicsItem from '../components/topics-item.vue'
 import topicsItemNone from '../components/topics-item-none.vue'
 import category from '../components/aside-category.vue'
 import trending from '../components/aside-trending.vue'
+import other from '../components/aside-other.vue'
 
 export default {
     name: 'frontend-index',
@@ -42,7 +47,8 @@ export default {
         topicsItem,
         topicsItemNone,
         category,
-        trending
+        trending,
+        other
     },
     mixins: [metaMixin],
     async asyncData({ store, route }, config = { page: 1 }) {

@@ -39,7 +39,11 @@
                 <div class="card card-answer"><div class="answer-content">该文章不存在, 或者该文章已经被删除</div></div>
             </template>
         </div>
-        <div class="main-right"><category :category="category"></category> <trending :trending="trending"></trending></div>
+        <div class="main-right">
+            <category :category="category"></category>
+            <trending :trending="trending"></trending>
+            <other></other>
+        </div>
     </div>
 </template>
 
@@ -50,6 +54,7 @@ import metaMixin from '@/mixins'
 import actions from '../components/item-actions.vue'
 import category from '../components/aside-category.vue'
 import trending from '../components/aside-trending.vue'
+import other from '../components/aside-other.vue'
 import comment from '../components/frontend-comment.vue'
 
 export default {
@@ -59,7 +64,8 @@ export default {
         actions,
         comment,
         category,
-        trending
+        trending,
+        other
     },
     mixins: [metaMixin],
     async asyncData({ store, route }) {

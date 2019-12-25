@@ -548,6 +548,12 @@ a:hover .icon-arrow-right {
 
             .list-action {
                 width: 100px;
+                & > a {
+                    display: inline-block;
+                    & + a {
+                        margin-left: 5px;
+                    }
+                }
             }
 
             .list-username {

@@ -76,37 +76,40 @@ export default {
         this.form.category_old = data.category
         this.form.category = data.category
         this.form.content = data.content
-        // eslint-disable-next-line
-        window.modifyEditor = editormd('modify-content', {
-            width: '100%',
-            height: 500,
-            markdown: data.content,
-            placeholder: '请输入内容...',
-            path: 'https://cdn.jsdelivr.net/npm/editor.md@1.5.0/lib/',
-            toolbarIcons() {
-                return [
-                    'bold',
-                    'italic',
-                    'quote',
-                    '|',
-                    'list-ul',
-                    'list-ol',
-                    'hr',
-                    '|',
-                    'link',
-                    'reference-link',
-                    'image',
-                    'code',
-                    'table',
-                    '|',
-                    'watch',
-                    'preview',
-                    'fullscreen'
-                ]
-            },
-            watch: false,
-            saveHTMLToTextarea: true
-        })
+        await this.$nextTick()
+        setTimeout(() => {
+            // eslint-disable-next-line
+            window.modifyEditor = editormd('modify-content', {
+                width: '100%',
+                height: 500,
+                markdown: data.content,
+                placeholder: '请输入内容...',
+                path: 'https://cdn.jsdelivr.net/npm/editor.md@1.5.0/lib/',
+                toolbarIcons() {
+                    return [
+                        'bold',
+                        'italic',
+                        'quote',
+                        '|',
+                        'list-ul',
+                        'list-ol',
+                        'hr',
+                        '|',
+                        'link',
+                        'reference-link',
+                        'image',
+                        'code',
+                        'table',
+                        '|',
+                        'watch',
+                        'preview',
+                        'fullscreen'
+                    ]
+                },
+                watch: false,
+                saveHTMLToTextarea: true
+            })
+        }, 500)
     },
     methods: {
         async modify() {

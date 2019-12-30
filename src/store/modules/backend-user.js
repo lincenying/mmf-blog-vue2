@@ -13,14 +13,7 @@ const state = () => ({
 })
 
 const actions = {
-    async ['getUserList'](
-        {
-            commit,
-            state,
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['getUserList']({ commit, state, rootState: { $api } }, config) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
         const { code, data } = await $api.get('backend/user/list', { ...config, cache: true })
         if (data && code === 200) {
@@ -30,13 +23,7 @@ const actions = {
             })
         }
     },
-    async ['getUserItem'](
-        {
-            commit,
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['getUserItem']({ commit, rootState: { $api } }, config) {
         const { code, data } = await $api.get('backend/user/item', config)
         if (data && code === 200) {
             commit('receiveUserItem', {

@@ -23,7 +23,7 @@
                         <p class="error-info input-info hidden">长度至少 6 位</p>
                     </div>
                     <a @click="register" href="javascript:;" class="btn signup-btn btn-yellow">确认注册</a>
-                    <a @click="login" href="javascript:;" class="btn signup-btn btn-blue">直接登录</a>
+                    <a @click="login" href="javascript:;" class="btn signup-btn btn-blue block">直接登录</a>
                 </div>
             </div>
         </div>

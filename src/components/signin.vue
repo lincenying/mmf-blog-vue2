@@ -15,7 +15,7 @@
                         <p class="error-info input-info hidden">长度至少 6 位</p>
                     </div>
                     <a @click="login" href="javascript:;" class="btn signup-btn btn-yellow">确认登录</a>
-                    <a @click="register" href="javascript:;" class="btn signup-btn btn-blue">我要注册</a>
+                    <a @click="register" href="javascript:;" class="btn signup-btn btn-blue block">我要注册</a>
                 </div>
             </div>
         </div>

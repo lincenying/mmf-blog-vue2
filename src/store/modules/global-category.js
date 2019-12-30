@@ -4,27 +4,14 @@ const state = {
 }
 
 const actions = {
-    async ['getCategoryList'](
-        {
-            commit,
-            state,
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['getCategoryList']({ commit, state, rootState: { $api } }, config) {
         if (state.lists.length) return
         const { code, data } = await $api.get('backend/category/list', { ...config, cache: true })
         if (data && code === 200) {
             commit('receiveCategoryList', data.list)
         }
     },
-    async ['getCategoryItem'](
-        {
-            commit,
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['getCategoryItem']({ commit, rootState: { $api } }, config) {
         const { code, data } = await $api.get('backend/category/item', config)
         if (data && code === 200) {
             commit('receiveCategoryItem', {

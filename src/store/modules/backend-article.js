@@ -9,14 +9,7 @@ const state = () => ({
 })
 
 const actions = {
-    async ['getArticleList'](
-        {
-            commit,
-            state,
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['getArticleList']({ commit, state, rootState: { $api } }, config) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
         const { code, data } = await $api.get('backend/article/list', config)
         if (data && code === 200) {
@@ -26,36 +19,19 @@ const actions = {
             })
         }
     },
-    async ['getArticleItem'](
-        {
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['getArticleItem']({ rootState: { $api } }, config) {
         const { code, data } = await $api.get('backend/article/item', config)
         if (data && code === 200) {
             return data
         }
     },
-    async ['deleteArticle'](
-        {
-            commit,
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['deleteArticle']({ commit, rootState: { $api } }, config) {
         const { code } = await $api.get('backend/article/delete', config)
         if (code === 200) {
             commit('deleteArticle', config.id)
         }
     },
-    async ['recoverArticle'](
-        {
-            commit,
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['recoverArticle']({ commit, rootState: { $api } }, config) {
         const { code } = await $api.get('backend/article/recover', config)
         if (code === 200) {
             commit('recoverArticle', config.id)

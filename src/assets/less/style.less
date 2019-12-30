@@ -367,6 +367,15 @@ a {
     }
 }
 
+// 右侧其他
+.card-other {
+    padding: 25px;
+    font-size: 14px;
+    li {
+        line-height: 2;
+    }
+}
+
 // 右侧分类
 .topic-item {
     position: relative;
@@ -539,6 +548,12 @@ a:hover .icon-arrow-right {
 
             .list-action {
                 width: 100px;
+                & > a {
+                    display: inline-block;
+                    & + a {
+                        margin-left: 5px;
+                    }
+                }
             }
 
             .list-username {
@@ -655,7 +670,3 @@ a:hover .icon-arrow-right {
         border-radius: 0;
     }
 }
-
-
-
-

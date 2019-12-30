@@ -14,14 +14,7 @@ const state = () => ({
 })
 
 const actions = {
-    async ['getArticleList'](
-        {
-            commit,
-            state,
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['getArticleList']({ commit, state, rootState: { $api } }, config) {
         if (state.lists.data.length > 0 && config.path === state.lists.path && config.page === 1) return
         const { code, data } = await $api.get('frontend/article/list', { ...config, cache: true })
         if (data && code === 200) {
@@ -31,14 +24,7 @@ const actions = {
             })
         }
     },
-    async ['getArticleItem'](
-        {
-            commit,
-            state,
-            rootState: { $api }
-        },
-        config
-    ) {
+    async ['getArticleItem']({ commit, state, rootState: { $api } }, config) {
         if (config.path === state.item.path) return
         const { code, data } = await $api.get('frontend/article/item', { ...config, markdown: 1, cache: true })
         if (data && code === 200) {

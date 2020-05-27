@@ -4,5 +4,6 @@
     "tabWidth": 4,
     "singleQuote": true,
     "trailingComma": "none",
+    "arrowParens": "avoid",
     "htmlWhitespaceSensitivity": "css"
 }

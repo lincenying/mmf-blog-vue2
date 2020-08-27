@@ -14,8 +14,8 @@
                 <template v-else-if="topics.data.length > 0">
                     <topics-item v-for="item in topics.data" :item="item" :key="item._id"></topics-item>
                     <div class="load-more-wrap">
-                        <a v-if="topics.hasNext" @click="loadMore()" href="javascript:;" class="load-more"
-                            >更多 <i class="icon icon-circle-loading"></i>
+                        <a v-if="topics.hasNext" @click="loadMore()" href="javascript:;" class="load-more" :class="loading ? 'loading' : ''"
+                            >{{ loading ? '加载中' : '更多' }} <i class="icon icon-circle-loading"></i>
                         </a>
                     </div>
                 </template>
@@ -62,6 +62,11 @@ export default {
             store.dispatch('frontend/article/getArticleList', { ...config, limit: 10, id, path, key, by })
         ])
     },
+    data() {
+        return {
+            loading: false
+        }
+    },
     computed: {
         ...mapGetters({
             topics: 'frontend/article/getArticleList',
@@ -74,8 +79,11 @@ export default {
     },
     methods: {
         async loadMore(page = this.topics.page + 1) {
+            if (this.loading) return
             this.$loading.start()
+            this.loading = true
             await this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
+            this.loading = false
             this.$loading.finish()
         }
     },

@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div v-if="comments.hasNext" class="load-more-wrap">
-                <a @click="loadcomment()" href="javascript:;" class="comments-load-more">加载更多</a>
+                <a v-if="!loading" @click="loadcomment()" href="javascript:;" class="comments-load-more">加载更多</a>
+                <a v-else href="javascript:;" class="comments-load-more">加载中...</a>
             </div>
         </div>
     </div>
@@ -41,6 +42,7 @@ export default {
     props: ['comments'],
     data() {
         return {
+            loading: false,
             form: {
                 id: this.$route.params.id,
                 content: ''
@@ -56,12 +58,14 @@ export default {
         }
     },
     methods: {
-        loadcomment() {
-            this.$store.dispatch(`global/comment/getCommentList`, {
+        async loadcomment() {
+            this.loading = true
+            await this.$store.dispatch(`global/comment/getCommentList`, {
                 id: this.$route.params.id,
                 page: this.comments.page + 1,
                 limit: 10
             })
+            this.loading = false
         },
         async postComment() {
             if (!this.user) {

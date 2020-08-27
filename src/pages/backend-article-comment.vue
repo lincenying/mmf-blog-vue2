@@ -20,7 +20,8 @@
                 </div>
             </div>
             <div v-if="comments.hasNext" class="load-more-wrap">
-                <a @click="loadMore()" href="javascript:;" class="comments-load-more">加载更多</a>
+                <a v-if="!loading" @click="loadMore()" href="javascript:;" class="comments-load-more">加载更多</a>
+                <a v-else href="javascript:;" class="comments-load-more">加载中...</a>
             </div>
         </div>
     </div>
@@ -43,6 +44,11 @@ export default {
             path: route.path
         })
     },
+    data() {
+        return {
+            loading: false
+        }
+    },
     computed: {
         ...mapGetters({
             comments: 'global/comment/getCommentList'
@@ -50,8 +56,10 @@ export default {
     },
     mounted() {},
     methods: {
-        loadMore(page = this.comments.page + 1) {
-            this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
+        async loadMore(page = this.comments.page + 1) {
+            this.loading = true
+            await this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
+            this.loading = false
         },
         async recover(id) {
             const { code, message } = await this.$store.$api.get('frontend/comment/recover', { id })

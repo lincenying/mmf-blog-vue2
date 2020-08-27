@@ -22,7 +22,8 @@
             </div>
         </div>
         <div v-if="topics.hasNext" class="settings-footer">
-            <a @click="loadMore()" class="admin-load-more" href="javascript:;">加载更多</a>
+            <a v-if="!loading" @click="loadMore()" class="admin-load-more" href="javascript:;">加载更多</a>
+            <a v-else class="admin-load-more" href="javascript:;">加载中...</a>
         </div>
     </div>
 </template>
@@ -42,6 +43,11 @@ export default {
             path: route.path
         })
     },
+    data() {
+        return {
+            loading: false
+        }
+    },
     computed: {
         ...mapGetters({
             topics: 'backend/article/getArticleList'
@@ -49,8 +55,10 @@ export default {
     },
     mounted() {},
     methods: {
-        loadMore(page = this.topics.page + 1) {
-            this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
+        async loadMore(page = this.topics.page + 1) {
+            this.loading = true
+            await this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
+            this.loading = false
         },
         async recover(id) {
             const { code, message } = await this.$store.$api.get('backend/article/recover', { id })

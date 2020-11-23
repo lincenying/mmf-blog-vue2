@@ -42,6 +42,18 @@ function checkCode(res) {
 }
 
 export default {
+    file(url, data) {
+        return axios({
+            method: 'post',
+            url,
+            data,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+            .then(checkStatus)
+            .then(checkCode)
+    },
     post(url, data) {
         return axios({
             method: 'post',

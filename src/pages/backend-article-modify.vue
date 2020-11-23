@@ -15,7 +15,7 @@
             </a-input>
             <div class="settings-section">
                 <div id="modify-content" class="settings-item-content">
-                    <textarea id="editor" name="content" class="form-control hidden" data-autosave="editor-content"></textarea>
+                    <mavon-editor v-if="renderMD" ref="md" v-model="form.content" @imgAdd="imgAdd" :subfield="false" />
                 </div>
             </div>
         </div>
@@ -27,7 +27,6 @@
 </template>
 
 <script>
-/* global modifyEditor */
 import { mapGetters } from 'vuex'
 import { showMsg } from '@/utils'
 // import api from '~api'
@@ -49,13 +48,15 @@ export default {
     },
     data() {
         return {
+            renderMD: false,
             form: {
                 id: this.$route.params.id,
                 title: '',
                 category: '',
                 category_name: '',
                 category_old: '',
-                content: ''
+                content: '',
+                html: ''
             }
         }
     },
@@ -76,49 +77,24 @@ export default {
         this.form.category_old = data.category
         this.form.category = data.category
         this.form.content = data.content
-        await this.$nextTick()
-        setTimeout(() => {
-            // eslint-disable-next-line
-            window.modifyEditor = editormd('modify-content', {
-                width: '100%',
-                height: 500,
-                markdown: data.content,
-                placeholder: '请输入内容...',
-                path: 'https://cdn.jsdelivr.net/npm/editor.md@1.5.0/lib/',
-                toolbarIcons() {
-                    return [
-                        'bold',
-                        'italic',
-                        'quote',
-                        '|',
-                        'list-ul',
-                        'list-ol',
-                        'hr',
-                        '|',
-                        'link',
-                        'reference-link',
-                        'image',
-                        'code',
-                        'table',
-                        '|',
-                        'watch',
-                        'preview',
-                        'fullscreen'
-                    ]
-                },
-                watch: false,
-                saveHTMLToTextarea: true
-            })
-        }, 500)
+        this.renderMD = true
     },
     methods: {
+        async imgAdd(pos, $file) {
+            // 第一步.将图片上传到服务器.
+            const formdata = new FormData()
+            formdata.append('file', $file)
+            const { data } = await this.$store.$api.file('http://php.mmxiaowu.com/ajax.php?action=upload', formdata)
+            if (data && data.filepath) {
+                this.$refs.md.$img2Url(pos, 'http://php.mmxiaowu.com/' + data.filepath)
+            }
+        },
         async modify() {
-            const content = modifyEditor.getMarkdown()
-            if (!this.form.title || !this.form.category || !content) {
+            if (!this.form.title || !this.form.category || !this.form.content) {
                 showMsg('请将表单填写完整!')
                 return
             }
-            this.form.content = content
+            // this.form.html = this.$refs.md.d_render
             const { code, data, message } = await this.$store.$api.post('backend/article/modify', this.form)
             if (code === 200) {
                 showMsg({

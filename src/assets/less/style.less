@@ -23,9 +23,18 @@ a {
 }
 
 .wrap {
-    width: 1000px;
+    width: 1600px;
     margin: 0 auto;
     position: relative;
+    @media (min-width: 1440px) and (max-width: 1920px) {
+        width: 1400px;
+    }
+    @media (min-width: 1280px) and (max-width: 1439px) {
+        width: 1200px;
+    }
+    @media (min-width: 1001px) and (max-width: 1279px) {
+        width: 1000px;
+    }
     @media (max-width: 1000px) {
         width: auto;
         padding-left: 40px;
@@ -53,7 +62,7 @@ a {
         flex-wrap: wrap;
     }
     .main-left {
-        flex: none;
+        flex: 1 0 auto;
         width: 660px;
         .backend & {
             flex: 1 1 auto;
@@ -187,6 +196,9 @@ a {
         overflow: hidden;
         color: #3e4545;
         line-height: 25px;
+        &.markdown-body {
+            font-family: 'Play', -apple-system-font, 'Helvetica Neue', Tahoma, 'PingFang SC', 'lantinghei sc', 'Microsoft Yahei', sans-serif;
+        }
     }
 }
 
@@ -292,6 +304,7 @@ a {
                 padding-top: 10px;
             }
             &.markdown-body {
+                font-family: 'Play', -apple-system-font, 'Helvetica Neue', Tahoma, 'PingFang SC', 'lantinghei sc', 'Microsoft Yahei', sans-serif;
                 h1 {
                     font-size: 22px;
                 }
@@ -309,6 +322,12 @@ a {
                 }
                 h6 {
                     font-size: 12px;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    & > a[id] {
+                        margin-top: -60px;
+                        padding-top: 60px;
+                    }
                 }
             }
         }

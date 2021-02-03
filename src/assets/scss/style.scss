@@ -1,11 +1,11 @@
-@import '_reset.less';
-@import '_nav.less';
-@import '_actions.less';
-@import '_btn.less';
-@import '_comments.less';
-@import '_modal.less';
-@import '_icon.less';
-@import '_frontend.less';
+@import '_reset.scss';
+@import '_nav.scss';
+@import '_actions.scss';
+@import '_btn.scss';
+@import '_comments.scss';
+@import '_modal.scss';
+@import '_icon.scss';
+@import '_frontend.scss';
 
 a {
     text-decoration: none;
@@ -323,7 +323,12 @@ a {
                 h6 {
                     font-size: 12px;
                 }
-                h1, h2, h3, h4, h5, h6 {
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
                     & > a[id] {
                         margin-top: -60px;
                         padding-top: 60px;
@@ -463,8 +468,6 @@ a:hover .icon-arrow-right {
         font-weight: normal;
         color: #3aced5;
         &:hover {
-            -webkit-transform: scale(1.04);
-            -ms-transform: scale(1.04);
             transform: scale(1.04);
             opacity: 0.8;
         }
@@ -487,24 +490,12 @@ a:hover .icon-arrow-right {
         }
     }
 }
-@-webkit-keyframes circle-loading {
-    from {
-        -webkit-transform: rotate(0);
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-    }
-}
 
 @keyframes circle-loading {
     from {
-        -webkit-transform: rotate(0);
-        -ms-transform: rotate(0);
         transform: rotate(0);
     }
     to {
-        -webkit-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
         transform: rotate(360deg);
     }
 }

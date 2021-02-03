@@ -11,7 +11,7 @@ import App from './admin.vue'
 import ProgressBar from '@/components/progress-bar.vue'
 
 import './assets/css/hljs/googlecode.css'
-import './assets/less/style.less'
+import './assets/scss/style.scss'
 import 'toastr/build/toastr.css'
 
 const store = createStore()

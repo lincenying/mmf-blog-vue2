@@ -42,5 +42,6 @@ export function avatar(email, width) {
     email = decodeURIComponent(email)
     width = width || 256
     // return `https://cdn.v2ex.com/gravatar/${md5(email)}?s=${width}&d=identicon&r=g`
+    // return `https://dn-qiniu-avatar.qbox.me/avatar/${md5(email)}?s=${width}&d=identicon&r=g`
     return `https://fdn.geekzu.org/avatar/${md5(email)}?s=${width}&d=identicon&r=g`
 }

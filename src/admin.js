@@ -1,15 +1,17 @@
-import './polyfill'
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
+import mavonEditor from 'mavon-editor'
 
 import { createStore } from './store'
 import { createRouter } from './router/admin'
 import * as filters from './filters'
 import api from '~api'
+import { oc } from './utils'
 
 import App from './admin.vue'
 import ProgressBar from '@/components/progress-bar.vue'
 
+import 'mavon-editor/dist/css/index.css'
 import './assets/css/hljs/googlecode.css'
 import './assets/scss/style.scss'
 import 'toastr/build/toastr.css'
@@ -23,6 +25,9 @@ window.$$store = store
 const loading = (Vue.prototype.$loading = new Vue(ProgressBar).$mount())
 
 sync(store, router)
+
+Vue.prototype.$oc = oc
+Vue.use(mavonEditor)
 
 Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])

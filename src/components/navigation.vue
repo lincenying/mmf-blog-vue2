@@ -22,10 +22,10 @@
                     ><i class="icon icon-search-white"></i><input @keyup.enter="search($event)" placeholder="记得按回车哦" class="nav-search-input"
                 /></span>
                 <span v-if="isLogin" class="nav-me"
-                    ><router-link to="/user/account" class="nav-me-link"><img :src="userEmail | avatar" class="nav-avatar-img"/></router-link
+                    ><router-link to="/user/account" class="nav-me-link"><img :src="userEmail | avatar" class="nav-avatar-img" /></router-link
                 ></span>
                 <span v-else class="nav-me"
-                    ><a @click="login" href="javascript:;" class="nav-me-link"><img :src="'noavatar' | avatar" class="nav-avatar-img"/></a
+                    ><a @click="login" href="javascript:;" class="nav-me-link"><img :src="'noavatar' | avatar" class="nav-avatar-img" /></a
                 ></span>
             </div>
         </div>

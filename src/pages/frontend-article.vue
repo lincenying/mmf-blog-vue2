@@ -68,6 +68,10 @@ export default {
         other
     },
     mixins: [metaMixin],
+    beforeRouteUpdate(to, from, next) {
+        if (to.path !== from.path) this.$options.asyncData({ store: this.$store, route: to })
+        next()
+    },
     async asyncData({ store, route }) {
         const {
             path,
@@ -87,10 +91,6 @@ export default {
             category: 'global/category/getCategoryList',
             trending: 'frontend/article/getTrending'
         })
-    },
-    beforeRouteUpdate(to, from, next) {
-        if (to.path !== from.path) this.$options.asyncData({ store: this.$store, route: to })
-        next()
     },
     mounted() {
         // this.$options.asyncData({store: this.$store})

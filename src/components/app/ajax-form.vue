@@ -30,31 +30,31 @@ export default {
         before: {
             type: Function,
             default() {
-                return function() {}
+                return function () {}
             }
         },
         error: {
             type: Function,
             default() {
-                return function() {}
+                return function () {}
             }
         },
         complete: {
             type: Function,
             default() {
-                return function() {}
+                return function () {}
             }
         },
         progress: {
             type: Function,
             default() {
-                return function() {}
+                return function () {}
             }
         },
         after: {
             type: Function,
             default() {
-                return function() {}
+                return function () {}
             }
         }
     },
@@ -63,9 +63,6 @@ export default {
             this.before()
             var handleError = err => {
                 this.error(err)
-            }
-            if (!this.method) {
-                this.method = 'post'
             }
             // eslint-disable-next-line
             var xhr = new XMLHttpRequest()

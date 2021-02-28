@@ -3,23 +3,25 @@
  * @author lincenying(lincenying@qq.com)
  */
 
-import ProgressBar from '@/components/progress-bar.vue'
-import cookies from 'js-cookie'
-import 'toastr/build/toastr.css'
+import './registerServiceWorker'
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
+import cookies from 'js-cookie'
+
 import api from '~api'
-import App from './app.vue'
-import './assets/css/hljs/googlecode.css'
-import './assets/less/style.less'
+import { createRouter } from './router'
+import { createStore } from './store'
 import VueBus from './event-bus'
 import * as filters from './filters'
 import titleMixin from './mixins'
-import './polyfill'
-import './registerServiceWorker'
-import { createRouter } from './router'
-import { createStore } from './store'
 import { oc } from './utils'
+
+import App from './app.vue'
+import ProgressBar from '@/components/progress-bar.vue'
+
+import 'toastr/build/toastr.css'
+import './assets/css/hljs/googlecode.css'
+import './assets/scss/style.scss'
 
 Vue.use(VueBus)
 Vue.mixin(titleMixin)

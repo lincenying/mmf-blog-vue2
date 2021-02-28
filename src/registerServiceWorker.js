@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'production') {
             /* eslint-enable max-len */
 
             document.body.appendChild(dom)
-            setTimeout(function() {
+            setTimeout(function () {
                 document.getElementById('app-refresh').className += ' app-refresh-show'
             }, 16)
         },

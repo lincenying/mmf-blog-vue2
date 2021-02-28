@@ -22,14 +22,14 @@ import aInput from '@/components/_input.vue'
 
 export default {
     name: 'backend-login',
+    components: {
+        aInput
+    },
     beforeRouteEnter(to, from, next) {
         if (cookies.get('b_user')) {
             window.location.href = '/backend/article/list'
         }
         next()
-    },
-    components: {
-        aInput
     },
     data() {
         return {

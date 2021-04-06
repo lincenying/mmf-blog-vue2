@@ -15,12 +15,12 @@
                     </a>
                     <div class="comment-content-wrap">
                         <span class="comment-author-wrap">
-                            <a href="javascript:;" class="comment-author">{{ item.username }}</a>
+                            <a href="javascript:;" class="comment-author">{{ item.userid.username }}</a>
                         </span>
                         <div class="comment-content" v-text="item.content"></div>
                         <div class="comment-footer">
                             <span class="comment-time" v-text="item.creat_date"></span>
-                            <a @click="reply(item)" href="javascript:;" class="comment-action-item comment-reply">回复</a>
+                            <a @click="handleReply(item)" href="javascript:;" class="comment-action-item comment-reply">回复</a>
                         </div>
                     </div>
                 </div>
@@ -85,8 +85,8 @@ export default {
                 }
             }
         },
-        reply(item) {
-            this.form.content = '回复 @' + item.username + ': '
+        handleReply(item) {
+            this.form.content = '回复 @' + item.userid.username + ': '
             document.querySelector('#content').focus()
         }
     }

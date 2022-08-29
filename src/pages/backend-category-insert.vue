@@ -10,7 +10,7 @@
                 <span class="input-info error">请输入分类排序</span>
             </a-input>
         </div>
-        <div class="settings-footer"><a @click="insert" href="javascript:;" class="btn btn-yellow">添加分类</a></div>
+        <div class="settings-footer"><a @click="handleInsert" href="javascript:;" class="btn btn-yellow">添加分类</a></div>
     </div>
 </template>
 
@@ -28,6 +28,7 @@ export default {
     mixins: [checkAdmin],
     data() {
         return {
+            loading: false,
             form: {
                 cate_name: '',
                 cate_order: ''
@@ -35,17 +36,17 @@ export default {
         }
     },
     methods: {
-        async insert() {
+        async handleInsert() {
+            if (this.loading) return
             if (!this.form.cate_name || !this.form.cate_order) {
                 showMsg('请将表单填写完整!')
                 return
             }
+            this.loading = true
             const { code, data, message } = await this.$store.$api.post('backend/category/insert', this.form)
+            this.loading = false
             if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
+                showMsg({ type: 'success', content: message })
                 this.$store.commit('global/category/insertCategoryItem', {
                     ...this.form,
                     _id: data

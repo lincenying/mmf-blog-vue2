@@ -13,8 +13,8 @@
                 <div class="list-date">{{ item.update_date | timeYmd }}</div>
                 <div class="list-action">
                     <router-link :to="'/backend/admin/modify/' + item._id" class="badge badge-success">编辑</router-link>
-                    <a v-if="item.is_delete" @click="recover(item._id)" href="javascript:;">恢复</a>
-                    <a v-else @click="deletes(item._id)" href="javascript:;">删除</a>
+                    <a v-if="item.is_delete" @click="handleRecover(item._id)" href="javascript:;">恢复</a>
+                    <a v-else @click="handleDelete(item._id)" href="javascript:;">删除</a>
                 </div>
             </div>
         </div>
@@ -57,23 +57,17 @@ export default {
             await this.$options.asyncData({ store: this.$store }, { page })
             this.loading = false
         },
-        async recover(id) {
+        async handleRecover(id) {
             const { code, message } = await this.$store.$api.get('backend/admin/recover', { id })
             if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
+                showMsg({ type: 'success', content: message })
                 this.$store.commit('backend/admin/recoverAdmin', id)
             }
         },
-        async deletes(id) {
+        async handleDelete(id) {
             const { code, message } = await this.$store.$api.get('backend/admin/delete', { id })
             if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
+                showMsg({ type: 'success', content: message })
                 this.$store.commit('backend/admin/deleteAdmin', id)
             }
         }

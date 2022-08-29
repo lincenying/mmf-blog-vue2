@@ -242,8 +242,6 @@
 .markdown-body h5,
 .markdown-body h6 {
     position: relative;
-    margin-top: -60px;
-    padding-top: 66px;
     margin-bottom: 16px;
     pointer-events: none;
     font-weight: bold;

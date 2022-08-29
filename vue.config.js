@@ -6,19 +6,11 @@ module.exports = {
     pages: {
         app: {
             // page 的入口
-            entry: 'src/app.js',
+            entry: 'src/entry-client.js',
             // 模板来源
             template: 'public/index.html',
             // 在 dist/index.html 的输出
             filename: 'index.html'
-        },
-        admin: {
-            // page 的入口
-            entry: 'src/admin.js',
-            // 模板来源
-            template: 'public/admin.html',
-            // 在 dist/index.html 的输出
-            filename: 'admin.html'
         }
     },
     configureWebpack: {
@@ -38,7 +30,7 @@ module.exports = {
                 filename: 'service-worker.js',
                 minify: true,
                 dontCacheBustUrlsMatching: /./,
-                staticFileGlobsIgnorePatterns: [/\.html/, /\.map$/, /\.json$/],
+                staticFileGlobsIgnorePatterns: [/\.html$/, /\.map$/, /\.json$/],
                 runtimeCaching: [
                     {
                         urlPattern: /api/,
@@ -57,6 +49,17 @@ module.exports = {
                         options: {
                             networkTimeoutSeconds: 1,
                             cacheName: 'cdn-cache',
+                            cacheableResponse: {
+                                statuses: [0, 200]
+                            }
+                        }
+                    },
+                    {
+                        urlPattern: /^https:\/\/cravatar\.cn/,
+                        handler: 'NetworkFirst',
+                        options: {
+                            networkTimeoutSeconds: 1,
+                            cacheName: 'avatar-cache',
                             cacheableResponse: {
                                 statuses: [0, 200]
                             }
@@ -85,11 +88,14 @@ module.exports = {
     pluginOptions: {},
     pwa: {
         name: 'M.M.F小屋',
-        themeColor: '#2874f0',
+        themeColor: '#54d9e0',
         msTileColor: '#000000',
         appleMobileWebAppCapable: 'yes',
         appleMobileWebAppStatusBarStyle: 'black',
         manifestPath: 'static/manifest.json',
+        manifestOptions: {
+            start_url: '/'
+        },
         iconPaths: {
             favicon32: 'static/img/icons/favicon-32x32.png',
             favicon16: 'static/img/icons/favicon-16x16.png',

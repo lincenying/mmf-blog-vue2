@@ -6,7 +6,7 @@
                 <div class="comment-post-input-wrap base-textarea-wrap">
                     <textarea v-model="form.content" id="content" class="textarea-input base-input" cols="30" rows="4"></textarea>
                 </div>
-                <div class="comment-post-actions"><a @click="postComment" href="javascript:;" class="btn btn-blue">发表评论</a></div>
+                <div class="comment-post-actions"><a @click="handlePostComment" href="javascript:;" class="btn btn-blue">发表评论</a></div>
             </div>
             <div class="comment-items-wrap">
                 <div v-for="item in comments.data" :key="item._id" class="comment-item">
@@ -20,13 +20,13 @@
                         <div class="comment-content" v-text="item.content"></div>
                         <div class="comment-footer">
                             <span class="comment-time" v-text="item.creat_date"></span>
-                            <a @click="handleReply(item)" href="javascript:;" class="comment-action-item comment-reply">回复</a>
+                            <a @click="handleReply(item.userid.username)" href="javascript:;" class="comment-action-item comment-reply">回复</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div v-if="comments.hasNext" class="load-more-wrap">
-                <a v-if="!loading" @click="loadcomment()" href="javascript:;" class="comments-load-more">加载更多</a>
+                <a v-if="!loading" @click="loadcomment" href="javascript:;" class="comments-load-more">加载更多</a>
                 <a v-else href="javascript:;" class="comments-load-more">加载中...</a>
             </div>
         </div>
@@ -43,6 +43,7 @@ export default {
     data() {
         return {
             loading: false,
+            postLoading: false,
             form: {
                 id: this.$route.params.id,
                 content: ''
@@ -67,26 +68,26 @@ export default {
             })
             this.loading = false
         },
-        async postComment() {
+        async handlePostComment() {
+            if (this.postLoading) return
             if (!this.user) {
-                showMsg('请先登录!')
                 this.$store.commit('global/showLoginModal', true)
-            } else if (this.form.content === '') {
-                showMsg('请输入评论内容!')
-            } else {
-                const { code, data } = await this.$store.$api.post('frontend/comment/insert', this.form)
-                if (code === 200) {
-                    this.form.content = ''
-                    showMsg({
-                        content: '评论发布成功!',
-                        type: 'success'
-                    })
-                    this.$store.commit('global/comment/insertCommentItem', data)
-                }
+                return showMsg('请先登录!')
+            }
+            if (this.form.content === '') {
+                return showMsg('请输入评论内容!')
+            }
+            this.postLoading = true
+            const { code, data } = await this.$store.$api.post('frontend/comment/insert', this.form)
+            this.postLoading = false
+            if (code === 200) {
+                this.form.content = ''
+                showMsg({ type: 'success', content: '评论发布成功!' })
+                this.$store.commit('global/comment/insertCommentItem', data)
             }
         },
-        handleReply(item) {
-            this.form.content = '回复 @' + item.userid.username + ': '
+        handleReply(username) {
+            this.form.content = '回复 @' + username + ': '
             document.querySelector('#content').focus()
         }
     }

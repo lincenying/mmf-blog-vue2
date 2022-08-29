@@ -3,7 +3,7 @@
         <span class="center-helper"></span>
         <div class="modal modal-signup">
             <h2 class="modal-title">注册</h2>
-            <a @click="close" href="javascript:;" class="modal-close"><i class="icon icon-close-black"></i></a>
+            <a @click="handleClose" href="javascript:;" class="modal-close"><i class="icon icon-close-black"></i></a>
             <div class="modal-content">
                 <div class="signup-form">
                     <div class="input-wrap">
@@ -22,8 +22,8 @@
                         <input v-model="form.re_password" type="password" placeholder="重复密码" class="base-input" />
                         <p class="error-info input-info hidden">长度至少 6 位</p>
                     </div>
-                    <a @click="register" href="javascript:;" class="btn signup-btn btn-yellow">确认注册</a>
-                    <a @click="login" href="javascript:;" class="btn signup-btn btn-blue block">直接登录</a>
+                    <a @click="handleRegister" href="javascript:;" class="btn signup-btn btn-yellow">确认注册</a>
+                    <a @click="handleLogin" href="javascript:;" class="btn signup-btn btn-blue block">直接登录</a>
                 </div>
             </div>
         </div>
@@ -39,6 +39,7 @@ export default {
     props: ['show'],
     data() {
         return {
+            loading: false,
             form: {
                 username: '',
                 email: '',
@@ -48,14 +49,15 @@ export default {
         }
     },
     methods: {
-        close() {
+        handleClose() {
             this.$store.commit('global/showRegisterModal', false)
         },
-        login() {
+        handleLogin() {
             this.$store.commit('global/showLoginModal', true)
             this.$store.commit('global/showRegisterModal', false)
         },
-        async register() {
+        async handleRegister() {
+            if (this.loading) return
             const reg = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)$/i
             if (!this.form.username || !this.form.password || !this.form.email) {
                 showMsg('请将表单填写完整!')
@@ -73,13 +75,12 @@ export default {
                 showMsg('两次输入的密码不一致!')
                 return
             }
+            this.loading = true
             const { code, message } = await this.$store.$api.post('frontend/user/insert', this.form)
+            this.loading = false
             if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
-                this.login()
+                showMsg({ type: 'success', content: message })
+                this.handleLogin()
             }
         }
     }

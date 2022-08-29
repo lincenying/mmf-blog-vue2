@@ -14,7 +14,7 @@
                             <input type="password" v-model="form.re_password" placeholder="确认密码" class="base-input" name="re_password" />
                         </a-input>
                     </div>
-                    <div class="settings-footer"><a @click="modify" href="javascript:;" class="btn btn-yellow">保存设置</a></div>
+                    <div class="settings-footer"><a @click="handleModify" href="javascript:;" class="btn btn-yellow">保存设置</a></div>
                 </div>
             </div>
         </div>
@@ -39,6 +39,7 @@ export default {
     mixins: [metaMixin, checkUser],
     data() {
         return {
+            loading: false,
             form: {
                 old_password: '',
                 password: '',
@@ -47,7 +48,8 @@ export default {
         }
     },
     methods: {
-        async modify() {
+        async handleModify() {
+            if (this.loading) return
             if (!this.form.password || !this.form.old_password || !this.form.re_password) {
                 showMsg('请将表单填写完整!')
                 return
@@ -55,12 +57,11 @@ export default {
                 showMsg('两次密码输入不一致!')
                 return
             }
-            const { code, data } = await this.$store.$api.post('frontend/user/password', this.form)
+            this.loading = true
+            const { code, message } = await this.$store.$api.post('frontend/user/password', this.form)
+            this.loading = false
             if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: data
-                })
+                showMsg({ type: 'success', content: message })
                 this.form.old_password = ''
                 this.form.password = ''
                 this.form.re_password = ''

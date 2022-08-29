@@ -1,9 +1,9 @@
 <template>
     <div class="actions-wrap">
-        <a v-if="item.like_status" @click="like" href="javascript:;" class="action-item active"
+        <a v-if="item.like_status" @click="handleLike" href="javascript:;" class="action-item active"
             ><i class="icon icon-action-voteup-active"></i><span class="text">{{ item.like }} 赞</span></a
         >
-        <a v-else @click="like" href="javascript:;" class="action-item"
+        <a v-else @click="handleLike" href="javascript:;" class="action-item"
             ><i class="icon icon-action-voteup"></i><span class="text">{{ item.like }} 赞</span></a
         >
         <a href="javascript:;" class="action-item"
@@ -12,7 +12,7 @@
         <a href="javascript:;" class="action-item action-item-fav"
             ><i class="icon icon-action-fav"></i><span class="text">{{ item.visit }} 浏览</span></a
         >
-        <a @click="share" href="javascript:;" class="action-item"><i class="icon icon-action-share"></i><span class="text">分享</span></a>
+        <a @click="handleShare" href="javascript:;" class="action-item"><i class="icon icon-action-share"></i><span class="text">分享</span></a>
     </div>
 </template>
 <script>
@@ -22,33 +22,37 @@ import { showMsg } from '@/utils'
 export default {
     name: 'item-actions',
     props: ['item'],
+    data() {
+        return {
+            loading: false
+        }
+    },
     computed: {
         user() {
             return this.$oc(this.$store.state, 'global.cookies.user')
         }
     },
     methods: {
-        async like() {
+        async handleLike() {
+            if (this.loading) return
             if (!this.user) {
-                showMsg('请先登录!')
                 this.$store.commit('global/showLoginModal', true)
-                return
+                return showMsg('请先登录!')
             }
             let url = 'frontend/like'
             if (this.item.like_status) url = 'frontend/unlike'
+            this.loading = true
             const { code, message } = await this.$store.$api.get(url, { id: this.item._id })
+            this.loading = false
             if (code === 200) {
-                showMsg({
-                    content: message,
-                    type: 'success'
-                })
+                showMsg({ type: 'success', content: message })
                 this.$store.commit('frontend/article/modifyLikeStatus', {
                     id: this.item._id,
                     status: !this.item.like_status
                 })
             }
         },
-        share() {
+        handleShare() {
             const top = window.screen.height / 2 - 250
             const left = window.screen.width / 2 - 300
             const title = this.item.title + ' - M.M.F 小屋'

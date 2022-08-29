@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.20.1",
+    "fastclick": "^1.0.6",
     "js-cookie": "^3.0.1",
     "lodash.get": "^4.4.2",
     "markdown-it": "^12.3.0",

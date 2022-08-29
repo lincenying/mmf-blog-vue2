@@ -20,9 +20,17 @@ export default {
     serverCacheKey: () => {
         return `aside::account`
     },
+    data() {
+        return {
+            loading: false
+        }
+    },
     methods: {
         async handleLogout() {
+            if (this.loading) return
+            this.loading = true
             await this.$store.$api.post('frontend/user/logout', {})
+            this.loading = false
             window.location.href = '/'
         }
     }

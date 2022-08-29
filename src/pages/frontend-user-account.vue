@@ -40,6 +40,7 @@ export default {
     mixins: [metaMixin, checkUser],
     data() {
         return {
+            loading: false,
             username: '',
             form: {
                 email: ''
@@ -58,6 +59,7 @@ export default {
             }
         },
         async handleSubmit() {
+            if (this.loading) return
             const reg = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)$/i
             if (!this.form.email) {
                 showMsg('请填写邮箱地址!')
@@ -66,20 +68,19 @@ export default {
                 showMsg('邮箱格式错误!')
                 return
             }
-            const { code, data } = await this.$store.$api.post('frontend/user/account', {
+            this.loading = true
+            const { code, message } = await this.$store.$api.post('frontend/user/account', {
                 ...this.form,
                 username: this.username,
                 id: this.$oc(this.$store.state, 'global.cookies.userid')
             })
+            this.loading = false
             if (code === 200) {
                 this.$store.commit('global/setCookies', {
                     ...this.$oc(this.$store.state, 'global.cookies'),
                     useremail: this.form.email
                 })
-                showMsg({
-                    type: 'success',
-                    content: data
-                })
+                showMsg({ type: 'success', content: message })
             }
         }
     },

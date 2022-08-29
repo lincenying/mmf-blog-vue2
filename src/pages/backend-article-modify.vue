@@ -15,12 +15,12 @@
             </a-input>
             <div class="settings-section">
                 <div id="modify-content" class="settings-item-content">
-                    <mavon-editor v-if="renderMD" ref="md" v-model="form.content" @imgAdd="imgAdd" :subfield="false" :externalLink="externalLink" />
+                    <mavon-editor v-if="renderMD" ref="md" v-model="form.content" @imgAdd="onImgAdd" :subfield="false" :externalLink="externalLink" />
                 </div>
             </div>
         </div>
         <div class="settings-footer">
-            <a @click="modify" href="javascript:;" class="btn btn-yellow">编辑文章</a>
+            <a @click="handleModify" href="javascript:;" class="btn btn-yellow">编辑文章</a>
             <router-link to="/backend/article/list" class="btn btn-blue">返回</router-link>
         </div>
     </div>
@@ -49,6 +49,7 @@ export default {
     },
     data() {
         return {
+            loading: false,
             renderMD: false,
             form: {
                 id: this.$route.params.id,
@@ -60,7 +61,27 @@ export default {
                 html: ''
             },
             externalLink: {
-                markdown_css: false
+                markdown_css: false,
+                hljs_js() {
+                    // 这是你的hljs文件路径
+                    return 'https://cdn.jsdelivr.net/npm/highlightjs/highlight.pack.min.js'
+                },
+                hljs_css(css) {
+                    // 这是你的代码高亮配色文件路径
+                    return 'https://cdn.jsdelivr.net/npm/highlightjs/styles/' + css + '.min.css'
+                },
+                hljs_lang() {
+                    // 这是你的代码高亮语言解析路径
+                    return false
+                },
+                katex_css() {
+                    // 这是你的katex配色方案路径路径
+                    return 'https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css'
+                },
+                katex_js() {
+                    // 这是你的katex.js路径
+                    return 'https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js'
+                }
             }
         }
     },
@@ -84,7 +105,7 @@ export default {
         this.renderMD = true
     },
     methods: {
-        async imgAdd(pos, $file) {
+        async onImgAdd(pos, $file) {
             // 第一步.将图片上传到服务器.
             const formdata = new FormData()
             formdata.append('file', $file)
@@ -93,18 +114,18 @@ export default {
                 this.$refs.md.$img2Url(pos, uploadApi + '/' + data.filepath)
             }
         },
-        async modify() {
+        async handleModify() {
+            if (this.loading) return
             if (!this.form.title || !this.form.category || !this.form.content) {
                 showMsg('请将表单填写完整!')
                 return
             }
+            this.loading = true
             // this.form.html = this.$refs.md.d_render
             const { code, data, message } = await this.$store.$api.post('backend/article/modify', this.form)
+            this.loading = false
             if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
+                showMsg({ type: 'success', content: message })
                 this.$store.commit('backend/article/updateArticleItem', data)
                 this.$router.push('/backend/article/list')
             }

@@ -11,7 +11,7 @@
             </a-input>
         </div>
         <div class="settings-footer">
-            <a @click="modify" href="javascript:;" class="btn btn-yellow">编辑分类</a>
+            <a @click="handleModify" href="javascript:;" class="btn btn-yellow">编辑分类</a>
             <router-link to="/backend/category/list" class="btn btn-blue">返回</router-link>
         </div>
     </div>
@@ -38,6 +38,7 @@ export default {
     },
     data() {
         return {
+            loading: false,
             form: {
                 id: this.$route.params.id,
                 cate_name: '',
@@ -61,17 +62,17 @@ export default {
         this.form.cate_order = this.item.data.cate_order
     },
     methods: {
-        async modify() {
+        async handleModify() {
+            if (this.loading) return
             if (!this.form.cate_name || !this.form.cate_order) {
                 showMsg('请将表单填写完整!')
                 return
             }
+            this.loading = true
             const { code, data, message } = await this.$store.$api.post('backend/category/modify', this.form)
+            this.loading = false
             if (code === 200 && data) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
+                showMsg({ type: 'success', content: message })
                 this.$store.commit('global/category/updateCategoryItem', data)
                 this.$router.push('/backend/category/list')
             }

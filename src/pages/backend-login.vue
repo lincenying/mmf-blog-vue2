@@ -10,7 +10,7 @@
                 <span class="input-info error">请输入密码</span>
             </a-input>
         </div>
-        <div class="settings-footer"><a @click="login" href="javascript:;" class="btn btn-yellow">登录</a></div>
+        <div class="settings-footer"><a @click="handleLogin" href="javascript:;" class="btn btn-yellow">登录</a></div>
     </div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
     },
     data() {
         return {
+            loading: false,
             form: {
                 username: '',
                 password: ''
@@ -40,12 +41,15 @@ export default {
         }
     },
     methods: {
-        async login() {
+        async handleLogin() {
+            if (this.loading) return
             if (!this.form.username || !this.form.password) {
                 showMsg('请输入用户名和密码!')
                 return
             }
+            this.loading = true
             const { code, data } = await this.$store.$api.post('backend/admin/login', this.form)
+            this.loading = false
             if (data && code === 200) {
                 window.location.href = '/backend/article/list'
             }

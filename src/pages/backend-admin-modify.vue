@@ -15,7 +15,7 @@
             </a-input>
         </div>
         <div class="settings-footer">
-            <a @click="modify" href="javascript:;" class="btn btn-yellow">编辑管理员</a>
+            <a @click="handleModify" href="javascript:;" class="btn btn-yellow">编辑管理员</a>
             <router-link to="/backend/admin/list" class="btn btn-blue">返回</router-link>
         </div>
     </div>
@@ -45,6 +45,7 @@ export default {
     },
     data() {
         return {
+            loading: false,
             form: {
                 id: this.$route.params.id,
                 username: '',
@@ -69,17 +70,17 @@ export default {
         this.form.email = this.item.data.email
     },
     methods: {
-        async modify() {
+        async handleModify() {
+            if (this.loading) return
             if (!this.form.username || !this.form.email) {
                 showMsg('请将表单填写完整!')
                 return
             }
+            this.loading = true
             const { code, data, message } = await this.$store.$api.post('backend/admin/modify', this.form)
+            this.loading = false
             if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
+                showMsg({ type: 'success', content: message })
                 this.$store.commit('backend/admin/updateAdminItem', data)
                 this.$router.push('/backend/admin/list')
             }

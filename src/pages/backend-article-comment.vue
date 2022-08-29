@@ -13,8 +13,10 @@
                         <div class="comment-content">{{ item.content }}</div>
                         <div class="comment-footer">
                             <span class="comment-time">{{ item.timestamp | timeAgo }}</span>
-                            <a v-if="item.is_delete" @click="recover(item._id)" href="javascript:;" class="comment-action-item comment-reply">恢复</a>
-                            <a v-else @click="deletes(item._id)" href="javascript:;" class="comment-action-item comment-reply">删除</a>
+                            <a v-if="item.is_delete" @click="handleRecover(item._id)" href="javascript:;" class="comment-action-item comment-reply"
+                                >恢复</a
+                            >
+                            <a v-else @click="handleDelete(item._id)" href="javascript:;" class="comment-action-item comment-reply">删除</a>
                         </div>
                     </div>
                 </div>
@@ -61,23 +63,17 @@ export default {
             await this.$options.asyncData({ store: this.$store, route: this.$route }, { page })
             this.loading = false
         },
-        async recover(id) {
+        async handleRecover(id) {
             const { code, message } = await this.$store.$api.get('frontend/comment/recover', { id })
             if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
+                showMsg({ type: 'success', content: message })
                 this.$store.commit('global/comment/recoverComment', id)
             }
         },
-        async deletes(id) {
+        async handleDelete(id) {
             const { code, message } = await this.$store.$api.get('frontend/comment/delete', { id })
             if (code === 200) {
-                showMsg({
-                    type: 'success',
-                    content: message
-                })
+                showMsg({ type: 'success', content: message })
                 this.$store.commit('global/comment/deleteComment', id)
             }
         }

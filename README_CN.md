@@ -1,6 +1,6 @@
 # mmf-blog vuejs 2.0 v2版
 
-demo: [http://vue2.mmxiaowu.com](http://vue2.mmxiaowu.com)
+demo: [http://vue.mmxiaowu.com](http://vue.mmxiaowu.com)
 
 #### 说明
 

@@ -1,6 +1,6 @@
 # mmf-blog vuejs 2.0 v2         [中文说明](https://github.com/lincenying/mmf-blog-vue2/blob/master/README_CN.md)
 
-demo: [http://vue2.mmxiaowu.com](http://vue2.mmxiaowu.com)
+demo: [http://vue.mmxiaowu.com](http://vue.mmxiaowu.com)
 
 The main technical stack: vue2, vue2-router, vuex, webpack, babel, eslint
 

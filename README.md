@@ -1,5 +1,11 @@
 # mmf-blog vuejs 2.0 v2         [中文说明](https://github.com/lincenying/mmf-blog-vue2/blob/master/README_CN.md)
 
+### Vue2生命周期将近, 请关注Vue3版本 https://github.com/lincenying/mmf-blog-vite-vue3 , 本仓库不再更新
+
+---
+
+---
+
 demo: [http://vue.mmxiaowu.com](http://vue.mmxiaowu.com)
 
 The main technical stack: vue2, vue2-router, vuex, webpack, babel, eslint
